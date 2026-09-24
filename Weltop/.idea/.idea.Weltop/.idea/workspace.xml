@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/PC_RPAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/PC_RPAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedCameraProto.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedCameraProto.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +37,8 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Demigiant.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/chathaway/RiderProjects/weltopontop/Weltop/Assets/Resources/DOTweenSettings.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -116,7 +114,7 @@
       <workItem from="1790038225674" duration="358000" />
       <workItem from="1790038650939" duration="123000" />
       <workItem from="1790097474542" duration="26000" />
-      <workItem from="1790125716553" duration="3296000" />
+      <workItem from="1790125716553" duration="3687000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -134,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790038683276</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added dynamic shared camera, movements and jumping for isometric character">
+      <option name="closed" value="true" />
+      <created>1790175638893</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1790175638894</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +169,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Added dependencies: Cinemachine, TextMeshPro, DOTween" />
     <MESSAGE value="Merging dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merging dependencies" />
+    <MESSAGE value="Added dynamic shared camera, movements and jumping for isometric character" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added dynamic shared camera, movements and jumping for isometric character" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
