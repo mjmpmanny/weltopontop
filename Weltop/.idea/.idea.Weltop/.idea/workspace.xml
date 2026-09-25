@@ -116,7 +116,7 @@
       <workItem from="1790038650939" duration="123000" />
       <workItem from="1790097474542" duration="26000" />
       <workItem from="1790125716553" duration="3687000" />
-      <workItem from="1790293768659" duration="1487000" />
+      <workItem from="1790293768659" duration="2381000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -150,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790293788326</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adjusted some camera settings">
+      <option name="closed" value="true" />
+      <created>1790296481322</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1790296481322</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +189,8 @@
     <MESSAGE value="Merging dependencies" />
     <MESSAGE value="Added dynamic shared camera, movements and jumping for isometric character" />
     <MESSAGE value="Created sample scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created sample scene" />
+    <MESSAGE value="Adjusted some camera settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted some camera settings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
