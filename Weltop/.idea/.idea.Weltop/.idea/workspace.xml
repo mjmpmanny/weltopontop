@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedCameraProto.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedCameraProto.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="dependency-packages" />
+    <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -53,6 +53,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "shared-camera-prototype",
@@ -115,6 +116,7 @@
       <workItem from="1790038650939" duration="123000" />
       <workItem from="1790097474542" duration="26000" />
       <workItem from="1790125716553" duration="3687000" />
+      <workItem from="1790293768659" duration="1487000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -140,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790175638894</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created sample scene">
+      <option name="closed" value="true" />
+      <created>1790293788326</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1790293788326</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +180,8 @@
     <MESSAGE value="Added dependencies: Cinemachine, TextMeshPro, DOTween" />
     <MESSAGE value="Merging dependencies" />
     <MESSAGE value="Added dynamic shared camera, movements and jumping for isometric character" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added dynamic shared camera, movements and jumping for isometric character" />
+    <MESSAGE value="Created sample scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created sample scene" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
