@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-=======
 using Unity.Cinemachine;
 using Unity.VisualScripting;
->>>>>>> Stashed changes
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines.Interpolators;
@@ -13,8 +10,6 @@ public class PlayerController_3dPerson : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float speed;
-<<<<<<< Updated upstream
-=======
     public float accel;
     public float momentumDampening;
 
@@ -30,34 +25,29 @@ public class PlayerController_3dPerson : MonoBehaviour
     private float LandingTimer;
 
 
-
+    private PlayerInput inp;
     private System.Action<InputAction.CallbackContext> jump_;
->>>>>>> Stashed changes
     private Rigidbody rb;
     private GameObject cam;
     private GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        inp = GetComponent<PlayerInput>();
         jump_ = jump;
-        InputSystem.actions["Jump"].started += jump_;
+        inp.actions["Jump"].started += jump_;
     }
     private void OnDestroy()
     {
-        InputSystem.actions["Jump"].started -= jump_;
+        inp.actions["Jump"].started -= jump_;
 
     }
     void Start()
     {
         cam = transform.parent.GetComponentInChildren<Camera>().gameObject;
         rb = GetComponent<Rigidbody>();
-
     }
 
-<<<<<<< Updated upstream
-    // Update is called once per frame
-    void Update()
-=======
     float OnGround;
     private void Update()
     {
@@ -84,11 +74,10 @@ public class PlayerController_3dPerson : MonoBehaviour
         }
     }
     void FixedUpdate()
->>>>>>> Stashed changes
     {
 
         //basic movement
-        Vector2 moveinput = InputSystem.actions["Move"].ReadValue<Vector2>();
+        Vector2 moveinput = inp.actions["Move"].ReadValue<Vector2>();
         Vector3 move = new Vector3(cam.transform.forward.x,0,cam.transform.forward.z).normalized * moveinput.y
             + new Vector3(cam.transform.right.x,0, cam.transform.right.z).normalized * moveinput.x;
 
@@ -138,11 +127,6 @@ public class PlayerController_3dPerson : MonoBehaviour
 
 
 
-<<<<<<< Updated upstream
-        rb.linearVelocity = move * speed;
-
-=======
->>>>>>> Stashed changes
 
     }
 
