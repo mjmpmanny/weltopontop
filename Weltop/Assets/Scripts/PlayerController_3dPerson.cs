@@ -66,7 +66,7 @@ public class PlayerController_3dPerson : MonoBehaviour
             OnGround = 0;
             LandingTimer = LandingCooldown;
             rb.linearDamping = 0;
-            rb.AddForce(Vector3.up * JumpStrength);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) + (Vector3.up * JumpStrength);
             origionaldir = new Vector2(rb.linearVelocity.x,rb.linearVelocity.z);
         } else
         {

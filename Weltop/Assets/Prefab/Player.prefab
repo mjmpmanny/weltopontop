@@ -335,9 +335,9 @@ MonoBehaviour:
   accel: 2
   momentumDampening: 10
   CoyoteJumpTime: 0.1
-  JumpStrength: 300
+  JumpStrength: 10
   LandingCooldown: 0.5
-  AirAccel: 1
+  AirAccel: 0.6
   MaxAirSpeed: 5
   AirDampening: 2
 --- !u!114 &4027326663822818577
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
-  Damping: {x: 0.3, y: 0.5, z: 0.3}
+  Damping: {x: 0.1, y: 0.3, z: 0.1}
   ShoulderOffset: {x: 0.2, y: -0.02, z: 0}
   VerticalArmLength: 1.38
   CameraSide: 1
