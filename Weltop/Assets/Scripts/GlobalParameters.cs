@@ -6,4 +6,5 @@ public static class GlobalParameters
     public static float MoveSpeed = 5f;
     public static float JumpPower = 250f;
     public static float ShovePower = 200f;
+    public static float ShoveCooldownSeconds = 1f;
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,16 +12,35 @@ public class Shove : MonoBehaviour
     public LayerMask layerMask;
     
     private Rigidbody rb;
+    
+    private bool canShove;
 
     private void Start()
     {
         player = gameObject;
         rb = player.GetComponent<Rigidbody>();
+
+        canShove = true;
     }
 
     private void Update()
     {
         TryShove();
+    }
+
+    private IEnumerator ShoveCooldown()
+    {
+        canShove = false;
+        
+        float time = GlobalParameters.ShoveCooldownSeconds;
+
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+
+        canShove = true;
     }
 
     private void FixedUpdate()
@@ -43,6 +63,9 @@ public class Shove : MonoBehaviour
 
         if (shovePressed)
         {
+            if (!canShove)
+                return;
+                
             Debug.Log("Shove Pressed");
             GameObject playerToShove = FindPlayerToShove();
             
@@ -50,6 +73,8 @@ public class Shove : MonoBehaviour
             {
                 ExecuteShove(playerToShove);
             }
+
+            StartCoroutine(ShoveCooldown());
         }
     }
 
