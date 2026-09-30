@@ -12,7 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GlobalParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GlobalParameters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController_3dPerson.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController_3dPerson.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shove.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,12 +35,12 @@
     &quot;assignee&quot;: &quot;Royal-Nobody&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mjmpmanny/weltopontop",
-    "accountId": "90acc10c-aea6-4486-aa3c-0622ef6910c1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mjmpmanny/weltopontop&quot;,
+    &quot;accountId&quot;: &quot;90acc10c-aea6-4486-aa3c-0622ef6910c1&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Demigiant.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
@@ -127,7 +128,9 @@
       <updated>1790037071567</updated>
       <workItem from="1790037073615" duration="31000" />
       <workItem from="1790038225674" duration="358000" />
-      <workItem from="1790640010043" duration="335000" />
+      <workItem from="1790640010043" duration="540000" />
+      <workItem from="1790702027569" duration="138000" />
+      <workItem from="1790799098522" duration="2152000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -145,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790558503791</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added shove cooldown">
+      <option name="closed" value="true" />
+      <created>1790640496534</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1790640496534</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,7 +185,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Added dependencies: Cinemachine, TextMeshPro, DOTween" />
     <MESSAGE value="Initial pass for shove mechanic; player has input, applies force within range to opponent, and causes physical rigidbody knockback." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial pass for shove mechanic; player has input, applies force within range to opponent, and causes physical rigidbody knockback." />
+    <MESSAGE value="Added shove cooldown" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added shove cooldown" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -24,12 +24,10 @@ public class PlayerController_3dPerson : MonoBehaviour
     private Vector2 origionaldir;
     private float LandingTimer;
 
-
     private PlayerInput inp;
     private System.Action<InputAction.CallbackContext> jump_;
     private Rigidbody rb;
     private GameObject cam;
-    private GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -81,6 +79,13 @@ public class PlayerController_3dPerson : MonoBehaviour
         Vector3 move = new Vector3(cam.transform.forward.x,0,cam.transform.forward.z).normalized * moveinput.y
             + new Vector3(cam.transform.right.x,0, cam.transform.right.z).normalized * moveinput.x;
 
+        //rotate plyer in direction they are moving
+        if (move != Vector3.zero)
+        {
+            transform.forward = move;
+            transform.rotation = Quaternion.LookRotation(move);
+        }
+        
         //jumping
         CapsuleCollider cap = GetComponent<CapsuleCollider>();
         RaycastHit hit;
@@ -99,6 +104,8 @@ public class PlayerController_3dPerson : MonoBehaviour
 
             }
             rb.AddForce(move * accel, ForceMode.VelocityChange);
+            
+            
 
         } else//air movement
         {
