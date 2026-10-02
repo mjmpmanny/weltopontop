@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 755afe3f9d56bb54c8e0f7699b5d16c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shove
+  playerCam: {fileID: 4407631665799062605}
   layerMask:
     serializedVersion: 2
     m_Bits: 8

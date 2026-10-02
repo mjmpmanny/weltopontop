@@ -28,6 +28,7 @@ public class PlayerController_3dPerson : MonoBehaviour
     private System.Action<InputAction.CallbackContext> jump_;
     private Rigidbody rb;
     private GameObject cam;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -35,11 +36,12 @@ public class PlayerController_3dPerson : MonoBehaviour
         jump_ = jump;
         inp.actions["Jump"].started += jump_;
     }
+    
     private void OnDestroy()
     {
         inp.actions["Jump"].started -= jump_;
-
     }
+    
     void Start()
     {
         cam = transform.parent.GetComponentInChildren<Camera>().gameObject;
@@ -51,11 +53,7 @@ public class PlayerController_3dPerson : MonoBehaviour
     {
         OnGround -= Time.deltaTime;
         LandingTimer -= Time.deltaTime;
-
-
-
     }
-
 
     void jump(CallbackContext ctx)
     {
@@ -123,19 +121,5 @@ public class PlayerController_3dPerson : MonoBehaviour
             rb.AddForce(move * AirAccel, ForceMode.VelocityChange);
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-   
 }

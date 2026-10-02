@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class Shove : MonoBehaviour
 {
-    private Vector3 lastDirection;
-
     private GameObject player;
+    
+    public Camera playerCam;
 
     public LayerMask layerMask;
     
@@ -43,20 +43,6 @@ public class Shove : MonoBehaviour
         canShove = true;
     }
 
-    private void FixedUpdate()
-    {
-        CalculateFacingDirection();
-    }
-
-    //Made to work with the shared camera. Should change if we move to FP or TP
-    private void CalculateFacingDirection()
-    {
-        if (rb.linearVelocity.magnitude > 0.1f)
-        {
-            lastDirection = rb.linearVelocity.normalized;
-        }
-    }
-
     private void TryShove()
     {
         bool shovePressed = InputSystem.actions["Attack"].triggered;
@@ -81,7 +67,7 @@ public class Shove : MonoBehaviour
     private GameObject FindPlayerToShove()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(lastDirection), out hit, 2, layerMask))
+        if (Physics.Raycast(transform.position, playerCam.transform.forward, out hit, 2, layerMask))
         {
             return hit.collider.gameObject;
         }
@@ -95,7 +81,7 @@ public class Shove : MonoBehaviour
     {
         Rigidbody rigidBody = shoveTarget.GetComponent<Rigidbody>();
         Debug.Log("added force");
-        rigidBody.AddForce(lastDirection * GlobalParameters.ShovePower);
+        rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
     }
 }
 
