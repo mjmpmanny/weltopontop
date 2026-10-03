@@ -4,12 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController_Isometric : MonoBehaviour
 {
-    //MOVE THESE TO A GLOBAL PARAMETERS CLASS AFTER TESTING
-    public float speed;
-    public float jumpPower;
-    
     private Rigidbody rb;
     private GameObject player;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,9 +38,9 @@ public class PlayerController_Isometric : MonoBehaviour
         Vector3 move = forward * moveInput.y + right * moveInput.x;
 
         rb.linearVelocity = new Vector3(
-            move.x * speed,
+            move.x * GlobalParameters.MoveSpeed,
             rb.linearVelocity.y,
-            move.z * speed);
+            move.z * GlobalParameters.MoveSpeed);
     }
 
     void Jump()
@@ -53,7 +50,7 @@ public class PlayerController_Isometric : MonoBehaviour
         if (jumpPressed)
         {
             Debug.Log("Pressed Jump");
-            rb.AddForce(Vector3.up * jumpPower);
+            rb.AddForce(Vector3.up * GlobalParameters.JumpPower);
         }
     }
 }

@@ -12,6 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GlobalParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GlobalParameters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController_3dPerson.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController_3dPerson.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shove.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="dependency-packages" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -34,12 +38,20 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/mjmpmanny/weltopontop.git&quot;,
-    &quot;accountId&quot;: &quot;5f945617-73bd-4c3b-92b9-88605ee80276&quot;
+    &quot;url&quot;: &quot;https://github.com/mjmpmanny/weltopontop&quot;,
+    &quot;accountId&quot;: &quot;90acc10c-aea6-4486-aa3c-0622ef6910c1&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/chathaway/RiderProjects/weltopontop/Weltop/Packages/manifest.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Demigiant.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cam3dPerson.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GlobalParameters.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController_3dPerson.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/chathaway/RiderProjects/weltopontop/Weltop/Assets/Scripts/PlayerController_Isometric.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController_Isometric.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shove.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TutorialInfo/Readme.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -60,7 +72,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;WEL-28-graybox-test-course&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;WEL-32-Implement-Basic-Player-Shove&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -71,7 +83,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.6.1f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.6.1f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\chathaway\RiderProjects\weltopontop\Weltop -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\chathaway\RiderProjects\weltopontop\Weltop" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -81,7 +93,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.6.1f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.6.1f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\chathaway\RiderProjects\weltopontop\Weltop -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\chathaway\RiderProjects\weltopontop\Weltop" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -90,15 +102,18 @@
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
-      <option name="coreClr" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
@@ -114,6 +129,9 @@
       <updated>1790037071567</updated>
       <workItem from="1790037073615" duration="31000" />
       <workItem from="1790038225674" duration="358000" />
+      <workItem from="1790640010043" duration="540000" />
+      <workItem from="1790702027569" duration="138000" />
+      <workItem from="1790799098522" duration="4290000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -123,7 +141,31 @@
       <option name="project" value="LOCAL" />
       <updated>1790038540226</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial pass for shove mechanic; player has input, applies force within range to opponent, and causes physical rigidbody knockback.">
+      <option name="closed" value="true" />
+      <created>1790558503791</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1790558503791</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added shove cooldown">
+      <option name="closed" value="true" />
+      <created>1790640496534</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1790640496534</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Made character face the direction they are moving">
+      <option name="closed" value="true" />
+      <created>1790805783927</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1790805783927</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,7 +193,10 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Added dependencies: Cinemachine, TextMeshPro, DOTween" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added dependencies: Cinemachine, TextMeshPro, DOTween" />
+    <MESSAGE value="Initial pass for shove mechanic; player has input, applies force within range to opponent, and causes physical rigidbody knockback." />
+    <MESSAGE value="Added shove cooldown" />
+    <MESSAGE value="Made character face the direction they are moving" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made character face the direction they are moving" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
