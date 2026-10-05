@@ -7,4 +7,8 @@ public static class GlobalParameters
     public static float JumpPower = 250f;
     public static float ShovePower = 2000f;
     public static float ShoveCooldownSeconds = 1f;
+    
+    //Feedback
+    public static float ShoveCameraShakeDurationSeconds = 0.15f;
+    public static float ShoveCameraShakeStrength = 0.5f;
 }

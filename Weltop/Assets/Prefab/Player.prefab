@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 6401443588675081848}
   - component: {fileID: 4772940859167904407}
   - component: {fileID: 7372187572972943668}
+  - component: {fileID: 824267639369121826}
   - component: {fileID: 4027326663822818577}
   m_Layer: 3
   m_Name: Player
@@ -358,6 +359,19 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &824267639369121826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398676942098411492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamShake
+  playerCamera: {fileID: 4896784569592859808}
 --- !u!114 &4027326663822818577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +585,7 @@ GameObject:
   - component: {fileID: 3654442500466669029}
   - component: {fileID: 4896784569592859808}
   - component: {fileID: 2850486888818407280}
+  - component: {fileID: 7649937090256161350}
   m_Layer: 0
   m_Name: cam
   m_TagString: Untagged
@@ -662,3 +677,18 @@ MonoBehaviour:
     CameraRadius: 0.2
     DampingIntoCollision: 0
     DampingFromCollision: 0.5
+--- !u!114 &7649937090256161350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260916775906884323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCameraOffset
+  Offset: {x: 0, y: 0, z: 0}
+  ApplyAfter: 1
+  PreserveComposition: 0

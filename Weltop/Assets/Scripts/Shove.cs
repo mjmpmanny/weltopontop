@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ public class Shove : MonoBehaviour
     private GameObject player;
     
     public Camera playerCam;
-
+    
     public LayerMask layerMask;
     
     private Rigidbody rb;
@@ -87,8 +88,10 @@ public class Shove : MonoBehaviour
     private void ExecuteShove(GameObject shoveTarget)
     {
         Rigidbody rigidBody = shoveTarget.GetComponent<Rigidbody>();
-        Debug.Log("added force");
+        CamShake targetCameraShake = shoveTarget.GetComponent<CamShake>();
+        
         rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
+        targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
     }
 }
 
