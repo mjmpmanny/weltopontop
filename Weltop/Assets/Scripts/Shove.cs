@@ -15,6 +15,13 @@ public class Shove : MonoBehaviour
     
     private bool canShove;
 
+    private PlayerInput inp;
+    
+    private void Awake()
+    {
+        inp = GetComponent<PlayerInput>();
+    }
+
     private void Start()
     {
         player = gameObject;
@@ -45,7 +52,7 @@ public class Shove : MonoBehaviour
 
     private void TryShove()
     {
-        bool shovePressed = InputSystem.actions["Attack"].triggered;
+        bool shovePressed = inp.actions["Attack"].triggered;
 
         if (shovePressed)
         {
