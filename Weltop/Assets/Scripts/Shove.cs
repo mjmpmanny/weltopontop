@@ -65,7 +65,10 @@ public class Shove : MonoBehaviour
             
             if (playerToShove != null)
             {
-                ExecuteShove(playerToShove);
+                if(CanBeShoved(playerToShove));
+                {
+                    ExecuteShove(playerToShove);
+                }
             }
 
             StartCoroutine(ShoveCooldown());
@@ -83,6 +86,13 @@ public class Shove : MonoBehaviour
         {
             return null;
         }
+    }
+
+    private bool CanBeShoved(GameObject shoveTarget)
+    {
+        PlayerStats targetStats = shoveTarget.GetComponent<PlayerStats>();
+
+        return !targetStats.isInvincible;
     }
 
     private void ExecuteShove(GameObject shoveTarget)
