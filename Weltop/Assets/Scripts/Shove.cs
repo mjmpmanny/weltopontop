@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ public class Shove : MonoBehaviour
     private GameObject player;
     
     public Camera playerCam;
-
+    
     public LayerMask layerMask;
     
     private Rigidbody rb;
@@ -64,7 +65,10 @@ public class Shove : MonoBehaviour
             
             if (playerToShove != null)
             {
-                ExecuteShove(playerToShove);
+                if(CanBeShoved(playerToShove));
+                {
+                    ExecuteShove(playerToShove);
+                }
             }
 
             StartCoroutine(ShoveCooldown());
@@ -84,11 +88,20 @@ public class Shove : MonoBehaviour
         }
     }
 
+    private bool CanBeShoved(GameObject shoveTarget)
+    {
+        PlayerStats targetStats = shoveTarget.GetComponent<PlayerStats>();
+
+        return !targetStats.isInvincible;
+    }
+
     private void ExecuteShove(GameObject shoveTarget)
     {
         Rigidbody rigidBody = shoveTarget.GetComponent<Rigidbody>();
-        Debug.Log("added force");
+        CamShake targetCameraShake = shoveTarget.GetComponent<CamShake>();
+        
         rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
+        targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
     }
 }
 
