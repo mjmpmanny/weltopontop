@@ -9,19 +9,29 @@ public class Cam3dPerson : MonoBehaviour
     public float ControllerSpeed;
     public float KeyboardSpeed;
     private PlayerInput input;
+    private Vector2 CamMoveAmount;
     // Use this for initialization
     void Start()
     {
         input = transform.parent.GetComponentInChildren<PlayerInput>();
         speed = (input.devices[0] is Gamepad) ? ControllerSpeed : KeyboardSpeed;
+        CamMoveAmount = new Vector2(0, 0);
+    }
+
+    private void Update()
+    {
+        Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
+
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - lookinput.y * speed,
+            transform.rotation.eulerAngles.y + lookinput.x * speed, 0);
     }
 
     void FixedUpdate()
     {
-        Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
+       /* Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
         
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - lookinput.y*speed, 
-            transform.rotation.eulerAngles.y + lookinput.x*speed, 0);
-        transform.position = transform.parent.GetComponentInChildren<PlayerController_3dPerson>().transform.position;
+            transform.rotation.eulerAngles.y + lookinput.x*speed, 0);*/
+        transform.position = transform.parent.GetComponentInChildren<PlayerController>().transform.position;
     }
 }

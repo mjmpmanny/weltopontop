@@ -7,6 +7,7 @@ public class CamBrain : MonoBehaviour
 {
     private SplitScreenController con;
     public int channel;
+    public int PlayerNum;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,5 +31,17 @@ public class CamBrain : MonoBehaviour
         channel = con.GetChannel();
         transform.parent.GetComponentInChildren<CinemachineCamera>().OutputChannel = (OutputChannels)(1<<channel);
         GetComponent<CinemachineBrain>().ChannelMask = (OutputChannels)(1<<channel);
+    }
+
+    public void SetPlayer(int PlayerNumber)
+    {
+        PlayerNum = PlayerNumber;
+        GetComponent<Camera>().cullingMask = (~(1 << PlayerNum + 6));
+        GameObject model = transform.parent.GetComponentInChildren<PlayerController>().gameObject;
+        model.layer = PlayerNum + 6;
+        foreach (Transform child in model.GetComponentsInChildren<Transform>(true))
+        {
+            child.gameObject.layer = PlayerNum + 6;
+        }
     }
 }
