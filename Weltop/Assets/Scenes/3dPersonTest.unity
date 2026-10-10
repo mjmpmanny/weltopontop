@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1612,8 +1612,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.0322847}
+  m_Center: {x: 0, y: 0.016577054, z: -0.019514622}
 --- !u!23 &1404753198
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1679,13 +1679,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404753196}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2048308, y: -0, z: -0, w: 0.97879744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9903122, y: 4.75, z: -1.6452423}
   m_LocalScale: {x: 0.31246004, y: 1.0341939, z: 1.45239}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 340590783}
-  m_LocalEulerAnglesHint: {x: 23.639, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404832924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,6 +2247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1960118225}
   - component: {fileID: 1960118224}
+  - component: {fileID: 1960118226}
   m_Layer: 0
   m_Name: input manager
   m_TagString: Untagged
@@ -2314,6 +2315,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1960118226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960118223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13df7b7653bb18b4db1f029eaa28b722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoJoinFirstPlayer
 --- !u!1001 &2056297396
 PrefabInstance:
   m_ObjectHideFlags: 0
