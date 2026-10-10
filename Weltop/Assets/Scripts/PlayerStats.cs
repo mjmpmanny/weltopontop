@@ -5,12 +5,18 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private SpawnpointManager spawnManager;
+    private UI ui;
 
     public bool isInvincible;
+
+    public int currentHillPoints;
+
+    private float pointGivingCounter;
 
     private void Awake()
     {
         spawnManager = FindFirstObjectByType<SpawnpointManager>();
+        ui = FindObjectOfType<UI>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +24,26 @@ public class PlayerStats : MonoBehaviour
         if (other.CompareTag("KillZone"))
         {
             Kill();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("HillZone"))
+        {
+            GiveHillPoints();
+        }
+    }
+
+    private void GiveHillPoints()
+    {
+        pointGivingCounter += Time.deltaTime;
+
+        if (pointGivingCounter >= GlobalParameters.DelayBetweenPointsSeconds)
+        {
+            currentHillPoints += 1;
+            pointGivingCounter = 0;
+            ui.UpdateHillPoints(this);
         }
     }
 
