@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class UI : MonoBehaviour
     [Header("Player Score Displays")]
     [SerializeField] private TMP_Text[] playerScoreTexts = new TMP_Text[4];
 
+    public TMP_Text parkourRoundTimerText;
+    
     private void Awake()
     {
         // Hide score displays until players join.
@@ -40,5 +43,31 @@ public class UI : MonoBehaviour
 
         scoreText.text =
             $"Player {playerIndex + 1}: {playerStats.currentHillPoints}";
+    }
+
+    public void UpdateParkourRoundTimer(float currentTime)
+    {
+        // Convert the float to a TimeSpan
+        TimeSpan time = TimeSpan.FromSeconds(currentTime);
+        string formattedTime = time.ToString(@"m\:ss");
+        parkourRoundTimerText.text = formattedTime;
+    }
+
+    public void ShowParkourRoundUI()
+    {
+        foreach (TMP_Text playerScoreText in playerScoreTexts)
+        {
+            playerScoreText.gameObject.SetActive(true);
+        }
+        parkourRoundTimerText.gameObject.SetActive(true);
+    }
+    
+    public void HideParkourRoundUI()
+    {
+        foreach (TMP_Text playerScoreText in playerScoreTexts)
+        {
+            playerScoreText.gameObject.SetActive(false);
+        }
+        parkourRoundTimerText.gameObject.SetActive(false);
     }
 }

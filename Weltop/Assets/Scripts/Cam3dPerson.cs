@@ -22,7 +22,7 @@ public class Cam3dPerson : MonoBehaviour
         if (pitch > 180) pitch -= 360;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
 
