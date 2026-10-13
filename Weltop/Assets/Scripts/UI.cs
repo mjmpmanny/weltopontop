@@ -55,10 +55,11 @@ public class UI : MonoBehaviour
 
     public void ShowParkourRoundUI()
     {
-        foreach (TMP_Text playerScoreText in playerScoreTexts)
+        foreach (PlayerStats player in FindObjectsByType<PlayerStats>(FindObjectsSortMode.None))
         {
-            playerScoreText.gameObject.SetActive(true);
+            UpdateHillPoints(player);
         }
+
         parkourRoundTimerText.gameObject.SetActive(true);
     }
     
