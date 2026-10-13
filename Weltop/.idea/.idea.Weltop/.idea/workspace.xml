@@ -187,7 +187,23 @@
       <option name="project" value="LOCAL" />
       <updated>1790975158740</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added early returns for camera and movement">
+      <option name="closed" value="true" />
+      <created>1791915821960</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1791915821961</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added respawn delay">
+      <option name="closed" value="true" />
+      <created>1791915987410</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1791915987410</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
