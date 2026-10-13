@@ -17,14 +17,31 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.CompareTag("KillZone"))
         {
-            Kill();
+            StartCoroutine(Kill());
         }
     }
 
-    private void Kill()
+    private IEnumerator Kill()
     {
+        HideBody();
+        
+        yield return new WaitForSeconds(GlobalParameters.RespawnDelaySeconds);
+        
         spawnManager.SendToSpawnpoint(gameObject);
+        ShowBody();
         StartCoroutine(InvincibilityFrames());
+    }
+
+    private void HideBody()
+    {
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
+    }
+    
+    private void ShowBody()
+    {
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.enabled = true;
     }
 
     IEnumerator InvincibilityFrames()

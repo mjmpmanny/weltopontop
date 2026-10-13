@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3bdef075f8394499170d19cb27f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  spawnManager: {fileID: 0}
+  isInvincible: 0
 --- !u!114 &4027326663822818577
 MonoBehaviour:
   m_ObjectHideFlags: 0

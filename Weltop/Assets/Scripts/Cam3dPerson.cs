@@ -9,6 +9,8 @@ public class Cam3dPerson : MonoBehaviour
     public float ControllerSpeed;
     public float KeyboardSpeed;
     private PlayerInput input;
+
+    public bool canLook;
     // Use this for initialization
     void Start()
     {
@@ -18,6 +20,9 @@ public class Cam3dPerson : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canLook)
+            return;
+        
         Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
         
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - lookinput.y*speed, 
