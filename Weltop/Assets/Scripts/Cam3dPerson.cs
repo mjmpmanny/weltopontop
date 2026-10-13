@@ -21,7 +21,7 @@ public class Cam3dPerson : MonoBehaviour
         if (pitch > 180) pitch -= 360;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!canLook)
             return;
