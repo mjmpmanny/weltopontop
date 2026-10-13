@@ -338,6 +338,7 @@ MonoBehaviour:
   speed: 8
   accel: 2
   momentumDampening: 10
+  canMove: 1
   CoyoteJumpTime: 0.1
   JumpStrength: 10
   LandingCooldown: 0.5
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3bdef075f8394499170d19cb27f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  playerCamera: {fileID: 833947299735295450}
   isInvincible: 0
 --- !u!114 &4027326663822818577
 MonoBehaviour:
@@ -588,6 +590,7 @@ MonoBehaviour:
   speed: 1
   ControllerSpeed: 5
   KeyboardSpeed: 0.4
+  canLook: 1
 --- !u!1 &8260916775906884323
 GameObject:
   m_ObjectHideFlags: 0

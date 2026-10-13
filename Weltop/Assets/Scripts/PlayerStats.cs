@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private SpawnpointManager spawnManager;
+    private PlayerController_3dPerson playerController;
+    
+    public Cam3dPerson playerCamera;
 
     public bool isInvincible;
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController_3dPerson>();
         spawnManager = FindFirstObjectByType<SpawnpointManager>();
     }
 
@@ -34,12 +38,18 @@ public class PlayerStats : MonoBehaviour
 
     private void HideBody()
     {
+        playerController.canMove = false;
+        playerCamera.canLook = false;
+        
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false;
     }
     
     private void ShowBody()
     {
+        playerController.canMove = true;
+        playerCamera.canLook = true;
+        
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = true;
     }
