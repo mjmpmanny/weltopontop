@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Cam3dPerson : MonoBehaviour
 {
-    public float speed;
+    private float speed;
     public float ControllerSpeed;
     public float KeyboardSpeed;
     private PlayerInput input;

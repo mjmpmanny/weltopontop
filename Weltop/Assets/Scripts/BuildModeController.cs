@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,9 +10,10 @@ public class BuildModeController : MonoBehaviour
 
     public float speed;
 
-    public float Camspeed;
+    private float Camspeed;
     public float CamControllerSpeed;
     public float CamKeyboardSpeed;
+    private float pitch;
     private PlayerInput input;
 
     public CinemachineCamera Cam;
@@ -29,7 +31,8 @@ public class BuildModeController : MonoBehaviour
         Cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
         Camspeed = (input.devices[0] is Gamepad) ? CamControllerSpeed : CamKeyboardSpeed;
         rb = GetComponent<Rigidbody>();
-
+        pitch = transform.eulerAngles.x;
+        if (pitch > 180) pitch -= 360;
 
 
         _place = Place;
@@ -81,11 +84,18 @@ public class BuildModeController : MonoBehaviour
         if (active)
         {
 
+
             Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
 
-            follow.MoveTo( transform.position);
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - lookinput.y * Camspeed,
-                transform.rotation.eulerAngles.y + lookinput.x * Camspeed, 0);
+            pitch = Mathf.Clamp(pitch - lookinput.y * Camspeed, -80f, 80f);
+
+            transform.rotation = Quaternion.Euler(
+                pitch,
+                transform.rotation.eulerAngles.y + lookinput.x * Camspeed,
+                0
+            );
+
+
 
         }
     }
@@ -107,6 +117,8 @@ public class BuildModeController : MonoBehaviour
 
                 rb.linearVelocity = transform.forward.ProjectOntoPlane(Vector3.up) * moveinput.y * speed + transform.right.ProjectOntoPlane(Vector3.up) * moveinput.x * speed + Vector3.up * vert * speed;
             }
+
+            follow.MoveTo(transform.position);
         }
     }
 }

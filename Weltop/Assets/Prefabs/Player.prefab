@@ -587,7 +587,8 @@ MonoBehaviour:
   speed: 10
   Camspeed: 0
   CamControllerSpeed: 1
-  CamKeyboardSpeed: 0.4
+  CamKeyboardSpeed: 0.1
+  pitch: 0
   Cam: {fileID: 0}
   follow: {fileID: 0}
   active: 0
@@ -922,7 +923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  speed: 1
   ControllerSpeed: 1
   KeyboardSpeed: 0.1
   canLook: 1
