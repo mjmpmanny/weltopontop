@@ -31,6 +31,11 @@ public class Game : MonoBehaviour
         InitializeParkourRound();
     }
 
+    private GameObject[] GetActivePlayers()
+    {
+        return GameObject.FindGameObjectsWithTag("Player");
+    }
+    
     private void InitializeParkourRound()
     {
         ui.ShowParkourRoundUI();
@@ -60,7 +65,6 @@ public class Game : MonoBehaviour
                 InitializeBuildRound();
                 break;
             case RoundState.Build:
-                
                 currentRoundState = RoundState.Parkour;
                 InitializeParkourRound();
                 break;
@@ -69,7 +73,13 @@ public class Game : MonoBehaviour
     
     private void InitializeBuildRound()
     {
-        // Build Round Stuff
+        foreach (GameObject player in GetActivePlayers())
+        {
+            Debug.Log(player);
+            ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
+            
+            viewSwitcher.SwitchToBuild(viewSwitcher.TestObjectToHoldOnTo, new Vector3(0,10,0));
+        }
     }
 
     private void Update()
