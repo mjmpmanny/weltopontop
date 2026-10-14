@@ -37,7 +37,7 @@ public class Cam3dPerson : MonoBehaviour
         );
 
         transform.position = transform.parent
-            .GetComponentInChildren<PlayerController_3dPerson>()
+            .GetComponentInChildren<PlayerController>()
             .transform.position;
     }
 }

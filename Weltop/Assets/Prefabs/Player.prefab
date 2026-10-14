@@ -388,8 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3bdef075f8394499170d19cb27f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  playerCamera: {fileID: 833947299735295450}
+  playerCamera: {fileID: 0}
   isInvincible: 0
+  currentHillPoints: 0
 --- !u!114 &4027326663822818577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,7 +463,7 @@ Transform:
   m_GameObject: {fileID: 2832645989831487543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -527,7 +528,7 @@ MonoBehaviour:
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0
   CameraSide: 1
-  CameraDistance: 10
+  CameraDistance: 11
   AvoidObstacles:
     Enabled: 0
     CollisionFilter:
@@ -797,22 +798,6 @@ Transform:
   - {fileID: 8346124662635529442}
   m_Father: {fileID: 8440488456426195551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &833947299735295450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7602315133710880649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  speed: 1
-  ControllerSpeed: 5
-  KeyboardSpeed: 0.4
-  canLook: 1
 --- !u!1 &8260916775906884323
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,3 +925,4 @@ MonoBehaviour:
   speed: 1
   ControllerSpeed: 1
   KeyboardSpeed: 0.1
+  canLook: 1

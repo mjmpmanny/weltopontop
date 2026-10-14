@@ -40,7 +40,7 @@ public class BuildModeController : MonoBehaviour
     private void OnDestroy()
     {
         input.actions["Place"].started -= _place;
-        input.actions["Rotate"].started += _rotate;
+        input.actions["Rotate"].started -= _rotate;
 
     }
 

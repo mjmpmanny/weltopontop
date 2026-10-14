@@ -37,15 +37,15 @@ public class ViewSwitcher : MonoBehaviour
     {
         GameObject nobj = Instantiate(obj);
         BuildMode.SetController(nobj, 10, StartPos);
-        playerController.enabled = false;
-        BuildMode.enabled = true;
+        playerController.canMove = false;
+        BuildMode.active = true;
         cam.Priority = 0;
     }
     public void SwitchToPlayer()
     {
         BuildMode.SetController(null,0,new Vector3(0,-1000,0));
-        playerController.enabled = true;
-        BuildMode.enabled = false;
+        playerController.canMove = true;
+        BuildMode.active = false;
         cam.Priority = 10;
     }
     private void OnDestroy()

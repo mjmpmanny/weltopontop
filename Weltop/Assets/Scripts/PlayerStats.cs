@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     private SpawnpointManager spawnManager;
     private UI ui;
     private PlayerInput playerInput;
-    private PlayerController_3dPerson playerController;
+    private PlayerController playerController;
 
     public Cam3dPerson playerCamera;
 
@@ -27,7 +27,9 @@ public class PlayerStats : MonoBehaviour
         spawnManager = FindFirstObjectByType<SpawnpointManager>();
         ui = FindFirstObjectByType<UI>();
         playerInput = GetComponent<PlayerInput>();
-        playerController = GetComponent<PlayerController_3dPerson>();
+        playerController = GetComponent<PlayerController>();
+        playerCamera = transform.parent.GetComponentInChildren<Cam3dPerson>();
+
     }
 
     private void Start()
