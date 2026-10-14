@@ -12,7 +12,8 @@ public static class GlobalParameters
     public static float RespawnDelaySeconds = 2f;
     
     //Round State Settings
-    public static float ParkourRoundTimeSeconds = 120f;
+    public static float ParkourRoundTimeSeconds = 10f;
+    public static float BuildRoundTimeSeconds = 10f;
     
     //Feedback
     public static float ShoveCameraShakeDurationSeconds = 0.15f;

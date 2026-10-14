@@ -100,7 +100,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 80
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -347,6 +347,7 @@ MonoBehaviour:
   AirAccel: 0.6
   MaxAirSpeed: 5
   AirDampening: 2
+  buildModeController: {fileID: 25716848300668660}
 --- !u!114 &7372187572972943668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3bdef075f8394499170d19cb27f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 8769224904270221622}
   isInvincible: 0
   currentHillPoints: 0
 --- !u!114 &4027326663822818577
@@ -434,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   playerController: {fileID: 0}
-  BuildMode: {fileID: 0}
+  BuildMode: {fileID: 25716848300668660}
   TestObjectToHoldOnTo: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
 --- !u!1 &2832645989831487543
 GameObject:
@@ -587,10 +588,11 @@ MonoBehaviour:
   speed: 10
   CamControllerSpeed: 1
   CamKeyboardSpeed: 0.1
-  Cam: {fileID: 0}
+  Cam: {fileID: 5535895953489770061}
   follow: {fileID: 0}
   active: 0
   testMode: 0
+  hasPlacedObject: 0
 --- !u!54 &8818271646014168915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -650,7 +652,7 @@ GameObject:
   - component: {fileID: 8440488456426195551}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -856,7 +858,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 40
+    FieldOfView: 80
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000

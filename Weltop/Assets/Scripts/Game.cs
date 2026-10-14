@@ -13,6 +13,11 @@ public class Game : MonoBehaviour
     private float parkourRoundTimer;
     #endregion
     
+    #region Build Round
+    private float buildRoundTimer;
+    public int numOfPlacedObjects;
+    #endregion
+    
     public enum RoundState
     {
         Parkour,
@@ -31,18 +36,23 @@ public class Game : MonoBehaviour
         InitializeParkourRound();
     }
 
+    public GameObject[] GetActivePlayers()
+    {
+        return GameObject.FindGameObjectsWithTag("Player");
+    }
+    
     private void InitializeParkourRound()
     {
-        ui.ShowParkourRoundUI();
+        ui.ToParkourRoundUI();
         parkourRoundTimer = GlobalParameters.ParkourRoundTimeSeconds;
         
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length > 0)
+        foreach (GameObject player in GetActivePlayers())
         {
-            foreach (GameObject player in players)
-            {
-                spawnpointManager.SendToSpawnpoint(player);
-            }
+            Debug.Log(player);
+            ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
+            
+            viewSwitcher.SwitchToPlayer();
+            spawnpointManager.SendToSpawnpoint(player);
         }
     }
 
@@ -54,13 +64,12 @@ public class Game : MonoBehaviour
         switch (currentRoundState)
         {
             case RoundState.Parkour:
-                ui.HideParkourRoundUI();
                 parkourRoundTimer = 0;
                 currentRoundState = RoundState.Build;
                 InitializeBuildRound();
                 break;
             case RoundState.Build:
-                
+                numOfPlacedObjects = 0;
                 currentRoundState = RoundState.Parkour;
                 InitializeParkourRound();
                 break;
@@ -69,7 +78,19 @@ public class Game : MonoBehaviour
     
     private void InitializeBuildRound()
     {
-        // Build Round Stuff
+        ui.ToBuildRoundUI();
+        ui.UpdateBuildRoundObjectsPlaced();
+        buildRoundTimer = GlobalParameters.BuildRoundTimeSeconds;
+
+        foreach (GameObject player in GetActivePlayers())
+        {
+            ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            BuildModeController buildModeController = playerController.buildModeController;
+
+            buildModeController.hasPlacedObject = false;
+            viewSwitcher.SwitchToBuild(viewSwitcher.TestObjectToHoldOnTo, new Vector3(0,10,0));
+        }
     }
 
     private void Update()
@@ -86,7 +107,31 @@ public class Game : MonoBehaviour
                 }
                 break;
             case RoundState.Build:
+                buildRoundTimer -= Time.deltaTime;
+                ui.UpdateBuildRoundTimer(buildRoundTimer);
+                
+                if (buildRoundTimer <= 0)
+                {
+                    EndRound();
+                }
                 break;
+        }
+    }
+
+    public void CheckIfAllPlayersPlacedAnObject(BuildModeController buildModeController)
+    {
+        int playerCount = GetActivePlayers().Length;
+        
+        if (buildModeController.hasPlacedObject)
+        {
+            numOfPlacedObjects += 1;
+        }
+        
+        ui.UpdateBuildRoundObjectsPlaced();
+        
+        if (numOfPlacedObjects >= playerCount)
+        {
+            EndRound();
         }
     }
 }
