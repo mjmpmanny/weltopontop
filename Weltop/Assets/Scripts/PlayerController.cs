@@ -6,7 +6,7 @@ using UnityEngine.Splines.Interpolators;
 using static Unity.Burst.Intrinsics.X86.Avx;
 using static UnityEngine.InputSystem.InputAction;
 
-public class PlayerController_3dPerson : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float speed;
@@ -21,6 +21,8 @@ public class PlayerController_3dPerson : MonoBehaviour
     public float AirAccel;
     public float MaxAirSpeed;
     public float AirDampening;
+
+    
 
     private Vector2 origionaldir;
     private float LandingTimer;
@@ -69,6 +71,8 @@ public class PlayerController_3dPerson : MonoBehaviour
         {
             Debug.Log("not on ground");
         }
+
+
     }
     void FixedUpdate()
     {

@@ -36,9 +36,13 @@ public class SplitScreenController : MonoBehaviour
                 players[3].ChangeDim(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
                 break;
         }
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].SetPlayer(i);
+        }
     }
 
-    public int GetChannel()
+    public int GetChannel() 
     {
         return ++freeChannel;
     }
