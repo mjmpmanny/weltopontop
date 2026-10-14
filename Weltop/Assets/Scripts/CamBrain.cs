@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using NUnit.Framework;
 using System.Dynamic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -29,7 +30,12 @@ public class CamBrain : MonoBehaviour
     public void SetChannel()
     {
         channel = con.GetChannel();
-        transform.parent.GetComponentInChildren<CinemachineCamera>().OutputChannel = (OutputChannels)(1<<channel);
+        CinemachineCamera[] cams = transform.parent.GetComponentsInChildren<CinemachineCamera>();
+        foreach (CinemachineCamera cam in cams)
+        {
+            cam.OutputChannel = (OutputChannels)(1 << channel);
+        }
+
         GetComponent<CinemachineBrain>().ChannelMask = (OutputChannels)(1<<channel);
     }
 

@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("not on ground");
         }
+
+
     }
     void FixedUpdate()
     {
