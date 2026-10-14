@@ -1,35 +1,53 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private string gameplaySceneName = "3dPersonTest";
+    [SerializeField] private GameObject playerLobbyPanel;
+    [SerializeField] private PlayerLobbyManager playerLobbyManager;
+    [SerializeField] private GameObject playButton;
 
     public void PlayGame()
     {
-        // Find the device that activated the menu.
-        InputDevice device = null;
+        playerLobbyPanel.SetActive(true);
 
-        if (Gamepad.current != null &&
-            Gamepad.current.buttonSouth.wasPressedThisFrame)
-        {
-            device = Gamepad.current;
-        }
-        else if (Mouse.current != null &&
-                 Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            device = Keyboard.current;
-        }
-        else if (Keyboard.current != null)
-        {
-            device = Keyboard.current;
-        }
+        EventSystem.current.SetSelectedGameObject(null);
 
-        MenuPlayerSelection.SelectedDevice = device;
+        GameObject backButton = playerLobbyPanel.transform
+            .Find("BackButton").gameObject;
+
+        EventSystem.current.SetSelectedGameObject(backButton);
+    }
+
+    public void BackToMenu()
+    {
+        // Close the lobby.
+        playerLobbyPanel.SetActive(false);
+
+        // Reset joined players and ready states.
+        playerLobbyManager.ResetLobby();
+
+        // Clear the previous UI selection.
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // Select Play so keyboard/controller navigation works.
+        EventSystem.current.SetSelectedGameObject(playButton);
+    }
+
+    
+    public void StartGameplay()
+    {
+        if (playerLobbyManager == null ||
+            !playerLobbyManager.SavePlayersForGame())
+        {
+            return;
+        }
 
         SceneManager.LoadScene(gameplaySceneName);
     }
+
 
     public void QuitGame()
     {
