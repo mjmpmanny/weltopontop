@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float accel;
     public float momentumDampening;
+    public bool canMove;
 
     [Header("Jump Settings")]
     public float CoyoteJumpTime;
@@ -75,7 +76,9 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-
+        if (!canMove)
+            return;
+        
         //basic movement
         Vector2 moveinput = inp.actions["Move"].ReadValue<Vector2>();
         Vector3 move = new Vector3(cam.transform.forward.x,0,cam.transform.forward.z).normalized * moveinput.y

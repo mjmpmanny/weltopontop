@@ -4,34 +4,40 @@ using UnityEngine.InputSystem;
 
 public class Cam3dPerson : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float speed;
     public float ControllerSpeed;
     public float KeyboardSpeed;
     private PlayerInput input;
-    private Vector2 CamMoveAmount;
-    // Use this for initialization
+
+    private float pitch;
+    public bool canLook = true;
+
     void Start()
     {
         input = transform.parent.GetComponentInChildren<PlayerInput>();
         speed = (input.devices[0] is Gamepad) ? ControllerSpeed : KeyboardSpeed;
-        CamMoveAmount = new Vector2(0, 0);
+
+        pitch = transform.eulerAngles.x;
+        if (pitch > 180) pitch -= 360;
     }
 
-    private void Update()
+    void Update()
     {
+        if (!canLook)
+            return;
+
         Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - lookinput.y * speed,
-            transform.rotation.eulerAngles.y + lookinput.x * speed, 0);
-    }
+        pitch = Mathf.Clamp(pitch - lookinput.y * speed, -80f, 80f);
 
-    void FixedUpdate()
-    {
-       /* Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
-        
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x - lookinput.y*speed, 
-            transform.rotation.eulerAngles.y + lookinput.x*speed, 0);*/
-        transform.position = transform.parent.GetComponentInChildren<PlayerController>().transform.position;
+        transform.rotation = Quaternion.Euler(
+            pitch,
+            transform.rotation.eulerAngles.y + lookinput.x * speed,
+            0
+        );
+
+        transform.position = transform.parent
+            .GetComponentInChildren<PlayerController_3dPerson>()
+            .transform.position;
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SplitScreenController
   - KillZone
+  - HillZone
   layers:
   - Default
   - TransparentFX

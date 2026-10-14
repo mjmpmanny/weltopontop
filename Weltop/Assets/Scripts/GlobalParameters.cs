@@ -8,6 +8,11 @@ public static class GlobalParameters
     public static float ShovePower = 2000f;
     public static float ShoveCooldownSeconds = 1f;
     public static float InvincibilityFramesSeconds = 2f;
+    public static float DelayBetweenPointsSeconds = 0.25f;
+    public static float RespawnDelaySeconds = 2f;
+    
+    //Round State Settings
+    public static float ParkourRoundTimeSeconds = 120f;
     
     //Feedback
     public static float ShoveCameraShakeDurationSeconds = 0.15f;
