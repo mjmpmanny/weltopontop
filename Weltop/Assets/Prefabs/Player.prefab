@@ -362,7 +362,7 @@ MonoBehaviour:
   playerCam: {fileID: 4407631665799062605}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 960
 --- !u!114 &824267639369121826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,10 +585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildModeController
   speed: 10
-  Camspeed: 0
   CamControllerSpeed: 1
   CamKeyboardSpeed: 0.1
-  pitch: 0
   Cam: {fileID: 0}
   follow: {fileID: 0}
   active: 0
