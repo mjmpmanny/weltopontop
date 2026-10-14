@@ -2055,6 +2055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game
   currentRoundState: 0
   gameIsActive: 1
+  numOfPlacedObjects: 0
 --- !u!114 &1399137384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 563685540078152411, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
@@ -3046,6 +3047,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+--- !u!114 &2614713624792507592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3854704459879880742, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 2614713624792507591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &2614713624792507593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1761706694150574696, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 2614713624792507591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2614713624792507594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2407332561634069387, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 2614713624792507591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2614713624792507595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3121651653300480975, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 2614713624792507591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &6242702383585051358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3176,13 +3209,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: buildRoundPanel
+      value: 
+      objectReference: {fileID: 2614713624792507593}
+    - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: hillPointsTracker
       value: 
       objectReference: {fileID: 478461656}
     - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: parkourRoundPanel
+      value: 
+      objectReference: {fileID: 2614713624792507594}
+    - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: buildRoundTimerText
+      value: 
+      objectReference: {fileID: 2614713624792507592}
+    - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: parkourRoundTimerText
       value: 
       objectReference: {fileID: 1410223616}
+    - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: buildRoundObjectsPlacedText
+      value: 
+      objectReference: {fileID: 2614713624792507595}
     - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: 'playerScoreTexts.Array.data[0]'
       value: 

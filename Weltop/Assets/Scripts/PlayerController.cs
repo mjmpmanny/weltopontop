@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float MaxAirSpeed;
     public float AirDampening;
 
-    
+    public BuildModeController buildModeController;
 
     private Vector2 origionaldir;
     private float LandingTimer;

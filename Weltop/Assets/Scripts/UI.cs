@@ -8,9 +8,18 @@ public class UI : MonoBehaviour
     [SerializeField] private TMP_Text[] playerScoreTexts = new TMP_Text[4];
 
     public TMP_Text parkourRoundTimerText;
+    public TMP_Text buildRoundTimerText;
+    public TMP_Text buildRoundObjectsPlacedText;
+
+    public GameObject parkourRoundPanel;
+    public GameObject buildRoundPanel;
+
+    private Game game;
     
     private void Awake()
     {
+        game = FindFirstObjectByType<Game>();
+        
         // Hide score displays until players join.
         foreach (TMP_Text scoreText in playerScoreTexts)
         {
@@ -52,23 +61,33 @@ public class UI : MonoBehaviour
         string formattedTime = time.ToString(@"m\:ss");
         parkourRoundTimerText.text = formattedTime;
     }
+    
+    public void UpdateBuildRoundTimer(float currentTime)
+    {
+        // Convert the float to a TimeSpan
+        TimeSpan time = TimeSpan.FromSeconds(currentTime);
+        string formattedTime = time.ToString(@"m\:ss");
+        buildRoundTimerText.text = formattedTime;
+    }
 
-    public void ShowParkourRoundUI()
+    public void UpdateBuildRoundObjectsPlaced()
+    {
+        buildRoundObjectsPlacedText.text = $"{game.numOfPlacedObjects}/{game.GetActivePlayers().Length} objects placed";
+    }
+
+    public void ToParkourRoundUI()
     {
         foreach (PlayerStats player in FindObjectsByType<PlayerStats>(FindObjectsSortMode.None))
         {
             UpdateHillPoints(player);
         }
-
-        parkourRoundTimerText.gameObject.SetActive(true);
+        parkourRoundPanel.SetActive(true);
+        buildRoundPanel.SetActive(false);
     }
     
-    public void HideParkourRoundUI()
+    public void ToBuildRoundUI()
     {
-        foreach (TMP_Text playerScoreText in playerScoreTexts)
-        {
-            playerScoreText.gameObject.SetActive(false);
-        }
-        parkourRoundTimerText.gameObject.SetActive(false);
+        parkourRoundPanel.SetActive(false);
+        buildRoundPanel.SetActive(true);
     }
 }

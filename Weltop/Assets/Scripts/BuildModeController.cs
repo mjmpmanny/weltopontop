@@ -21,12 +21,17 @@ public class BuildModeController : MonoBehaviour
     public bool active = false;
 
     public bool testMode = true;
+    public bool hasPlacedObject = false;
 
+    private UI ui;
+    private Game game;
     private Rigidbody rb;
     private System.Action<InputAction.CallbackContext> _place;
     private System.Action<InputAction.CallbackContext> _rotate;
     void Start()
     {
+        game = FindFirstObjectByType<Game>();
+        ui = FindFirstObjectByType<UI>();
         input = transform.parent.transform.parent.GetComponentInChildren<PlayerInput>();
         Cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
         Camspeed = (input.devices[0] is Gamepad) ? CamControllerSpeed : CamKeyboardSpeed;
@@ -65,8 +70,8 @@ public class BuildModeController : MonoBehaviour
     {
         if (follow != null && follow.Place())
         {
-        transform.parent.transform.parent.GetComponentInChildren<ViewSwitcher>().SwitchToPlayer();
-
+            hasPlacedObject = true;
+            game.CheckIfAllPlayersPlacedAnObject(this);
         }
     }
     public void Rotate(CallbackContext ctx)
@@ -118,7 +123,10 @@ public class BuildModeController : MonoBehaviour
                 rb.linearVelocity = transform.forward.ProjectOntoPlane(Vector3.up) * moveinput.y * speed + transform.right.ProjectOntoPlane(Vector3.up) * moveinput.x * speed + Vector3.up * vert * speed;
             }
 
-            follow.MoveTo(transform.position);
+            if (!hasPlacedObject)
+            {
+                follow.MoveTo(transform.position);
+            }
         }
     }
 }

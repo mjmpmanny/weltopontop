@@ -347,6 +347,7 @@ MonoBehaviour:
   AirAccel: 0.6
   MaxAirSpeed: 5
   AirDampening: 2
+  buildModeController: {fileID: 25716848300668660}
 --- !u!114 &7372187572972943668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +592,7 @@ MonoBehaviour:
   follow: {fileID: 0}
   active: 0
   testMode: 0
+  hasPlacedObject: 0
 --- !u!54 &8818271646014168915
 Rigidbody:
   m_ObjectHideFlags: 0
