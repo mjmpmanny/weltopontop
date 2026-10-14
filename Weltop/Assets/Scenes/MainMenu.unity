@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 189126720}
   - component: {fileID: 189126722}
   - component: {fileID: 189126721}
+  - component: {fileID: 189126723}
   m_Layer: 5
   m_Name: PlayerLobbyPanel
   m_TagString: Untagged
@@ -818,6 +819,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189126719}
   m_CullTransparentMesh: 1
+--- !u!114 &189126723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189126719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb3fdb23f055b948a6354ae4451f0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLobbyManager
+  playerStatusTexts:
+  - {fileID: 71883674}
+  - {fileID: 1765463914}
+  - {fileID: 1356813733}
+  - {fileID: 57643202}
+  lobbyPanel: {fileID: 189126719}
 --- !u!1 &284886934
 GameObject:
   m_ObjectHideFlags: 0
@@ -4308,6 +4327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   gameplaySceneName: 3dPersonTest
   playerLobbyPanel: {fileID: 189126719}
+  playerLobbyManager: {fileID: 189126723}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

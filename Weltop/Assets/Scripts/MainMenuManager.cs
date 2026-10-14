@@ -5,6 +5,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private string gameplaySceneName = "3dPersonTest";
     [SerializeField] private GameObject playerLobbyPanel;
+    [SerializeField] private PlayerLobbyManager playerLobbyManager;
 
     public void PlayGame()
     {
@@ -14,8 +15,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        // Return to the main menu.
         playerLobbyPanel.SetActive(false);
+        playerLobbyManager.ResetLobby();
     }
 
     public void StartGameplay()
