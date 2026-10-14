@@ -388,6 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   playerCamera: {fileID: 833947299735295450}
   isInvincible: 0
+  currentHillPoints: 0
 --- !u!114 &4027326663822818577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +414,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1

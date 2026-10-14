@@ -1,20 +1,53 @@
-
+using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.EventSystems;
 
 public class PlayerLobbyManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text[] playerStatusTexts;
     [SerializeField] private GameObject lobbyPanel;
+    [SerializeField] private Button startGameButton;
+    [SerializeField] private GameObject defaultSelectedButton;
 
     private readonly List<InputDevice> joinedDevices = new();
     private readonly List<bool> playerReadyStates = new();
     private IDisposable buttonSubscription;
+    
+    private void Update()
+    {
+        if (lobbyPanel == null || !lobbyPanel.activeInHierarchy)
+            return;
 
+        if (EventSystem.current == null || Gamepad.all.Count == 0)
+            return;
+
+        // Only restore UI selection when a controller tries to navigate.
+        foreach (Gamepad gamepad in Gamepad.all)
+        {
+            bool navigating =
+                gamepad.dpad.up.wasPressedThisFrame ||
+                gamepad.dpad.down.wasPressedThisFrame ||
+                gamepad.dpad.left.wasPressedThisFrame ||
+                gamepad.dpad.right.wasPressedThisFrame ||
+                gamepad.leftStick.ReadValue().sqrMagnitude > 0.5f;
+
+            if (!navigating)
+                continue;
+
+            if (EventSystem.current.currentSelectedGameObject == null)
+            {
+                EventSystem.current.SetSelectedGameObject(defaultSelectedButton);
+            }
+
+            break;
+        }
+    }
+    
     private void OnEnable()
     {
         buttonSubscription = InputSystem.onAnyButtonPress.Subscribe(
@@ -38,8 +71,9 @@ public class PlayerLobbyManager : MonoBehaviour
             if (statusText != null)
                 statusText.text = "Waiting...";
         }
+        
+        UpdateStartButton();
     }
-
     
     private void OnButtonPressed(InputControl control)
     {
@@ -61,8 +95,8 @@ public class PlayerLobbyManager : MonoBehaviour
         if (existingPlayerIndex >= 0)
         {
             bool readyPressed =
-                (device is Keyboard && control == Keyboard.current.enterKey) ||
-                (device is Gamepad && control == ((Gamepad)device).buttonSouth);
+                (device is Keyboard && control == Keyboard.current.rKey) ||
+                (device is Gamepad && control == ((Gamepad)device).buttonNorth);
 
             if (readyPressed)
             {
@@ -102,6 +136,40 @@ public class PlayerLobbyManager : MonoBehaviour
             playerReadyStates[playerIndex]
                 ? "READY!"
                 : "Joined - Not Ready";
+        
+        UpdateStartButton();
+    }
+    
+    public bool SavePlayersForGame()
+    {
+        if (joinedDevices.Count == 0)
+            return false;
+
+        foreach (bool isReady in playerReadyStates)
+        {
+            if (!isReady)
+                return false;
+        }
+
+        MenuPlayerSelection.SetPlayers(joinedDevices);
+        return true;
+    }
+    
+    private void UpdateStartButton()
+    {
+        bool canStart = joinedDevices.Count > 0;
+
+        foreach (bool isReady in playerReadyStates)
+        {
+            if (!isReady)
+            {
+                canStart = false;
+                break;
+            }
+        }
+
+        if (startGameButton != null)
+            startGameButton.interactable = canStart;
     }
     
     private sealed class ButtonPressObserver : IObserver<InputControl>

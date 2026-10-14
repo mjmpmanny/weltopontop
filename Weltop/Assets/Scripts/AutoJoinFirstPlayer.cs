@@ -13,19 +13,25 @@ public class AutoJoinFirstPlayer : MonoBehaviour
             return;
         }
 
+        // Only players registered in the lobby may join.
+        manager.DisableJoining();
+
         if (PlayerInput.all.Count > 0)
             return;
 
-        InputDevice device = MenuPlayerSelection.SelectedDevice;
+        int playerIndex = 0;
 
-        if (device != null && device.added)
+        foreach (InputDevice device in MenuPlayerSelection.SelectedDevices)
         {
+            if (device == null || !device.added)
+                continue;
+
             if (device is Keyboard)
             {
                 if (Mouse.current != null)
                 {
                     manager.JoinPlayer(
-                        playerIndex: 0,
+                        playerIndex: playerIndex,
                         controlScheme: "Keyboard&Mouse",
                         pairWithDevices: new InputDevice[]
                         {
@@ -37,24 +43,22 @@ public class AutoJoinFirstPlayer : MonoBehaviour
                 else
                 {
                     manager.JoinPlayer(
-                        playerIndex: 0,
+                        playerIndex: playerIndex,
                         pairWithDevice: device
                     );
                 }
             }
-            else
+            else if (device is Gamepad)
             {
                 manager.JoinPlayer(
-                    playerIndex: 0,
+                    playerIndex: playerIndex,
                     pairWithDevice: device
                 );
             }
-        }
-        else
-        {
-            Debug.LogWarning("No valid menu device was found.");
+
+            playerIndex++;
         }
 
-        MenuPlayerSelection.SelectedDevice = null;
+        MenuPlayerSelection.Clear();
     }
 }

@@ -10,9 +10,15 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="changed jump text in main menu to jump/select">
+    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="Added ready up system for lobby system.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AutoJoinFirstPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AutoJoinFirstPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuPlayerSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuPlayerSelection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerLobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerLobbyManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +75,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Game.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/pange/UnityProjectz/Capstone/weltopontop/Weltop/Assets/Scenes/MainMenu.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cam3dPerson.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CamShake.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GlobalParameters.cs" root0="FORCE_HIGHLIGHTING" />
@@ -179,7 +186,7 @@
       <workItem from="1790975107952" duration="115000" />
       <workItem from="1791498365889" duration="353000" />
       <workItem from="1791746782738" duration="1922000" />
-      <workItem from="1791940066343" duration="1392000" />
+      <workItem from="1791940066343" duration="5228000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -269,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791940699347</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added ready up system for lobby system.">
+      <option name="closed" value="true" />
+      <created>1791941750219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1791941750219</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +322,7 @@
     <MESSAGE value="Added controller input help UI in the main menu screen, and started working on UI for the player joining lobby" />
     <MESSAGE value="Added going from main menu to popping up the player lobby panel and going back to the main menu" />
     <MESSAGE value="changed jump text in main menu to jump/select" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed jump text in main menu to jump/select" />
+    <MESSAGE value="Added ready up system for lobby system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ready up system for lobby system." />
   </component>
 </project>
