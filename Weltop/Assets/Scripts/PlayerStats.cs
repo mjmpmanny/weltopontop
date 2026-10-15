@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if (!isInsideHill || isDead)
+        if (!isInsideHill || isDead || !playerController.canMove)
             return;
 
         float interval = GlobalParameters.DelayBetweenPointsSeconds;
