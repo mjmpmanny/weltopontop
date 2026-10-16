@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +8,8 @@ using UnityEngine.InputSystem;
 public class Shove : MonoBehaviour
 {
     private GameObject player;
+
+    public GameObject shoveArms;
     
     public Camera playerCam;
     
@@ -59,8 +62,9 @@ public class Shove : MonoBehaviour
         {
             if (!canShove)
                 return;
-                
-            Debug.Log("Shove Pressed");
+            
+            OperateShoveHands();
+            
             GameObject playerToShove = FindPlayerToShove();
             
             if (playerToShove != null)
@@ -73,6 +77,14 @@ public class Shove : MonoBehaviour
 
             StartCoroutine(ShoveCooldown());
         }
+    }
+
+    private void OperateShoveHands()
+    {
+        shoveArms.SetActive(true);
+        shoveArms.transform.DOLocalMoveZ(2, 0.25f)
+            .SetLoops(2, LoopType.Yoyo)
+            .OnComplete(() => shoveArms.SetActive(false));
     }
 
     private GameObject FindPlayerToShove()
@@ -102,6 +114,15 @@ public class Shove : MonoBehaviour
         
         rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
         targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
+
+        StartCoroutine(RecoverFromShove(shoveTarget.GetComponent<PlayerController>()));
+    }
+
+    private IEnumerator RecoverFromShove(PlayerController shoveTarget)
+    {
+        shoveTarget.canMove = false;
+        yield return new WaitForSeconds(GlobalParameters.RecoverAfterShoveDelaySeconds);
+        shoveTarget.canMove = true;
     }
 }
 
