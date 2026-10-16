@@ -99,7 +99,7 @@ public class PlayerStats : MonoBehaviour
 
         yield return new WaitForSeconds(GlobalParameters.RespawnDelaySeconds);
 
-        spawnManager.SendToSpawnpoint(gameObject);
+        spawnManager.SendToSpawnpointsRandom(gameObject);
         ShowBody();
 
         StartCoroutine(InvincibilityFrames());

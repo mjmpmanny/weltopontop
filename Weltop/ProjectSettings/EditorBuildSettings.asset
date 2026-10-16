@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3dPersonTest.unity
     guid: 0d2b0ca0b678a84458d2b5d0839725fb
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: e069d3db12d98df4ead233de8b0c7869
+  - enabled: 1
+    path: Assets/Scenes/CircularKOTHArena.unity
+    guid: c1e3affa88adccb459d834f7538ac7e5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

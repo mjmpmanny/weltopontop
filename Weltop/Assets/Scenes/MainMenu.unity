@@ -4629,7 +4629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915ff0e113975824da45758569242c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
-  gameplaySceneName: 3dPersonTest
+  gameplaySceneName: CircularKOTHArena
   playerLobbyPanel: {fileID: 189126719}
   playerLobbyManager: {fileID: 189126723}
   playButton: {fileID: 154580403}
