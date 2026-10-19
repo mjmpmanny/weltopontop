@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Shove : MonoBehaviour
 {
     private GameObject player;
+    public GameObject shoveArms;
     
     public Camera playerCam;
     
@@ -17,6 +20,10 @@ public class Shove : MonoBehaviour
     private bool canShove;
 
     private PlayerInput inp;
+
+    public PlayerAudio playerAudio;
+
+    public Volume playerVolume;
     
     private void Awake()
     {
@@ -59,20 +66,30 @@ public class Shove : MonoBehaviour
         {
             if (!canShove)
                 return;
-                
-            Debug.Log("Shove Pressed");
+            
+            OperateShoveHands();
+            
             GameObject playerToShove = FindPlayerToShove();
             
             if (playerToShove != null)
             {
                 if(CanBeShoved(playerToShove));
                 {
+                    playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
                     ExecuteShove(playerToShove);
                 }
             }
 
             StartCoroutine(ShoveCooldown());
         }
+    }
+
+    private void OperateShoveHands()
+    {
+        shoveArms.SetActive(true);
+        shoveArms.transform.DOLocalMoveZ(2, 0.25f)
+            .SetLoops(2, LoopType.Yoyo)
+            .OnComplete(() => shoveArms.SetActive(false));
     }
 
     private GameObject FindPlayerToShove()
@@ -99,9 +116,52 @@ public class Shove : MonoBehaviour
     {
         Rigidbody rigidBody = shoveTarget.GetComponent<Rigidbody>();
         CamShake targetCameraShake = shoveTarget.GetComponent<CamShake>();
-        
+        Shove targetShoveCode = shoveTarget.GetComponent<Shove>();
+
+        StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
         rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
         targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
+
+        StartCoroutine(RecoverFromShove(shoveTarget.GetComponent<PlayerController>()));
+    }
+
+    IEnumerator ApplyShovePostProcessing(Shove shoveTarget)
+    {
+        float time = 0;
+        Volume targetVolume = shoveTarget.playerVolume;
+        
+        while (time < 0.5f)
+        {
+            time += Time.deltaTime;
+            targetVolume.weight += time * 2;
+            yield return null;
+        }
+
+        targetVolume.weight = 1;
+    }
+    
+    IEnumerator RemoveShovePostProcessing(Shove shoveTarget)
+    {
+        float time = 0;
+        Volume targetVolume = shoveTarget.playerVolume;
+        
+        while (time < 0.5f)
+        {
+            time += Time.deltaTime;
+            targetVolume.weight -= time * 2;
+            yield return null;
+        }
+
+        targetVolume.weight = 0;
+    }
+
+    private IEnumerator RecoverFromShove(PlayerController shoveTarget)
+    {
+        Shove targetShove = shoveTarget.gameObject.GetComponent<Shove>();
+        shoveTarget.canMove = false;
+        yield return new WaitForSeconds(GlobalParameters.RecoverAfterShoveDelaySeconds);
+        StartCoroutine(RemoveShovePostProcessing(targetShove));
+        shoveTarget.canMove = true;
     }
 }
 
