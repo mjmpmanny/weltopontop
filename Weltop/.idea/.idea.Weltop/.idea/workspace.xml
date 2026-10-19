@@ -12,7 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/POLY STYLE - Platformer Starter Pack.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Shove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Shove.cs" afterDir="false" />
@@ -78,11 +77,13 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Audio.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/External Assets/Advaita Assets.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Demigiant.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Canvas.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Game.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/chathaway/RiderProjects/weltopontop/Weltop/Assets/Scenes/3dPersonTest.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cam3dPerson.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CamShake.cs" root0="FORCE_HIGHLIGHTING" />
@@ -207,7 +208,7 @@
       <workItem from="1792016904545" duration="3413000" />
       <workItem from="1792084626833" duration="1280000" />
       <workItem from="1792110756784" duration="1370000" />
-      <workItem from="1792446864567" duration="947000" />
+      <workItem from="1792446864567" duration="1993000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -321,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1792446971231</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added shove sound effect. New player prefab with audio source attached.">
+      <option name="closed" value="true" />
+      <created>1792447888655</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1792447888655</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,6 +371,7 @@
     <MESSAGE value="Added ready up system for lobby system." />
     <MESSAGE value="Reconfigured the Canvas and made it a prefab" />
     <MESSAGE value="Player that are pushed now get stunned and cannot move for 1 second." />
-    <option name="LAST_COMMIT_MESSAGE" value="Player that are pushed now get stunned and cannot move for 1 second." />
+    <MESSAGE value="Added shove sound effect. New player prefab with audio source attached." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added shove sound effect. New player prefab with audio source attached." />
   </component>
 </project>
