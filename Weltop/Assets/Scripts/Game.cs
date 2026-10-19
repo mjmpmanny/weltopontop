@@ -45,14 +45,15 @@ public class Game : MonoBehaviour
     {
         ui.ToParkourRoundUI();
         parkourRoundTimer = GlobalParameters.ParkourRoundTimeSeconds;
-        
+
+        spawnpointManager.ResetSpawnAssignments();
+
         foreach (GameObject player in GetActivePlayers())
         {
-            Debug.Log(player);
             ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
-            
+
             viewSwitcher.SwitchToPlayer();
-            spawnpointManager.SendToSpawnpoint(player);
+            spawnpointManager.SendToSpawnpointsRandom(player);
         }
     }
 
