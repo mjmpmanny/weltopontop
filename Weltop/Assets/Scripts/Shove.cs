@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 public class Shove : MonoBehaviour
 {
     private GameObject player;
-
     public GameObject shoveArms;
     
     public Camera playerCam;
@@ -20,6 +19,8 @@ public class Shove : MonoBehaviour
     private bool canShove;
 
     private PlayerInput inp;
+
+    public PlayerAudio playerAudio;
     
     private void Awake()
     {
@@ -71,6 +72,7 @@ public class Shove : MonoBehaviour
             {
                 if(CanBeShoved(playerToShove));
                 {
+                    playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
                     ExecuteShove(playerToShove);
                 }
             }
