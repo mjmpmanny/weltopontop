@@ -40,6 +40,64 @@ public class Game : MonoBehaviour
     {
         return GameObject.FindGameObjectsWithTag("Player");
     }
+
+    #region Code Executions for All Players
+    public void ExecuteCodeOnAllPlayerControllers(Action<PlayerController> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+                
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            
+            action(playerController);
+        }
+    }
+    
+    public void ExecuteCodeOnAllBuildControllers(Action<BuildModeController> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+            
+            BuildModeController buildModeController = player.GetComponent<BuildModeController>();
+            
+            action(buildModeController);
+        }
+    }
+    
+    public void ExecuteCodeOnAllPlayerCameras(Action<Cam3dPerson> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+            
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            if (playerStats == null)
+                return;
+
+            Cam3dPerson camera = playerStats.playerCamera;
+            
+            action(camera);
+        }
+    }
+    
+    public void ExecuteCodeOnAllViewSwitchers(Action<ViewSwitcher> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+            
+            ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
+            
+            action(viewSwitcher);
+        }
+    }
+    #endregion
     
     private void InitializeParkourRound()
     {
