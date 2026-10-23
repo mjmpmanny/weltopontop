@@ -1393,6 +1393,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665790428}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &746000902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 159113682219136988, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 2614713624792507591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &756026036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2522,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 340590783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1712886087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1063133871844988293, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 2614713624792507591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1783767106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2938,6 +2954,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 744703214131313393, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_text
+      value: 2:00
+      objectReference: {fileID: 0}
     - target: {fileID: 3020390459442889839, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -3140,6 +3160,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1317252707689087388, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: gameIsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2183085892245654979, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: spawnpoint
       value: 
@@ -3148,6 +3172,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: countdownText
+      value: 
+      objectReference: {fileID: 1712886087}
+    - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: startGamePanel
+      value: 
+      objectReference: {fileID: 746000902}
     - target: {fileID: 7596661492919311209, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

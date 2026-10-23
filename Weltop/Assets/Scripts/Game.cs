@@ -154,6 +154,9 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
+        if (!gameIsActive)
+            return;
+        
         switch (currentRoundState)
         {
             case RoundState.Parkour:

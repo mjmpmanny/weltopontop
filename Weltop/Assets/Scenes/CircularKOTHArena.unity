@@ -1912,9 +1912,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 744703214131313393, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_text
+      value: 2:00
+      objectReference: {fileID: 0}
     - target: {fileID: 3020390459442889839, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_Name
-      value: RoundCanvas
+      value: Global Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 3212369221965393408, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_Pivot.x
@@ -2657,6 +2661,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 426689457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &849488092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 159113682219136988, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 649693545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &854944731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1063133871844988293, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+  m_PrefabInstance: {fileID: 649693545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &927593584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4763,10 +4783,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 782208718}
     - target: {fileID: 2183085892245654979, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
-      propertyPath: spawnpoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2183085892245654979, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: 'spawnpoints.Array.data[0]'
       value: 
       objectReference: {fileID: 849395239}
@@ -4786,6 +4802,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: countdownText
+      value: 
+      objectReference: {fileID: 854944731}
+    - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: startGamePanel
+      value: 
+      objectReference: {fileID: 849488092}
     - target: {fileID: 7596661492919311209, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4831,10 +4855,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 649693548}
     - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
-      propertyPath: hillPointsTracker
-      value: 
-      objectReference: {fileID: 649693552}
-    - target: {fileID: 9115495954152648876, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: parkourRoundPanel
       value: 
       objectReference: {fileID: 649693554}
@@ -4869,31 +4889,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3897183354134790948, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1439114626}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
---- !u!1 &1439114625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3897183354134790948, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
-  m_PrefabInstance: {fileID: 1439114624}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1439114626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439114625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b181629afdedc4f8e036eb7e443c92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game
-  currentRoundState: 0
-  gameIsActive: 1
-  numOfPlacedObjects: 0
 --- !u!1 &1446377673
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public static class GlobalParameters
     //Round State Settings
     public static float ParkourRoundTimeSeconds = 120f;
     public static float BuildRoundTimeSeconds = 120f;
+    public static float CountdownToGameSeconds = 5f;
     
     //Feedback
     public static float ShoveCameraShakeDurationSeconds = 0.15f;

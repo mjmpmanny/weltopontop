@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7596661492919311209}
-  - component: {fileID: 1317252707689087388}
+  - component: {fileID: 7839831294914270137}
   - component: {fileID: 2183085892245654979}
   - component: {fileID: 9115495954152648876}
   - component: {fileID: 6057524480478498056}
@@ -36,7 +36,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1317252707689087388
+--- !u!114 &7839831294914270137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game
   currentRoundState: 0
-  gameIsActive: 1
+  gameIsActive: 0
   numOfPlacedObjects: 0
 --- !u!114 &2183085892245654979
 MonoBehaviour:
@@ -64,7 +64,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnpointManager
   spawnpoint: {fileID: 0}
-  spawnpoints: []
+  spawnpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &9115495954152648876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e554f3093d7cc47b31c0550fa457a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Transitions
-  game: {fileID: 0}
+  startGamePanel: {fileID: 0}
+  countdownText: {fileID: 0}
 --- !u!81 &1287613867546345595
 AudioListener:
   m_ObjectHideFlags: 0

@@ -1,10 +1,16 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Transitions : MonoBehaviour
 {
     private Game game;
 
+    public GameObject startGamePanel;
+    public TMP_Text countdownText;
+    
     private void Awake()
     {
         game = GetComponent<Game>();
@@ -12,11 +18,25 @@ public class Transitions : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        StartCoroutine(StartGame());
     }
 
-    public void StartGame()
+    public IEnumerator StartGame()
     {
+        game.gameIsActive = false;
+        startGamePanel.gameObject.SetActive(true);
+
+        float timer = GlobalParameters.CountdownToGameSeconds;
+
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            countdownText.text = timer.ToString("N0");
+            yield return null;
+        }
+        
+        startGamePanel.gameObject.SetActive(false);
+        
         game.ExecuteCodeOnAllPlayerControllers(controller =>
         {
             controller.canMove = true;
@@ -26,15 +46,25 @@ public class Transitions : MonoBehaviour
         {
             camera.canLook = true;
         });
+
+        game.gameIsActive = true;
+        Debug.Log("Start Game!");
     }
 
-    public void TransitionToParkour()
+    public IEnumerator TransitionToParkour()
     {
-        
+        float timer = GlobalParameters.CountdownToGameSeconds;
+
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            countdownText.text = timer.ToString("N0");
+            yield return null;
+        }
     }
 
-    public void TransitionToBuild()
+    public IEnumerator TransitionToBuild()
     {
-        
+        yield return null;
     }
 }
