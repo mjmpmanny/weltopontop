@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     public float MaxAirSpeed;
     public float AirDampening;
 
-    public BuildModeController buildModeController;
-
     private Vector2 origionaldir;
     private float LandingTimer;
 
@@ -116,15 +114,17 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearDamping = 0;
 
+            Vector3 HorizontalVal = (rb.linearVelocity - Vector3.up * rb.linearVelocity.y);
+
             bool goingForward = Vector3.Dot(move,rb.linearVelocity) > 0;
 
-            if (goingForward && (rb.linearVelocity - Vector3.up * rb.linearVelocity.y).magnitude >= MaxAirSpeed)
+            if (goingForward && HorizontalVal.magnitude >= MaxAirSpeed)
             {
                 Vector3 cross = Vector3.Cross(Vector3.up,rb.linearVelocity);
                 move = Vector3.Project(move,cross);
 
             }
-            rb.linearVelocity = rb.linearVelocity - new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) * AirDampening / 100;
+            rb.linearVelocity = rb.linearVelocity - HorizontalVal * AirDampening / 100;
             rb.AddForce(move * AirAccel, ForceMode.VelocityChange);
 
         }

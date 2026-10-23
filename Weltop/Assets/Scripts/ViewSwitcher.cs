@@ -9,14 +9,12 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class ViewSwitcher : MonoBehaviour
 {
-    public PlayerController playerController;
-    public BuildModeController BuildMode;
+    private PlayerController playerController;
+    private BuildModeController BuildMode;
 
     public GameObject TestObjectToHoldOnTo; // test only
 
-    private bool playerview;
     private CinemachineCamera cam;
-    private OutputChannels channel;
     private System.Action<InputAction.CallbackContext> testbm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,14 +36,12 @@ public class ViewSwitcher : MonoBehaviour
         GameObject nobj = Instantiate(obj);
         BuildMode.SetController(nobj, 10, StartPos);
         playerController.canMove = false;
-        BuildMode.active = true;
         cam.Priority = 0;
     }
     public void SwitchToPlayer()
     {
         BuildMode.SetController(null,0,new Vector3(0,-1000,0));
         playerController.canMove = true;
-        BuildMode.active = false;
         cam.Priority = 10;
     }
     private void OnDestroy()

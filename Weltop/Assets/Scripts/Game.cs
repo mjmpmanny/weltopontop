@@ -85,10 +85,6 @@ public class Game : MonoBehaviour
         foreach (GameObject player in GetActivePlayers())
         {
             ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
-            PlayerController playerController = player.GetComponent<PlayerController>();
-            BuildModeController buildModeController = playerController.buildModeController;
-
-            buildModeController.hasPlacedObject = false;
             viewSwitcher.SwitchToBuild(viewSwitcher.TestObjectToHoldOnTo, new Vector3(0,10,0));
         }
     }

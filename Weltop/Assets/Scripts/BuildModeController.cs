@@ -7,7 +7,6 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class BuildModeController : MonoBehaviour
 {
-
     public float speed;
 
     private float Camspeed;
@@ -16,12 +15,12 @@ public class BuildModeController : MonoBehaviour
     private float pitch;
     private PlayerInput input;
 
-    public CinemachineCamera Cam;
-    public PlaceableObject follow;
+    private CinemachineCamera Cam;
+    private PlaceableObject follow;
     public bool active = false;
 
     public bool testMode = true;
-    public bool hasPlacedObject = false;
+    [HideInInspector] public bool hasPlacedObject = false;
 
     private UI ui;
     private Game game;
@@ -56,10 +55,10 @@ public class BuildModeController : MonoBehaviour
     {
         transform.position = location;
         Cam.Priority = camPriority;
-        if (obj != null) {
+        if (obj != null) { // Has switched to buildmode
             follow = obj.GetComponent<PlaceableObject>();
             active = true;
-        } else
+        } else // Has switched from buildmode
         {
             follow = null;
             active = false;

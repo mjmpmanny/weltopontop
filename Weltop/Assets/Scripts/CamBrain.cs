@@ -49,5 +49,6 @@ public class CamBrain : MonoBehaviour
         {
             child.gameObject.layer = PlayerNum + 6;
         }
+        GetComponent<Collider>().excludeLayers = PlayerNum + 6;
     }
 }
