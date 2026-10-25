@@ -5,7 +5,7 @@ public static class GlobalParameters
     //Player Stats
     public static float MoveSpeed = 5f;
     public static float JumpPower = 250f;
-    public static float ShovePower = 2000f;
+    public static float ShovePower = 100f;
     public static float ShoveCooldownSeconds = 1f;
     public static float InvincibilityFramesSeconds = 2f;
     public static float DelayBetweenPointsSeconds = 0.25f;
