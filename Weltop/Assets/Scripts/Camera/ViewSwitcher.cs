@@ -17,11 +17,15 @@ public class ViewSwitcher : MonoBehaviour
     private CinemachineCamera cam;
     private System.Action<InputAction.CallbackContext> testbm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
         BuildMode = transform.parent.GetComponentInChildren<BuildModeController>();
         playerController = GetComponent<PlayerController>();
+    }
+
+    private void Start()
+    {
         testbm = TestEnterBuldMode;
         GetComponent<PlayerInput>().actions["Next"].started += testbm;
     }

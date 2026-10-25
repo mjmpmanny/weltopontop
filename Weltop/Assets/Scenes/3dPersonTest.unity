@@ -2056,6 +2056,14 @@ MonoBehaviour:
   currentRoundState: 0
   gameIsActive: 1
   numOfPlacedObjects: 0
+--- !u!81 &1393144657
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393144652}
+  m_Enabled: 1
 --- !u!114 &1399137384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 563685540078152411, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
@@ -3255,6 +3263,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3897183354134790948, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1393144656}
+    - targetCorrespondingSourceObject: {fileID: 3897183354134790948, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1393144657}
   m_SourcePrefab: {fileID: 100100000, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

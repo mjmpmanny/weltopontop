@@ -99,7 +99,7 @@ public class PlayerStats : MonoBehaviour
 
         yield return new WaitForSeconds(GlobalParameters.RespawnDelaySeconds);
 
-        spawnManager.SendToSpawnpoint(gameObject);
+        spawnManager.SendToSpawnpointsRandom(gameObject);
         ShowBody();
 
         StartCoroutine(InvincibilityFrames());
@@ -146,4 +146,21 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Disabled InvincibilityFrames");
         isInvincible = false;
     }
+    
+    public void DebugAddPoints(int amount)
+    {
+        currentHillPoints = Mathf.Max(0, currentHillPoints + amount);
+
+        if (ui != null)
+            ui.UpdateHillPoints(this);
+    }
+
+    public void DebugResetPoints()
+    {
+        currentHillPoints = 0;
+
+        if (ui != null)
+            ui.UpdateHillPoints(this);
+    }
+    
 }

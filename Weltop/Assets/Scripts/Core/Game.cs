@@ -45,14 +45,15 @@ public class Game : MonoBehaviour
     {
         ui.ToParkourRoundUI();
         parkourRoundTimer = GlobalParameters.ParkourRoundTimeSeconds;
-        
+
+        spawnpointManager.ResetSpawnAssignments();
+
         foreach (GameObject player in GetActivePlayers())
         {
-            Debug.Log(player);
             ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
-            
+
             viewSwitcher.SwitchToPlayer();
-            spawnpointManager.SendToSpawnpoint(player);
+            spawnpointManager.SendToSpawnpointsRandom(player);
         }
     }
 
@@ -91,10 +92,13 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
+        if (!gameIsActive)
+            return;
+        
         switch (currentRoundState)
         {
             case RoundState.Parkour:
-                parkourRoundTimer -= Time.deltaTime;
+                parkourRoundTimer = Mathf.Max(0f, parkourRoundTimer - Time.deltaTime);
                 ui.UpdateParkourRoundTimer(parkourRoundTimer);
 
                 if (parkourRoundTimer <= 0)
@@ -103,7 +107,7 @@ public class Game : MonoBehaviour
                 }
                 break;
             case RoundState.Build:
-                buildRoundTimer -= Time.deltaTime;
+                buildRoundTimer = Mathf.Max(0f, buildRoundTimer - Time.deltaTime);
                 ui.UpdateBuildRoundTimer(buildRoundTimer);
                 
                 if (buildRoundTimer <= 0)
@@ -121,6 +125,7 @@ public class Game : MonoBehaviour
         if (buildModeController.hasPlacedObject)
         {
             numOfPlacedObjects += 1;
+            Debug.Log($"[Build Mode] Objects placed: {numOfPlacedObjects}/{playerCount}");
         }
         
         ui.UpdateBuildRoundObjectsPlaced();
@@ -130,4 +135,30 @@ public class Game : MonoBehaviour
             EndRound();
         }
     }
+    
+    public void DebugStartParkourRound()
+    {
+        currentRoundState = RoundState.Parkour;
+        numOfPlacedObjects = 0;
+        InitializeParkourRound();
+    }
+
+    public void DebugStartBuildRound()
+    {
+        currentRoundState = RoundState.Build;
+        numOfPlacedObjects = 0;
+        InitializeBuildRound();
+    }
+
+    public void DebugEndRound()
+    {
+        EndRound();
+    }
+    
+    public void DebugResetPlacementCount()
+    {
+        numOfPlacedObjects = 0;
+        ui.UpdateBuildRoundObjectsPlaced();
+    }
+    
 }
