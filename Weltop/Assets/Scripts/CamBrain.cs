@@ -43,12 +43,12 @@ public class CamBrain : MonoBehaviour
     {
         PlayerNum = PlayerNumber;
         GetComponent<Camera>().cullingMask = (~(1 << PlayerNum + 6));
-        GameObject model = transform.parent.GetComponentInChildren<PlayerController>().gameObject;
-        model.layer = PlayerNum + 6;
+        GameObject model = transform.parent.GetComponentInChildren<Animator>().gameObject;
+        GameObject player = transform.parent.GetComponentInChildren<PlayerController>().gameObject;
+        player.layer = PlayerNum + 6;
         foreach (Transform child in model.GetComponentsInChildren<Transform>(true))
         {
             child.gameObject.layer = PlayerNum + 6;
         }
-        GetComponent<Collider>().excludeLayers = PlayerNum + 6;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
@@ -53,14 +54,17 @@ public class PlayerAnimationController : MonoBehaviour
     private Transform[] _bones;
     private float _elapsedResetBonesTime;
     private bool _isFacingUp;
+    private PlayerController _playerController;
+    private CinemachineCamera _camera;
 
     
     void Awake()
     {
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+        _playerController = transform.parent.GetComponentInChildren<PlayerController>();
         _animator = GetComponent<Animator>();
         _hipsBone = _animator.GetBoneTransform(HumanBodyBones.Hips);
-
+        _camera = transform.parent.GetComponentInChildren<CinemachineCamera>();
         _bones = _hipsBone.GetComponentsInChildren<Transform>();
         _faceUpStandUpBoneTransforms = new BoneTransform[_bones.Length];
         _faceDownStandUpBoneTransforms = new BoneTransform[_bones.Length];
@@ -85,10 +89,9 @@ public class PlayerAnimationController : MonoBehaviour
 
         if (_testRagdoll)
         {
-            TriggerRagdoll(_testRagdollHitFrom, transform.parent.position);
             _testRagdoll = false;
+            TriggerRagdoll(_testRagdollHitFrom,transform.position);
         }
-
         switch (_currentState)
         {
             case State.Walking:
@@ -116,6 +119,7 @@ public class PlayerAnimationController : MonoBehaviour
 
         _currentState = State.Ragdoll;
         _timeToWakeUp = Random.Range(5, 10);
+        RagdollResetColliders();
     } 
 
     private Rigidbody FindHitRigidbody(Vector3 hitPoint)
@@ -143,6 +147,10 @@ public class PlayerAnimationController : MonoBehaviour
         {
             rigidbody.isKinematic = true;
         }
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
 
         _animator.enabled = true;
     }
@@ -153,12 +161,34 @@ public class PlayerAnimationController : MonoBehaviour
         {
             rigidbody.isKinematic = false;
         }
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = true;
+        }
 
         _animator.enabled = false;
     }
 
     private void WalkingBehaviour()
     {
+        transform.position = _playerController.transform.position -  _playerController.GetComponent<CapsuleCollider>().height * Vector3.up * 0.5f;
+        transform.rotation = Quaternion.Euler(0,_camera.transform.rotation.eulerAngles.y,0);
+    }
+    public void StartMoving()
+    {
+        _animator.SetBool("Running", true);
+    }
+    public void stopMoving()
+    {
+        _animator.SetBool("Running", false);
+    }
+    public void OnJump()
+    {
+        _animator.SetBool("Jumping", true);
+    }
+    public void OnLand()
+    {
+        _animator.SetBool("Jumping", false);
     }
 
     private void RagdollBehaviour()
@@ -185,6 +215,7 @@ public class PlayerAnimationController : MonoBehaviour
         {
             _currentState = State.Walking;
         }
+        _playerController.transform.position = transform.position + _playerController.GetComponent<CapsuleCollider>().height * Vector3.up * 0.5f;
     }
 
     private void ResettingBonesBehaviour()
@@ -211,7 +242,7 @@ public class PlayerAnimationController : MonoBehaviour
         {
             _currentState = State.StandingUp;
             DisableRagdoll();
-
+            GetUpResetColliders();
             _animator.Play(GetStandUpStateName(), 0, 0);
         }
     }
@@ -248,9 +279,9 @@ public class PlayerAnimationController : MonoBehaviour
         positionOffset = transform.rotation * positionOffset;
         transform.position -= positionOffset;
 
-        if (Physics.Raycast(transform.parent.position + Vector3.up, Vector3.down, out RaycastHit hitInfo))
+        if (Physics.Raycast(transform.position+ Vector3.up, Vector3.down, out RaycastHit hitInfo,10,~(1<<gameObject.layer)))
         {
-            transform.parent.position = new Vector3(transform.parent.position.x, hitInfo.point.y, transform.parent.position.z);
+            transform.position = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
         }
         
         _hipsBone.position = originalHipsPosition;
@@ -267,7 +298,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void PopulateAnimationStartBoneTransforms(string clipName, BoneTransform[] boneTransforms)
     {
-        Vector3 positionBeforeSampling = transform.parent.position;
+        Vector3 positionBeforeSampling = transform.position;
         Quaternion rotationBeforeSampling = transform.rotation;
 
         foreach (AnimationClip clip in _animator.runtimeAnimatorController.animationClips)
@@ -280,7 +311,7 @@ public class PlayerAnimationController : MonoBehaviour
             }
         }
 
-        transform.parent.position = positionBeforeSampling;
+        transform.position = positionBeforeSampling;
         transform.rotation = rotationBeforeSampling;
     }
 
@@ -293,4 +324,25 @@ public class PlayerAnimationController : MonoBehaviour
     {
         return _isFacingUp ? _faceUpStandUpBoneTransforms : _faceDownStandUpBoneTransforms;
     }
+    public void RagdollResetColliders()
+    {
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = true;
+        }
+        _playerController.GetComponent<Collider>().enabled = false;
+        _playerController.GetComponent<Rigidbody>().useGravity = false;
+        _playerController.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+    }
+
+    public void GetUpResetColliders()
+    {
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
+        _playerController.GetComponent<Collider>().enabled = true;
+        _playerController.GetComponent<Rigidbody>().useGravity = true;
+    }
+
 }

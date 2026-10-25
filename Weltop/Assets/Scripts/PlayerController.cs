@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private System.Action<InputAction.CallbackContext> jump_;
     private Rigidbody rb;
     private GameObject cam;
+    private PlayerAnimationController animationController;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         cam = transform.parent.GetComponentInChildren<Camera>().gameObject;
+        animationController = transform.parent.GetComponentInChildren<PlayerAnimationController>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -82,22 +84,24 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(cam.transform.forward.x,0,cam.transform.forward.z).normalized * moveinput.y
             + new Vector3(cam.transform.right.x,0, cam.transform.right.z).normalized * moveinput.x;
 
-        //rotate plyer in direction they are moving
         if (move != Vector3.zero)
         {
-            transform.forward = move;
-            transform.rotation = Quaternion.LookRotation(move);
+            animationController.StartMoving();
+        } else
+        {
+            animationController.stopMoving();
         }
         
         //jumping
         CapsuleCollider cap = GetComponent<CapsuleCollider>();
         RaycastHit hit;
-        bool raycastHit = Physics.SphereCast(transform.position - new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 0.01f, ~(1 << 3));
+        bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f);
         
         if (raycastHit && LandingTimer < 0)
         {//Ground Movement
             OnGround = CoyoteJumpTime;
             rb.linearDamping = momentumDampening;
+            animationController.OnLand();
 
 
             bool goingForward = Vector3.Dot(move, rb.linearVelocity) > 0;
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
         } else//air movement
         {
+            animationController.OnJump();
             rb.linearDamping = 0;
 
             Vector3 HorizontalVal = (rb.linearVelocity - Vector3.up * rb.linearVelocity.y);

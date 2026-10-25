@@ -59,7 +59,8 @@ public class Shove : MonoBehaviour
         {
             if (!canShove)
                 return;
-                
+
+            transform.parent.GetComponentInChildren<Animator>().Play("Attack", 1);
             Debug.Log("Shove Pressed");
             GameObject playerToShove = FindPlayerToShove();
             
@@ -99,7 +100,6 @@ public class Shove : MonoBehaviour
     {
         Rigidbody rigidBody = shoveTarget.GetComponent<Rigidbody>();
         CamShake targetCameraShake = shoveTarget.GetComponent<CamShake>();
-        
         rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
         targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
     }
