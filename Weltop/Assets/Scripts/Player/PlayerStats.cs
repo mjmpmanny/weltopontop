@@ -9,8 +9,10 @@ public class PlayerStats : MonoBehaviour
     private UI ui;
     private PlayerInput playerInput;
     private PlayerController playerController;
+    [HideInInspector]
+    public RagdollController ragdollController;
 
-    public Cam3dPerson playerCamera;
+    public CamFirstPerson playerCamera;
 
     public bool isInvincible;
     public int currentHillPoints;
@@ -28,7 +30,8 @@ public class PlayerStats : MonoBehaviour
         ui = FindFirstObjectByType<UI>();
         playerInput = GetComponent<PlayerInput>();
         playerController = GetComponent<PlayerController>();
-        playerCamera = transform.parent.GetComponentInChildren<Cam3dPerson>();
+        playerCamera = transform.parent.GetComponentInChildren<CamFirstPerson>();
+        ragdollController = GetComponent<RagdollController>();
 
     }
 
@@ -43,6 +46,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        
+
         if (!isInsideHill || isDead || !playerController.canMove)
             return;
 
@@ -94,12 +99,12 @@ public class PlayerStats : MonoBehaviour
         // Stop scoring when the player dies.
         isInsideHill = false;
         pointGivingCounter = 0f;
-
         HideBody();
+        ragdollController.Ragdoll(Vector3.zero,Vector3.zero);
 
         yield return new WaitForSeconds(GlobalParameters.RespawnDelaySeconds);
-
         spawnManager.SendToSpawnpointsRandom(gameObject);
+        ragdollController.GetUp();
         ShowBody();
 
         StartCoroutine(InvincibilityFrames());

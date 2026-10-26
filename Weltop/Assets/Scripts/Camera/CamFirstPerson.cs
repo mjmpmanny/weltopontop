@@ -2,7 +2,7 @@ using Unity.Collections.Tests.CoreCLR.TestJobs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Cam3dPerson : MonoBehaviour
+public class CamFirstPerson : MonoBehaviour
 {
     private float speed;
     public float ControllerSpeed;

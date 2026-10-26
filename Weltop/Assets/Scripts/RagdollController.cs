@@ -1,4 +1,8 @@
+using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class RagdollController : MonoBehaviour
 {
@@ -6,6 +10,26 @@ public class RagdollController : MonoBehaviour
     private Vector3 _testRagdollHitFrom;
     [SerializeField]
     private bool _testRagdoll;
+    private PlayerController playerCon;
+    private ViewSwitcher viewSwitcher;
+    private Rigidbody rb;
+    private Collider playerCollider;
+    private CamBrain camBrain;
+    [SerializeField]
+    private PlayerAnimationController playerAnimationController;
+    [SerializeField]
+    private float RagdollTime;
+    private float RagdollTimer;
+    public bool isRagdolled;
+    public bool isGetingUp;
+    private void Start()
+    {
+        camBrain = transform.parent.GetComponentInChildren<CamBrain>();
+        rb = GetComponent<Rigidbody>();
+        viewSwitcher = GetComponent<ViewSwitcher>();
+        playerCollider = GetComponent<Collider>();
+        playerCon = GetComponent<PlayerController>();
+    }
     private void Update()
     {
         if (_testRagdoll)
@@ -13,26 +37,86 @@ public class RagdollController : MonoBehaviour
             _testRagdoll = false;
             Ragdoll(transform.position, _testRagdollHitFrom);
         }
+
+        if (isRagdolled)
+        {
+            RagdollTimer -= Time.deltaTime;
+            if (RagdollTimer < 0) GetUp();
+        } 
     }
     public void Ragdoll(Vector3 hitpoint, Vector3 force)
     {
-        GetComponentInChildren<PlayerAnimationController>().TriggerRagdoll(hitpoint, force);
-        foreach (Collider col in GetComponentsInChildren<Collider>())
+        if (viewSwitcher.SwitchToRagdoll())
         {
-            col.enabled = true;
+            isRagdolled = true;
+            RagdollTimer = RagdollTime;
+            playerAnimationController.TriggerRagdoll(hitpoint, force,rb.linearVelocity);
+            playerCollider.excludeLayers = 960;
+            rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero;
+            playerCon.canMove = false;
         }
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 
     public void GetUp()
     {
-        foreach (Collider col in GetComponentsInChildren<Collider>())
+        if ( isRagdolled)
         {
-            col.enabled = false;
+        isRagdolled = false;
+        isGetingUp = true;
+        playerAnimationController.Getup();
+        playerCollider.excludeLayers = 0;
+        rb.useGravity = true;
+
         }
-        GetComponent<Collider>().enabled = true;
-        GetComponent<Rigidbody>().useGravity = false;
     }
+
+    public void HasGotup()
+    {
+        isGetingUp = false;
+        viewSwitcher.SwitchToPlayer();
+
+    }
+    public void MovePlayer(Vector3 pos)
+    {
+        if (isRagdolled) 
+        {
+            playerAnimationController.MoveHip(pos);
+        } else if (!isGetingUp)
+        {
+            transform.position = pos;
+        } else
+        {
+            playerAnimationController.transform.position = pos;
+
+        }
+    }
+    public void RotatePlayer(quaternion rot)
+    {
+        if (isRagdolled)
+        {
+            playerAnimationController.RotateHip(rot);
+        } else if (!isGetingUp)
+        {
+            transform.rotation = rot;
+        } else
+        {
+            playerAnimationController.transform.rotation = rot;
+        }
+    }
+
+    public Rigidbody CurrentRigidBody()
+    {
+        if (isRagdolled)
+        {
+            return playerAnimationController.GetHipRigidbody();
+        } else if (!isGetingUp)
+        {
+            return rb;
+        }
+        Debug.LogError("Tried to get rigidbody when getting up.");
+        return null;
+        
+    }
+
 }

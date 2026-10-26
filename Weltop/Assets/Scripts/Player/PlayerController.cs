@@ -30,10 +30,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private GameObject cam;
     private PlayerAnimationController animationController;
+    private ViewSwitcher viewSwitcher;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        viewSwitcher = GetComponent<ViewSwitcher>();
         inp = GetComponent<PlayerInput>();
         jump_ = jump;
         inp.actions["Jump"].started += jump_;
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         if (!canMove)
             return;
         
@@ -134,4 +137,6 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+
 }

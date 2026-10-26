@@ -19,4 +19,5 @@ public static class GlobalParameters
     //Feedback
     public static float ShoveCameraShakeDurationSeconds = 0.15f;
     public static float ShoveCameraShakeStrength = 2.25f;
+
 }

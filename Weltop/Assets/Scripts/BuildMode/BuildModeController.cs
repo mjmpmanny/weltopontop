@@ -10,8 +10,7 @@ public class BuildModeController : MonoBehaviour
     public float speed;
 
     private float Camspeed;
-    public float CamControllerSpeed;
-    public float CamKeyboardSpeed;
+
     private float pitch;
     private PlayerInput input;
 
@@ -25,15 +24,19 @@ public class BuildModeController : MonoBehaviour
     private UI ui;
     private Game game;
     private Rigidbody rb;
+    private ViewSwitcher viewSwitcher;
+
     private System.Action<InputAction.CallbackContext> _place;
     private System.Action<InputAction.CallbackContext> _rotate;
     void Start()
     {
         game = FindFirstObjectByType<Game>();
         ui = FindFirstObjectByType<UI>();
-        input = transform.parent.transform.parent.GetComponentInChildren<PlayerInput>();
+        viewSwitcher = transform.parent.transform.parent.GetComponentInChildren<ViewSwitcher>();
+        input = viewSwitcher.GetComponent<PlayerInput>();
+        Camspeed = viewSwitcher.GetCamSpeed();
         Cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
-        Camspeed = (input.devices[0] is Gamepad) ? CamControllerSpeed : CamKeyboardSpeed;
+        
         rb = GetComponent<Rigidbody>();
         pitch = transform.eulerAngles.x;
         if (pitch > 180) pitch -= 360;
@@ -111,16 +114,8 @@ public class BuildModeController : MonoBehaviour
             Vector2 moveinput = input.actions["Move"].ReadValue<Vector2>();
             int vert = (input.actions["Jump"].IsPressed() ? 1:0) + (input.actions["Crouch"].IsPressed() ? -1 : 0);
 
-            if (testMode)
-            {
-
-            rb.linearVelocity = transform.forward * moveinput.y * speed + transform.right * moveinput.x * speed + Vector3.up * vert * speed;
-
-            } else
-            {
-
-                rb.linearVelocity = transform.forward.ProjectOntoPlane(Vector3.up) * moveinput.y * speed + transform.right.ProjectOntoPlane(Vector3.up) * moveinput.x * speed + Vector3.up * vert * speed;
-            }
+            rb.linearVelocity = transform.forward.ProjectOntoPlane(Vector3.up) * moveinput.y * speed + transform.right.ProjectOntoPlane(Vector3.up) * moveinput.x * speed + Vector3.up * vert * speed;
+            
 
             if (!hasPlacedObject)
             {

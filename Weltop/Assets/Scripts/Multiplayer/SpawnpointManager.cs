@@ -39,7 +39,7 @@ public class SpawnpointManager : MonoBehaviour
         Transform selected = availableSpawns[Random.Range(0, availableSpawns.Count)];
 
         playerSpawns[objectToSend] = selected;
-        objectToSend.transform.position = selected.position;
+        objectToSend.GetComponent<RagdollController>().MovePlayer(selected.position);
     }
 
     public void ResetSpawnAssignments()

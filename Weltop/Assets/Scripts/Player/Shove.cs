@@ -122,7 +122,7 @@ public class Shove : MonoBehaviour
         StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
         //rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
 
-        shoveTarget.transform.parent.GetComponentInChildren<PlayerAnimationController>().TriggerRagdoll(playerCam.transform.forward * GlobalParameters.ShovePower, shoveTarget.transform.position);
+        shoveTarget.GetComponent<RagdollController>().Ragdoll(playerCam.transform.forward * GlobalParameters.ShovePower, shoveTarget.transform.position);
 
         targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
 
