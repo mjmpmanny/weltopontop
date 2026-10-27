@@ -206,6 +206,8 @@ public class Game : MonoBehaviour
         
         if (numOfPlacedObjects >= playerCount)
         {
+            //If timer starts going down, this will stop it immediately
+            transitions.StopTransitionCoroutine();
             EndRound();
         }
     }
