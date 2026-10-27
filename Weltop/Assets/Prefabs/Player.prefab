@@ -1007,8 +1007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3e224e53c639e4a94c84cbb5bf55cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  CamControllerSpeed: 1
-  CamKeyboardSpeed: 0.75
+  CamControllerSpeed: 2
+  CamKeyboardSpeed: 0.5
   TestObjectToHoldOnTo: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
   RagdollCam: {fileID: 4761964318628333518}
 --- !u!114 &3373532751297725736
@@ -1571,8 +1571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  ControllerSpeed: 1
-  KeyboardSpeed: 0.75
+  ControllerSpeed: 2
+  KeyboardSpeed: 0.5
   canLook: 1
 --- !u!1 &8501285007528437945
 GameObject:
