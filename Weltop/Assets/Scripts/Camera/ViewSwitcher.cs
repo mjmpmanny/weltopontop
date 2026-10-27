@@ -90,7 +90,19 @@ public class ViewSwitcher : MonoBehaviour
         }
         return false;
     }
+    public void SwitchFromRagdoll()
+    {
+        if (state != camState.Build)
+        {
+            state = camState.Parkour;
+            BuildMode.SetController(null, 0, new Vector3(0, -1000, 0));
+            playerController.canMove = true;
+            RagdollCam.Priority = 0;
+            cam.Priority = 10;
+            camBrain.EnableCullingMask();
+        }
 
+    }
 
     public float GetCamSpeed()
     {

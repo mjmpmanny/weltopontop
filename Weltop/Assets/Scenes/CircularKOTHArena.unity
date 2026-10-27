@@ -3941,7 +3941,7 @@ PrefabInstance:
       objectReference: {fileID: 1141352624}
     - target: {fileID: 2515246064141852621, guid: 9f804ee0fdc662a4cbde2a6ee831f35b, type: 3}
       propertyPath: m_VersionIndex
-      value: 16
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6580381649045326648, guid: 9f804ee0fdc662a4cbde2a6ee831f35b, type: 3}
       propertyPath: m_LocalScale.x
@@ -5138,7 +5138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568692781}
   - component: {fileID: 1568692780}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Death Zone
   m_TagString: KillZone
   m_Icon: {fileID: 0}

@@ -22,6 +22,7 @@ public class RagdollController : MonoBehaviour
     private float RagdollTimer;
     public bool isRagdolled;
     public bool isGetingUp;
+    public Cam3rdPerson ragdollCam;
     private void Start()
     {
         camBrain = transform.parent.GetComponentInChildren<CamBrain>();
@@ -67,14 +68,14 @@ public class RagdollController : MonoBehaviour
         playerAnimationController.Getup();
         playerCollider.excludeLayers = 0;
         rb.useGravity = true;
-
+            ragdollCam.SwitchedTo();
         }
     }
 
     public void HasGotup()
     {
         isGetingUp = false;
-        viewSwitcher.SwitchToPlayer();
+        viewSwitcher.SwitchFromRagdoll();
 
     }
     public void MovePlayer(Vector3 pos)

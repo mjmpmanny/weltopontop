@@ -25,7 +25,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - From: RagdollCam
-    To: '**ANY CAMERA**'
+    To: ParkourCam
     Blend:
       Style: 2
       Time: 0.25

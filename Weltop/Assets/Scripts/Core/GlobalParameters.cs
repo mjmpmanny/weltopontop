@@ -20,4 +20,9 @@ public static class GlobalParameters
     public static float ShoveCameraShakeDurationSeconds = 0.15f;
     public static float ShoveCameraShakeStrength = 2.25f;
 
+
+    //Grid
+    public static float GridSize = 0.5f;
+    public static Vector3 GridOffset = new Vector3(0,0,0);
+
 }

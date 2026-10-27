@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -9,7 +10,10 @@ public class Cam3rdPerson : MonoBehaviour
     private PlayerInput input;
     public ViewSwitcher ViewSwitcher;
     public Transform follow;
+    public CinemachineCamera cam;
 
+
+    private int lastPriority;
     private void Start()
     {
         input = ViewSwitcher.GetPlayerInput();
@@ -26,9 +30,19 @@ public class Cam3rdPerson : MonoBehaviour
             transform.rotation.eulerAngles.y + lookinput.x * Camspeed,
             0
         );
+        if (lastPriority != cam.Priority)
+        {
+            lastPriority = cam.Priority;
+            SwitchedTo();
+        }
+
     }
     private void FixedUpdate()
     {
-        transform.position = follow.transform.position + Vector3.up * 0.1f;
+        transform.position = follow.transform.position + Vector3.up * 0.5f;
+    }
+    public void SwitchedTo()
+    {
+        pitch = 45;
     }
 }
