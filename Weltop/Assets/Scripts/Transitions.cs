@@ -10,6 +10,8 @@ public class Transitions : MonoBehaviour
 
     public GameObject timerCountdownPanel;
     public TMP_Text countdownText;
+
+    public Coroutine currentTransitionCoroutine = null;
     
     private void Awake()
     {
@@ -18,7 +20,7 @@ public class Transitions : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartGame());
+       currentTransitionCoroutine = StartCoroutine(StartGame());
     }
 
     private IEnumerator StartGame()
@@ -48,12 +50,24 @@ public class Transitions : MonoBehaviour
         });
 
         game.gameIsActive = true;
+        currentTransitionCoroutine = null;
         Debug.Log("Start Game!");
     }
 
     public void StartTransitionToNextRound()
     {
-        StartCoroutine(TransitionToOtherRound());
+        currentTransitionCoroutine = StartCoroutine(TransitionToOtherRound());
+    }
+
+    public void StopTransitionCoroutine()
+    {
+        if (currentTransitionCoroutine != null)
+        {
+            timerCountdownPanel.SetActive(false);
+            StopCoroutine(currentTransitionCoroutine);
+            currentTransitionCoroutine = null;
+            game.currentlyInTransition = false;
+        }
     }
 
     private IEnumerator TransitionToOtherRound()
@@ -72,7 +86,8 @@ public class Transitions : MonoBehaviour
         timerCountdownPanel.gameObject.SetActive(false);
         
         game.EndRound();
-
+        
         game.currentlyInTransition = false;
+        currentTransitionCoroutine = null;
     }
 }
