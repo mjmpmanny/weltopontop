@@ -8,7 +8,7 @@ public class Transitions : MonoBehaviour
 {
     private Game game;
 
-    public GameObject startGamePanel;
+    public GameObject timerCountdownPanel;
     public TMP_Text countdownText;
     
     private void Awake()
@@ -21,10 +21,10 @@ public class Transitions : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
-    public IEnumerator StartGame()
+    private IEnumerator StartGame()
     {
         game.gameIsActive = false;
-        startGamePanel.gameObject.SetActive(true);
+        timerCountdownPanel.gameObject.SetActive(true);
 
         float timer = GlobalParameters.CountdownToGameSeconds;
 
@@ -35,7 +35,7 @@ public class Transitions : MonoBehaviour
             yield return null;
         }
         
-        startGamePanel.gameObject.SetActive(false);
+        timerCountdownPanel.gameObject.SetActive(false);
         
         game.ExecuteCodeOnAllPlayerControllers(controller =>
         {
@@ -51,20 +51,28 @@ public class Transitions : MonoBehaviour
         Debug.Log("Start Game!");
     }
 
-    public IEnumerator TransitionToParkour()
+    public void StartTransitionToNextRound()
     {
-        float timer = GlobalParameters.CountdownToGameSeconds;
+        StartCoroutine(TransitionToOtherRound());
+    }
+
+    private IEnumerator TransitionToOtherRound()
+    {
+        timerCountdownPanel.gameObject.SetActive(true);
+        
+        float timer = GlobalParameters.StartRoundCountDownAtXSeconds + 1;
 
         while (timer >= 0)
         {
             timer -= Time.deltaTime;
-            countdownText.text = timer.ToString("N0");
+            //Countdown text is handled in UI.cs
             yield return null;
         }
-    }
 
-    public IEnumerator TransitionToBuild()
-    {
-        yield return null;
+        timerCountdownPanel.gameObject.SetActive(false);
+        
+        game.EndRound();
+
+        game.currentlyInTransition = false;
     }
 }

@@ -1912,6 +1912,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 159113682219136988, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_Name
+      value: Countdown Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 159113682219136988, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 744703214131313393, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_text
       value: 2:00
@@ -1998,6 +2006,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3212369221965393408, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6055416146986226854, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 820.3406
+      objectReference: {fileID: 0}
+    - target: {fileID: 6055416146986226854, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4808,6 +4824,10 @@ PrefabInstance:
       objectReference: {fileID: 854944731}
     - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: startGamePanel
+      value: 
+      objectReference: {fileID: 849488092}
+    - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: timerCountdownPanel
       value: 
       objectReference: {fileID: 849488092}
     - target: {fileID: 7596661492919311209, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}

@@ -7,14 +7,17 @@ public class Game : MonoBehaviour
     public bool gameIsActive;
     
     private SpawnpointManager spawnpointManager;
+    private Transitions transitions;
     private UI ui;
     
+    public bool currentlyInTransition = false;
+    
     #region Parkour Round
-    private float parkourRoundTimer;
+    public float parkourRoundTimer;
     #endregion
     
     #region Build Round
-    private float buildRoundTimer;
+    public float buildRoundTimer;
     public int numOfPlacedObjects;
     #endregion
     
@@ -27,6 +30,7 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         ui = GetComponent<UI>();
+        transitions = GetComponent<Transitions>();
         spawnpointManager = GetComponent<SpawnpointManager>();
     }
 
@@ -115,7 +119,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void EndRound()
+    public void EndRound()
     {
         if (!gameIsActive)
             return;
@@ -163,18 +167,26 @@ public class Game : MonoBehaviour
                 parkourRoundTimer = Mathf.Max(0f, parkourRoundTimer - Time.deltaTime);
                 ui.UpdateParkourRoundTimer(parkourRoundTimer);
 
-                if (parkourRoundTimer <= 0)
+                if (parkourRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds + 1)
                 {
-                    EndRound();
+                    if (!currentlyInTransition)
+                    {
+                        transitions.StartTransitionToNextRound();
+                        currentlyInTransition = true;
+                    }
                 }
                 break;
             case RoundState.Build:
                 buildRoundTimer = Mathf.Max(0f, buildRoundTimer - Time.deltaTime);
                 ui.UpdateBuildRoundTimer(buildRoundTimer);
                 
-                if (buildRoundTimer <= 0)
+                if (buildRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds + 1)
                 {
-                    EndRound();
+                    if (!currentlyInTransition)
+                    {
+                        transitions.StartTransitionToNextRound();
+                        currentlyInTransition = true;
+                    }
                 }
                 break;
         }
