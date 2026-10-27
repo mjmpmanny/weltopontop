@@ -13,7 +13,7 @@ public static class GlobalParameters
     public static float RecoverAfterShoveDelaySeconds = 1f;
     
     //Round State Settings
-    public static float ParkourRoundTimeSeconds = 120f;
+    public static float ParkourRoundTimeSeconds = 10f;
     public static float BuildRoundTimeSeconds = 120f;
     
     //Feedback

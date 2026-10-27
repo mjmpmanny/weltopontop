@@ -168,7 +168,7 @@ public class BuildModeController : MonoBehaviour
     {
         if (active && !hasPlacedObject)
         {
-            Vector2 moveinput = input.actions["Move"].ReadValue<Vector2>();
+            Vector2 moveinput = (input.actions["Move"].ReadValue<Vector2>()).normalized;
             int vert = (input.actions["Jump"].IsPressed() ? 1 : 0) + (input.actions["Crouch"].IsPressed() ? -1 : 0);
             float GridSize = GlobalParameters.GridSize;
 
