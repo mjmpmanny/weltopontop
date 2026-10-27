@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 public class Shove : MonoBehaviour
 {
     private GameObject player;
+    
     public GameObject shoveArms;
     
     public Camera playerCam;
@@ -20,7 +21,7 @@ public class Shove : MonoBehaviour
     private bool canShove;
 
     private PlayerInput inp;
-
+    private PlayerController playerController;
     public PlayerAudio playerAudio;
 
     public Volume playerVolume;
@@ -28,6 +29,7 @@ public class Shove : MonoBehaviour
     private void Awake()
     {
         inp = GetComponent<PlayerInput>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Start()
@@ -64,7 +66,7 @@ public class Shove : MonoBehaviour
 
         if (shovePressed)
         {
-            if (!canShove)
+            if (!canShove || !playerController.canMove)
                 return;
             
             OperateShoveHands();

@@ -432,7 +432,7 @@ MonoBehaviour:
   speed: 8
   accel: 2
   momentumDampening: 10
-  canMove: 1
+  canMove: 0
   CoyoteJumpTime: 0.1
   JumpStrength: 10
   LandingCooldown: 0.5
@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
   ControllerSpeed: 1
   KeyboardSpeed: 0.1
-  canLook: 1
+  canLook: 0
 --- !u!1 &8501285007528437945
 GameObject:
   m_ObjectHideFlags: 0
