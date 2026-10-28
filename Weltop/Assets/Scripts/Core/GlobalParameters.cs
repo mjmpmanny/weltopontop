@@ -13,10 +13,11 @@ public static class GlobalParameters
     public static float RecoverAfterShoveDelaySeconds = 1f;
     
     //Round State Settings
-    public static float ParkourRoundTimeSeconds = 120f;//120f;
-    public static float BuildRoundTimeSeconds = 120f;//120f;
+    public static float ParkourRoundTimeSeconds = 60f;//120f;
+    public static float BuildRoundTimeSeconds = 25f;//120f;
     public static float CountdownToGameSeconds = 5f;
     public static float StartRoundCountDownAtXSeconds = 10f; //At how many seconds will the big countdown to next round appear?
+    public static int TotalParkourRounds = 4;
     
     //Feedback
     public static float ShoveCameraShakeDurationSeconds = 0.15f;
