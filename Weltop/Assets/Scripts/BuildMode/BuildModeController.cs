@@ -107,7 +107,7 @@ public class BuildModeController : MonoBehaviour
     public void Rotate(CallbackContext ctx)
     {
 
-        if (follow != null)
+        if (follow != null && !hasPlacedObject)
         {
             follow.Rotate();
         }
