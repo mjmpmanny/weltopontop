@@ -1,9 +1,5 @@
-using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
-using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.Experimental.Animations;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
