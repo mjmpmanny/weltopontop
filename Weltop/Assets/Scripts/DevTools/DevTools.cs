@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DevTools : MonoBehaviour
 {
     [SerializeField] private Game game;
     [SerializeField] private SpawnpointManager spawnpointManager;
     [SerializeField] private Transform hillTeleportPoint;
+    
 
     private int selectedPlayerIndex = 0;
 
     private bool visible;
-    private Rect windowRect = new Rect(20, 20, 400, 370);
+    private Rect windowRect = new Rect(20, 20, 400, 400);
 
     private int selectedTab;
 
@@ -199,6 +201,13 @@ public class DevTools : MonoBehaviour
             GlobalParameters.BuildRoundTimeSeconds.ToString("F0") +
             " seconds"
         );
+        
+        if (GUI.Button(
+                new Rect(15, 335, 365, 30),
+                "Return to Main Menu"))
+        {
+            ReturnToMainMenu();
+        }
 
         GlobalParameters.BuildRoundTimeSeconds =
             Mathf.Round(GUI.HorizontalSlider(
@@ -344,5 +353,16 @@ public class DevTools : MonoBehaviour
             new Rect(15, 215, 365, 50),
             "Clear Placed Objects:"
         );
+    }
+    
+    private void ReturnToMainMenu()
+    {
+        visible = false;
+        previousTimeScale = 1f;
+        Time.timeScale = 1f;
+
+        MenuPlayerSelection.Clear();
+
+        SceneManager.LoadScene("MainMenu");
     }
 }
