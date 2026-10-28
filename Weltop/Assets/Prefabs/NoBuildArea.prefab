@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1843016747496728417}
   - component: {fileID: 7080440485625708781}
   m_Layer: 11
-  m_Name: NoSpawnArea
+  m_Name: NoBuildArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
