@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     public float MaxAirSpeed;
     public float AirDampening;
 
-    public BuildModeController buildModeController;
-
     private Vector2 origionaldir;
     private float LandingTimer;
 
@@ -31,10 +29,13 @@ public class PlayerController : MonoBehaviour
     private System.Action<InputAction.CallbackContext> jump_;
     private Rigidbody rb;
     private GameObject cam;
+    private PlayerAnimationController animationController;
+    private ViewSwitcher viewSwitcher;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        viewSwitcher = GetComponent<ViewSwitcher>();
         inp = GetComponent<PlayerInput>();
         jump_ = jump;
         inp.actions["Jump"].started += jump_;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         
         cam = transform.parent.GetComponentInChildren<Camera>().gameObject;
+        animationController = transform.parent.GetComponentInChildren<PlayerAnimationController>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         if (!canMove)
             return;
         
@@ -86,22 +89,24 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(cam.transform.forward.x,0,cam.transform.forward.z).normalized * moveinput.y
             + new Vector3(cam.transform.right.x,0, cam.transform.right.z).normalized * moveinput.x;
 
-        //rotate plyer in direction they are moving
         if (move != Vector3.zero)
         {
-            transform.forward = move;
-            transform.rotation = Quaternion.LookRotation(move);
+            animationController.StartMoving();
+        } else
+        {
+            animationController.stopMoving();
         }
         
         //jumping
         CapsuleCollider cap = GetComponent<CapsuleCollider>();
         RaycastHit hit;
-        bool raycastHit = Physics.SphereCast(transform.position - new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 0.01f, ~(1 << 3));
+        bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f,1);
         
         if (raycastHit && LandingTimer < 0)
         {//Ground Movement
             OnGround = CoyoteJumpTime;
             rb.linearDamping = momentumDampening;
+            animationController.OnLand();
 
 
             bool goingForward = Vector3.Dot(move, rb.linearVelocity) > 0;
@@ -116,19 +121,24 @@ public class PlayerController : MonoBehaviour
 
         } else//air movement
         {
+            animationController.OnJump();
             rb.linearDamping = 0;
+
+            Vector3 HorizontalVal = (rb.linearVelocity - Vector3.up * rb.linearVelocity.y);
 
             bool goingForward = Vector3.Dot(move,rb.linearVelocity) > 0;
 
-            if (goingForward && (rb.linearVelocity - Vector3.up * rb.linearVelocity.y).magnitude >= MaxAirSpeed)
+            if (goingForward && HorizontalVal.magnitude >= MaxAirSpeed)
             {
                 Vector3 cross = Vector3.Cross(Vector3.up,rb.linearVelocity);
                 move = Vector3.Project(move,cross);
 
             }
-            rb.linearVelocity = rb.linearVelocity - new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) * AirDampening / 100;
+            rb.linearVelocity = rb.linearVelocity - HorizontalVal * AirDampening / 100;
             rb.AddForce(move * AirAccel, ForceMode.VelocityChange);
 
         }
     }
+
+
 }
