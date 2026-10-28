@@ -17,7 +17,7 @@ public static class GlobalParameters
     public static float BuildRoundTimeSeconds = 15f;//120f;
     public static float CountdownToGameSeconds = 5f;
     public static float StartRoundCountDownAtXSeconds = 10f; //At how many seconds will the big countdown to next round appear?
-    public static int TotalParkourRounds = 2;
+    public static int TotalParkourRounds = 1;
     
     //Feedback
     public static float ShoveCameraShakeDurationSeconds = 0.15f;

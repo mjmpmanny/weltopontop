@@ -324,12 +324,25 @@ public class Game : MonoBehaviour
         ExecuteCodeOnAllPlayerControllers(controller =>
         {
             controller.canMove = false;
+
+            Rigidbody rb = controller.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
         });
 
         ExecuteCodeOnAllPlayerCameras(camera =>
         {
             camera.canLook = false;
         });
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
+        ui.ShowResults();
 
         Debug.Log("[Match] GAME COMPLETE!");
     }
