@@ -77,6 +77,7 @@ public class UI : MonoBehaviour
         string formattedTime = time.ToString(@"m\:ss");
         parkourRoundTimerText.text = formattedTime;
         double wholeSeconds = Math.Floor(time.TotalSeconds); 
+        
         transitions.countdownText.text = wholeSeconds.ToString("N0");
     }
     
