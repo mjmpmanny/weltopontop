@@ -14,7 +14,7 @@ public class AutoJoinFirstPlayer : MonoBehaviour
         }
 
         // Only players registered in the lobby may join.
-        //manager.DisableJoining();
+        manager.DisableJoining();
 
         if (PlayerInput.all.Count > 0)
             return;
