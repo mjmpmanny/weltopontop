@@ -160,7 +160,7 @@ public class BuildModeController : MonoBehaviour
                 Vector3 inGridPos = ToGrid(inWorldPos);
 
 
-                if (Physics.OverlapBox(inGridPos, Vector3.one * GridSize * 0.9f, Quaternion.identity, 1).Length > 0 && Physics.OverlapBox(transform.position, Vector3.one * GridSize * 0.9f, Quaternion.identity, 1).Length == 0)
+                if (Physics.OverlapBox(inGridPos, Vector3.one * GridSize * 0.9f, Quaternion.identity, 2049).Length > 0 && Physics.OverlapBox(transform.position, Vector3.one * GridSize * 0.9f, Quaternion.identity, 2049).Length == 0)
                 {
                     speed = Vector3.zero;
                     inWorldPos = transform.position;
