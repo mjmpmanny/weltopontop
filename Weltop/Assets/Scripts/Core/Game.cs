@@ -72,7 +72,7 @@ public class Game : MonoBehaviour
         }
     }
     
-    public void ExecuteCodeOnAllPlayerCameras(Action<Cam3dPerson> action)
+    public void ExecuteCodeOnAllPlayerCameras(Action<CamFirstPerson> action)
     {
         foreach (GameObject player in GetActivePlayers())
         {
@@ -83,7 +83,7 @@ public class Game : MonoBehaviour
             if (playerStats == null)
                 return;
 
-            Cam3dPerson camera = playerStats.playerCamera;
+            CamFirstPerson camera = playerStats.playerCamera;
             
             action(camera);
         }
