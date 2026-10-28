@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 11063434472297557}
   - component: {fileID: 2389262413503129989}
   - component: {fileID: 2515246064141852621}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Hill Zone
   m_TagString: HillZone
   m_Icon: {fileID: 0}

@@ -89,7 +89,7 @@ public class Game : MonoBehaviour
         }
     }
     
-    public void ExecuteCodeOnAllPlayerCameras(Action<Cam3dPerson> action)
+    public void ExecuteCodeOnAllPlayerCameras(Action<CamFirstPerson> action)
     {
         foreach (GameObject player in GetActivePlayers())
         {
@@ -100,7 +100,7 @@ public class Game : MonoBehaviour
             if (playerStats == null)
                 return;
 
-            Cam3dPerson camera = playerStats.playerCamera;
+            CamFirstPerson camera = playerStats.playerCamera;
             
             action(camera);
         }
@@ -171,6 +171,7 @@ public class Game : MonoBehaviour
                 currentParkourRound++;
 
                 currentRoundState = RoundState.Parkour;
+
                 InitializeParkourRound();
 
                 Debug.Log(
@@ -189,10 +190,6 @@ public class Game : MonoBehaviour
         foreach (GameObject player in GetActivePlayers())
         {
             ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
-            PlayerController playerController = player.GetComponent<PlayerController>();
-            BuildModeController buildModeController = playerController.buildModeController;
-
-            buildModeController.hasPlacedObject = false;
             viewSwitcher.SwitchToBuild(viewSwitcher.TestObjectToHoldOnTo, new Vector3(0,10,0));
         }
     }
@@ -374,4 +371,5 @@ public class Game : MonoBehaviour
         ui.UpdateBuildRoundObjectsPlaced();
     }
     
+
 }

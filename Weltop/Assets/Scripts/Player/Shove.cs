@@ -21,6 +21,7 @@ public class Shove : MonoBehaviour
     private bool canShove;
 
     private PlayerInput inp;
+    
     private PlayerController playerController;
     public PlayerAudio playerAudio;
 
@@ -68,7 +69,8 @@ public class Shove : MonoBehaviour
         {
             if (!canShove || !playerController.canMove)
                 return;
-            
+                
+            transform.parent.GetComponentInChildren<Animator>().Play("Attack", 1);
             OperateShoveHands();
             
             GameObject playerToShove = FindPlayerToShove();
@@ -121,7 +123,10 @@ public class Shove : MonoBehaviour
         Shove targetShoveCode = shoveTarget.GetComponent<Shove>();
 
         StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
-        rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
+        //rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
+
+        shoveTarget.GetComponent<RagdollController>().Ragdoll(playerCam.transform.forward * GlobalParameters.ShovePower, shoveTarget.transform.position);
+
         targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
 
         StartCoroutine(RecoverFromShove(shoveTarget.GetComponent<PlayerController>()));
@@ -137,7 +142,7 @@ public class Shove : MonoBehaviour
             time += Time.deltaTime;
             targetVolume.weight += time * 2;
             yield return null;
-        }
+}
 
         targetVolume.weight = 1;
     }
