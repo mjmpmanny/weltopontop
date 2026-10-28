@@ -9,8 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7596661492919311209}
+  - component: {fileID: 7839831294914270137}
   - component: {fileID: 2183085892245654979}
   - component: {fileID: 9115495954152648876}
+  - component: {fileID: 6057524480478498056}
+  - component: {fileID: 1287613867546345595}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -33,6 +36,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7839831294914270137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897183354134790948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b181629afdedc4f8e036eb7e443c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game
+  currentRoundState: 0
+  gameIsActive: 0
+  numOfPlacedObjects: 0
 --- !u!114 &2183085892245654979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +64,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnpointManager
   spawnpoint: {fileID: 0}
+  spawnpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &9115495954152648876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,4 +81,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e4bccd404568144b0b94b82ebad7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI
-  hillPointsTracker: {fileID: 0}
+  playerScoreTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  parkourRoundTimerText: {fileID: 0}
+  buildRoundTimerText: {fileID: 0}
+  buildRoundObjectsPlacedText: {fileID: 0}
+  parkourRoundPanel: {fileID: 0}
+  buildRoundPanel: {fileID: 0}
+--- !u!114 &6057524480478498056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897183354134790948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e554f3093d7cc47b31c0550fa457a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Transitions
+  startGamePanel: {fileID: 0}
+  countdownText: {fileID: 0}
+--- !u!81 &1287613867546345595
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897183354134790948}
+  m_Enabled: 1
