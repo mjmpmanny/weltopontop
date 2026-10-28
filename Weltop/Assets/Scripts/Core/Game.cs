@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Game : MonoBehaviour
 {
@@ -44,16 +45,19 @@ public class Game : MonoBehaviour
         spawnpointManager = GetComponent<SpawnpointManager>();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         isGameComplete = false;
-        
+
         currentParkourRound = 1;
         currentBuildRound = 0;
-    
+
         currentRoundState = RoundState.Parkour;
+        
+        yield return null;
+
         InitializeParkourRound();
-    
+
         Debug.Log($"[Match] Starting Parkour {currentParkourRound}/{GlobalParameters.TotalParkourRounds}");
     }
 

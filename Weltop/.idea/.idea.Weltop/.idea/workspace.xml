@@ -12,10 +12,11 @@
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="Added folders for all scripts">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/External Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/External Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Humanoid.blend" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Humanoid.blend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/SplitScreenController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/SplitScreenController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Transitions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Transitions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Multiplayer/AutoJoinFirstPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Multiplayer/AutoJoinFirstPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/VersionControlSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VersionControlSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,38 +37,38 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABHuAK-A",
-        "number": 5
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABHuAK-A&quot;,
+        &quot;number&quot;: 5
       },
-      "lastSeen": 1791671949961
+      &quot;lastSeen&quot;: 1791671949961
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABIT9ZCQ",
-        "number": 13
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABIT9ZCQ&quot;,
+        &quot;number&quot;: 13
       },
-      "lastSeen": 1791992601535
+      &quot;lastSeen&quot;: 1791992601535
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABI6ZepA",
-        "number": 16
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABI6ZepA&quot;,
+        &quot;number&quot;: 16
       },
-      "lastSeen": 1792187499175
+      &quot;lastSeen&quot;: 1792187499175
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABLJfl-w",
-        "number": 21
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABLJfl-w&quot;,
+        &quot;number&quot;: 21
       },
-      "lastSeen": 1793203959038
+      &quot;lastSeen&quot;: 1793203959038
     }
   ]
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/mjmpmanny/weltopontop.git&quot;,
@@ -116,7 +117,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "#21 on build-mode",
+    "git-widget-placeholder": "Bug-Fixing-Manny",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -131,9 +132,7 @@
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\chathaway\RiderProjects\WELTOP Builds" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="ENV_FILE_PATHS" value="" />
-      <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -141,9 +140,7 @@
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\chathaway\RiderProjects\weltopontop\Weltop -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\chathaway\RiderProjects\weltopontop\Weltop" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="ENV_FILE_PATHS" value="" />
-      <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
@@ -151,9 +148,7 @@
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\chathaway\RiderProjects\weltopontop\Weltop -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\chathaway\RiderProjects\weltopontop\Weltop" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="ENV_FILE_PATHS" value="" />
-      <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -167,7 +162,6 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -181,7 +175,6 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
@@ -210,6 +203,7 @@
       <workItem from="1792110756784" duration="1370000" />
       <workItem from="1792446864567" duration="1993000" />
       <workItem from="1792769860977" duration="1879000" />
+      <workItem from="1793216365606" duration="1890000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />

@@ -17,11 +17,7 @@ public class Transitions : MonoBehaviour
     {
         game = GetComponent<Game>();
     }
-
-    private void Start()
-    {
-       currentTransitionCoroutine = StartCoroutine(StartParkourRound());
-    }
+    
 
     public IEnumerator StartParkourRound()
     {
