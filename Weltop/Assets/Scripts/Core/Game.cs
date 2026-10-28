@@ -134,6 +134,8 @@ public class Game : MonoBehaviour
             viewSwitcher.SwitchToPlayer();
             spawnpointManager.SendToSpawnpointsRandom(player);
         }
+
+        transitions.currentTransitionCoroutine = StartCoroutine(transitions.StartParkourRound());
     }
 
     public void EndRound()

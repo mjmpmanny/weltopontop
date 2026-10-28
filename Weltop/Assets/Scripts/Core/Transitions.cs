@@ -20,11 +20,21 @@ public class Transitions : MonoBehaviour
 
     private void Start()
     {
-       currentTransitionCoroutine = StartCoroutine(StartGame());
+       currentTransitionCoroutine = StartCoroutine(StartParkourRound());
     }
 
-    private IEnumerator StartGame()
+    public IEnumerator StartParkourRound()
     {
+        game.ExecuteCodeOnAllPlayerControllers(controller =>
+        {
+            controller.canMove = false;
+        });
+        
+        game.ExecuteCodeOnAllPlayerCameras(camera =>
+        {
+            camera.canLook = GlobalParameters.CanPlayerLookDuringRoundStartCountdown;
+        });
+        
         game.gameIsActive = false;
         timerCountdownPanel.gameObject.SetActive(true);
 
@@ -33,7 +43,14 @@ public class Transitions : MonoBehaviour
         while (timer >= 0)
         {
             timer -= Time.deltaTime;
-            countdownText.text = timer.ToString("N0");
+            if (timer < 1)
+            {
+                countdownText.text = "GO!";
+            }
+            else
+            {
+                countdownText.text = timer.ToString("N0");
+            }
             yield return null;
         }
         
@@ -51,7 +68,6 @@ public class Transitions : MonoBehaviour
 
         game.gameIsActive = true;
         currentTransitionCoroutine = null;
-        Debug.Log("Start Game!");
     }
 
     public void StartTransitionToNextRound()
