@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,7 +42,7 @@ public class BuildModeController : MonoBehaviour
         input = viewSwitcher.GetComponent<PlayerInput>();
         Camspeed = viewSwitcher.GetCamSpeed();
         Cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
-        
+
         //rb = GetComponent<Rigidbody>();
         pitch = transform.eulerAngles.x;
         if (pitch > 180) pitch -= 360;
@@ -66,11 +67,12 @@ public class BuildModeController : MonoBehaviour
 
     }
 
-    public void SetController(GameObject obj, int camPriority,Vector3 location)
+    public void SetController(GameObject obj, int camPriority, Vector3 location)
     {
         transform.position = location;
         Cam.Priority = camPriority;
-        if (obj != null) { // Has switched to buildmode
+        if (obj != null)
+        { // Has switched to buildmode
             follow = obj.GetComponent<PlaceableObject>();
             hasPlacedObject = false;
             active = true;
@@ -78,6 +80,11 @@ public class BuildModeController : MonoBehaviour
             obj.transform.position = transform.position;
         } else // Has switched from buildmode
         {
+            Debug.Log("bool" + hasPlacedObject + (follow != null));
+            if (!hasPlacedObject && follow != null)
+            {
+                OnTimeOut();
+            }
             follow = null;
             active = false;
             hasPlacedObject = true;
@@ -92,6 +99,12 @@ public class BuildModeController : MonoBehaviour
             game.CheckIfAllPlayersPlacedAnObject(this);
         }
     }
+
+    public void OnTimeOut()
+    {
+        follow.EndOfRoundPlace();
+    }
+
     public void Rotate(CallbackContext ctx)
     {
 
@@ -133,8 +146,8 @@ public class BuildModeController : MonoBehaviour
             if (moveinput != Vector2.zero || vert != 0)
             {
 
-                inWorldPos += transform.forward.ProjectOntoPlane(Vector3.up) * moveinput.y * speed.x + transform.right.ProjectOntoPlane(Vector3.up) * moveinput.x * speed.z + Vector3.up * vert * speed.y;
-                speed += new Vector3(Mathf.Abs(moveinput.y),Mathf.Abs( vert),Mathf.Abs(moveinput.x)) * acceleration;
+                inWorldPos += MovementVector(input);
+                speed += new Vector3(Mathf.Abs(moveinput.y), Mathf.Abs(vert), Mathf.Abs(moveinput.x)) * acceleration;
                 speed = Vector3.ClampMagnitude(speed, maxSpeed);
             } else
             {
@@ -145,10 +158,10 @@ public class BuildModeController : MonoBehaviour
             if (!hasPlacedObject)
             {
                 float GridSize = GlobalParameters.GridSize;
-                Vector3 inGridPos = new Vector3(GridSize * Mathf.Round(inWorldPos.x / GridSize), GridSize * Mathf.Round(inWorldPos.y / GridSize), GridSize * Mathf.Round(inWorldPos.z / GridSize)) + GlobalParameters.GridOffset;
+                Vector3 inGridPos = ToGrid(inWorldPos);
 
 
-                if (Physics.OverlapBox(inGridPos,Vector3.one*GridSize * 0.9f, Quaternion.identity,1).Length > 0 && Physics.OverlapBox(transform.position, Vector3.one * GridSize *0.9f, Quaternion.identity, 1).Length == 0)
+                if (Physics.OverlapBox(inGridPos, Vector3.one * GridSize * 0.9f, Quaternion.identity, 1).Length > 0 && Physics.OverlapBox(transform.position, Vector3.one * GridSize * 0.9f, Quaternion.identity, 1).Length == 0)
                 {
                     speed = Vector3.zero;
                     inWorldPos = transform.position;
@@ -168,11 +181,25 @@ public class BuildModeController : MonoBehaviour
     {
         if (active && !hasPlacedObject)
         {
-            Vector2 moveinput = (input.actions["Move"].ReadValue<Vector2>()).normalized;
-            int vert = (input.actions["Jump"].IsPressed() ? 1 : 0) + (input.actions["Crouch"].IsPressed() ? -1 : 0);
-            float GridSize = GlobalParameters.GridSize;
 
-            inWorldPos += transform.forward.ProjectOntoPlane(Vector3.up) * moveinput.y * GridSize + transform.right.ProjectOntoPlane(Vector3.up) * moveinput.x * GridSize + Vector3.up * vert * GridSize;
+            inWorldPos += MovementVector(input);
+            inWorldPos = ToGrid(inWorldPos);
         }
+        
+    }
+    Vector3 ToGrid(Vector3 pos)
+    {
+        float GridSize = GlobalParameters.GridSize;
+        return new Vector3(GridSize * Mathf.Round(pos.x / GridSize), GridSize * Mathf.Round(pos.y / GridSize), GridSize * Mathf.Round(pos.z / GridSize)) + GlobalParameters.GridOffset;
+    }
+
+    Vector3 MovementVector(PlayerInput inp)
+    {
+        Vector2 moveinput = (inp.actions["Move"].ReadValue<Vector2>()).normalized;
+        int vert = (inp.actions["Jump"].IsPressed() ? 1 : 0) + (inp.actions["Crouch"].IsPressed() ? -1 : 0);
+        float GridSize = GlobalParameters.GridSize;
+
+        return (transform.forward.ProjectOntoPlane(Vector3.up).normalized * moveinput.y * GridSize + transform.right.ProjectOntoPlane(Vector3.up).normalized * moveinput.x * GridSize + Vector3.up * vert * GridSize);
+
     }
 }

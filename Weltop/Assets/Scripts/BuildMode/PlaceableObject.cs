@@ -18,6 +18,19 @@ public class PlaceableObject : MonoBehaviour
         return true;
     }
 
+    public void EndOfRoundPlace()
+    {
+        if (insideObject == 0)
+        {
+            gameObject.layer = 0;
+            Destroy(GetComponent<Rigidbody>());
+        } else
+        {
+            Debug.Log("destroyed object");
+            Destroy(gameObject);
+        }
+    }
+
     public void MoveTo(Vector3 pos)
     {
         if (followGrid)

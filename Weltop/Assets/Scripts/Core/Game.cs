@@ -134,6 +134,7 @@ public class Game : MonoBehaviour
             case RoundState.Build:
                 numOfPlacedObjects = 0;
                 currentRoundState = RoundState.Parkour;
+
                 InitializeParkourRound();
                 break;
         }
@@ -233,4 +234,5 @@ public class Game : MonoBehaviour
         ui.UpdateBuildRoundObjectsPlaced();
     }
     
+
 }
