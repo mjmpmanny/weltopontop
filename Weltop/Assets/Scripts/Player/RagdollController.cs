@@ -23,8 +23,10 @@ public class RagdollController : MonoBehaviour
     public bool isRagdolled;
     public bool isGetingUp;
     public Cam3rdPerson ragdollCam;
+    public CamFirstPerson firstPerson;
     private void Start()
     {
+        firstPerson = transform.parent.GetComponentInChildren<CamFirstPerson>();
         camBrain = transform.parent.GetComponentInChildren<CamBrain>();
         rb = GetComponent<Rigidbody>();
         viewSwitcher = GetComponent<ViewSwitcher>();
@@ -92,7 +94,7 @@ public class RagdollController : MonoBehaviour
 
         }
     }
-    public void RotatePlayer(quaternion rot)
+    public void SetPlayerRotation(quaternion rot)
     {
         if (isRagdolled)
         {
@@ -100,6 +102,7 @@ public class RagdollController : MonoBehaviour
         } else if (!isGetingUp)
         {
             transform.rotation = rot;
+            firstPerson.transform.rotation = rot;
         } else
         {
             playerAnimationController.transform.rotation = rot;

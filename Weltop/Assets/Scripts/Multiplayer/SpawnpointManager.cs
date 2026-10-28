@@ -40,6 +40,7 @@ public class SpawnpointManager : MonoBehaviour
 
         playerSpawns[objectToSend] = selected;
         objectToSend.GetComponent<RagdollController>().MovePlayer(selected.position);
+        objectToSend.GetComponent<RagdollController>().SetPlayerRotation(Quaternion.Euler(0,Mathf.Atan2(-selected.position.x,-selected.position.z)*Mathf.Rad2Deg,0));
     }
 
     public void ResetSpawnAssignments()
