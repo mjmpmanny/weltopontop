@@ -314,6 +314,190 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cam3rdPerson
   ViewSwitcher: {fileID: 6932687401081731943}
   follow: {fileID: 2001673418545963937}
+--- !u!136 &8900582571576056534
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Material: {fileID: 13400000, guid: 2ca60c2652a4b35429ea8200f777d33a, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6401443588675081848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!114 &4772940859167904407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63451a9fc0e649642998f2523a1c5183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController_3dPerson
+  speed: 8
+  accel: 2
+  momentumDampening: 10
+  canMove: 0
+  CoyoteJumpTime: 0.1
+  JumpStrength: 8
+  LandingCooldown: 0.5
+  AirAccel: 0.6
+  MaxAirSpeed: 5
+  AirDampening: 2
+--- !u!114 &7372187572972943668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755afe3f9d56bb54c8e0f7699b5d16c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shove
+  shoveArms: {fileID: 3673393187569635722}
+  playerCam: {fileID: 4407631665799062605}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 960
+  playerAudio: {fileID: 3868262790746722679}
+  playerVolume: {fileID: 5528933355535322180}
+--- !u!114 &824267639369121826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamShake
+  playerCamera: {fileID: 4896784569592859808}
+--- !u!114 &4146621491053113759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3bdef075f8394499170d19cb27f260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  ragdollController: {fileID: 0}
+  playerCamera: {fileID: 8769224904270221622}
+  isInvincible: 0
+  currentHillPoints: 0
+--- !u!114 &4027326663822818577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 4407631665799062605}
+--- !u!114 &6932687401081731943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3e224e53c639e4a94c84cbb5bf55cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  CamControllerSpeed: 2
+  CamKeyboardSpeed: 0.5
+  TestObjectToHoldOnTo: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+  RagdollCam: {fileID: 4761964318628333518}
+--- !u!114 &3373532751297725736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9415c4208fa2d429f1e9a9bc2d5de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RagdollController
+  _testRagdollHitFrom: {x: 0, y: 0, z: 0}
+  _testRagdoll: 0
+  playerAnimationController: {fileID: 5267095064637787157}
+  RagdollTime: 5
+  isRagdolled: 0
+  isGetingUp: 0
 --- !u!1 &2832645989831487543
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,190 +1029,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8440488456426195551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &8900582571576056534
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Material: {fileID: 13400000, guid: 2ca60c2652a4b35429ea8200f777d33a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6401443588675081848
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 1
---- !u!114 &4772940859167904407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63451a9fc0e649642998f2523a1c5183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController_3dPerson
-  speed: 8
-  accel: 2
-  momentumDampening: 10
-  canMove: 1
-  CoyoteJumpTime: 0.1
-  JumpStrength: 8
-  LandingCooldown: 0.5
-  AirAccel: 0.6
-  MaxAirSpeed: 5
-  AirDampening: 2
---- !u!114 &7372187572972943668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755afe3f9d56bb54c8e0f7699b5d16c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shove
-  shoveArms: {fileID: 3673393187569635722}
-  playerCam: {fileID: 4407631665799062605}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 960
-  playerAudio: {fileID: 3868262790746722679}
-  playerVolume: {fileID: 5528933355535322180}
---- !u!114 &824267639369121826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CamShake
-  playerCamera: {fileID: 4896784569592859808}
---- !u!114 &4146621491053113759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d3bdef075f8394499170d19cb27f260, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  ragdollController: {fileID: 0}
-  playerCamera: {fileID: 8769224904270221622}
-  isInvincible: 0
-  currentHillPoints: 0
---- !u!114 &4027326663822818577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 4407631665799062605}
---- !u!114 &6932687401081731943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae3e224e53c639e4a94c84cbb5bf55cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  CamControllerSpeed: 2
-  CamKeyboardSpeed: 0.5
-  TestObjectToHoldOnTo: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
-  RagdollCam: {fileID: 4761964318628333518}
---- !u!114 &3373532751297725736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9415c4208fa2d429f1e9a9bc2d5de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RagdollController
-  _testRagdollHitFrom: {x: 0, y: 0, z: 0}
-  _testRagdoll: 0
-  playerAnimationController: {fileID: 5267095064637787157}
-  RagdollTime: 5
-  isRagdolled: 0
-  isGetingUp: 0
 --- !u!1 &6001969543886878094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
   ControllerSpeed: 2
   KeyboardSpeed: 0.5
-  canLook: 1
+  canLook: 0
 --- !u!1 &8501285007528437945
 GameObject:
   m_ObjectHideFlags: 0

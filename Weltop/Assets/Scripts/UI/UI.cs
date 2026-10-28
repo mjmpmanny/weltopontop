@@ -14,11 +14,13 @@ public class UI : MonoBehaviour
     public GameObject parkourRoundPanel;
     public GameObject buildRoundPanel;
 
+    private Transitions transitions;
     private Game game;
     
     private void Awake()
     {
-        game = FindFirstObjectByType<Game>();
+        transitions = GetComponent<Transitions>();
+        game = GetComponent<Game>();
         
         // Hide score displays until players join.
         foreach (TMP_Text scoreText in playerScoreTexts)
@@ -56,18 +58,20 @@ public class UI : MonoBehaviour
 
     public void UpdateParkourRoundTimer(float currentTime)
     {
-        // Convert the float to a TimeSpan
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         string formattedTime = time.ToString(@"m\:ss");
         parkourRoundTimerText.text = formattedTime;
+        double wholeSeconds = Math.Floor(time.TotalSeconds); 
+        transitions.countdownText.text = wholeSeconds.ToString("N0");
     }
     
     public void UpdateBuildRoundTimer(float currentTime)
     {
-        // Convert the float to a TimeSpan
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         string formattedTime = time.ToString(@"m\:ss");
         buildRoundTimerText.text = formattedTime;
+        double wholeSeconds = Math.Floor(time.TotalSeconds); 
+        transitions.countdownText.text = wholeSeconds.ToString("N0");
     }
 
     public void UpdateBuildRoundObjectsPlaced()

@@ -7,14 +7,17 @@ public class Game : MonoBehaviour
     public bool gameIsActive;
     
     private SpawnpointManager spawnpointManager;
+    private Transitions transitions;
     private UI ui;
     
+    public bool currentlyInTransition = false;
+    
     #region Parkour Round
-    private float parkourRoundTimer;
+    public float parkourRoundTimer;
     #endregion
     
     #region Build Round
-    private float buildRoundTimer;
+    public float buildRoundTimer;
     public int numOfPlacedObjects;
     #endregion
     
@@ -27,6 +30,7 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         ui = GetComponent<UI>();
+        transitions = GetComponent<Transitions>();
         spawnpointManager = GetComponent<SpawnpointManager>();
     }
 
@@ -40,6 +44,64 @@ public class Game : MonoBehaviour
     {
         return GameObject.FindGameObjectsWithTag("Player");
     }
+
+    #region Code Executions for All Players
+    public void ExecuteCodeOnAllPlayerControllers(Action<PlayerController> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+                
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            
+            action(playerController);
+        }
+    }
+    
+    public void ExecuteCodeOnAllBuildControllers(Action<BuildModeController> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+            
+            BuildModeController buildModeController = player.GetComponent<BuildModeController>();
+            
+            action(buildModeController);
+        }
+    }
+    
+    public void ExecuteCodeOnAllPlayerCameras(Action<Cam3dPerson> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+            
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            if (playerStats == null)
+                return;
+
+            Cam3dPerson camera = playerStats.playerCamera;
+            
+            action(camera);
+        }
+    }
+    
+    public void ExecuteCodeOnAllViewSwitchers(Action<ViewSwitcher> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+            
+            ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
+            
+            action(viewSwitcher);
+        }
+    }
+    #endregion
     
     private void InitializeParkourRound()
     {
@@ -57,7 +119,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void EndRound()
+    public void EndRound()
     {
         if (!gameIsActive)
             return;
@@ -101,18 +163,26 @@ public class Game : MonoBehaviour
                 parkourRoundTimer = Mathf.Max(0f, parkourRoundTimer - Time.deltaTime);
                 ui.UpdateParkourRoundTimer(parkourRoundTimer);
 
-                if (parkourRoundTimer <= 0)
+                if (parkourRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds + 1)
                 {
-                    EndRound();
+                    if (!currentlyInTransition)
+                    {
+                        transitions.StartTransitionToNextRound();
+                        currentlyInTransition = true;
+                    }
                 }
                 break;
             case RoundState.Build:
                 buildRoundTimer = Mathf.Max(0f, buildRoundTimer - Time.deltaTime);
                 ui.UpdateBuildRoundTimer(buildRoundTimer);
                 
-                if (buildRoundTimer <= 0)
+                if (buildRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds + 1)
                 {
-                    EndRound();
+                    if (!currentlyInTransition)
+                    {
+                        transitions.StartTransitionToNextRound();
+                        currentlyInTransition = true;
+                    }
                 }
                 break;
         }
@@ -132,6 +202,8 @@ public class Game : MonoBehaviour
         
         if (numOfPlacedObjects >= playerCount)
         {
+            //If timer starts going down, this will stop it immediately
+            transitions.StopTransitionCoroutine();
             EndRound();
         }
     }

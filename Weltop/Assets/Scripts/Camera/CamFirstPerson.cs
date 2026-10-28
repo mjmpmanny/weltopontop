@@ -14,6 +14,8 @@ public class CamFirstPerson : MonoBehaviour
 
     void Start()
     {
+        canLook = false;
+        
         input = transform.parent.GetComponentInChildren<PlayerInput>();
         speed = (input.devices[0] is Gamepad) ? ControllerSpeed : KeyboardSpeed;
 

@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        canMove = false;
+        
         cam = transform.parent.GetComponentInChildren<Camera>().gameObject;
         animationController = transform.parent.GetComponentInChildren<PlayerAnimationController>();
         rb = GetComponent<Rigidbody>();
