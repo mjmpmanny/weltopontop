@@ -80,7 +80,6 @@ public class BuildModeController : MonoBehaviour
             obj.transform.position = transform.position;
         } else // Has switched from buildmode
         {
-            Debug.Log("bool" + hasPlacedObject + (follow != null));
             if (!hasPlacedObject && follow != null)
             {
                 OnTimeOut();
@@ -146,7 +145,7 @@ public class BuildModeController : MonoBehaviour
             if (moveinput != Vector2.zero || vert != 0)
             {
 
-                inWorldPos += MovementVector(input);
+                inWorldPos += MovementVector(input,speed);
                 speed += new Vector3(Mathf.Abs(moveinput.y), Mathf.Abs(vert), Mathf.Abs(moveinput.x)) * acceleration;
                 speed = Vector3.ClampMagnitude(speed, maxSpeed);
             } else
@@ -182,7 +181,7 @@ public class BuildModeController : MonoBehaviour
         if (active && !hasPlacedObject)
         {
 
-            inWorldPos += MovementVector(input);
+            inWorldPos += MovementVector(input,Vector3.one);
             inWorldPos = ToGrid(inWorldPos);
         }
         
@@ -193,13 +192,13 @@ public class BuildModeController : MonoBehaviour
         return new Vector3(GridSize * Mathf.Round(pos.x / GridSize), GridSize * Mathf.Round(pos.y / GridSize), GridSize * Mathf.Round(pos.z / GridSize)) + GlobalParameters.GridOffset;
     }
 
-    Vector3 MovementVector(PlayerInput inp)
+    Vector3 MovementVector(PlayerInput inp,Vector3 speed)
     {
         Vector2 moveinput = (inp.actions["Move"].ReadValue<Vector2>()).normalized;
         int vert = (inp.actions["Jump"].IsPressed() ? 1 : 0) + (inp.actions["Crouch"].IsPressed() ? -1 : 0);
         float GridSize = GlobalParameters.GridSize;
 
-        return (transform.forward.ProjectOntoPlane(Vector3.up).normalized * moveinput.y * GridSize + transform.right.ProjectOntoPlane(Vector3.up).normalized * moveinput.x * GridSize + Vector3.up * vert * GridSize);
+        return (transform.forward.ProjectOntoPlane(Vector3.up).normalized * moveinput.y * GridSize * speed.x + transform.right.ProjectOntoPlane(Vector3.up).normalized * moveinput.x * GridSize * speed.z + Vector3.up * vert * GridSize * speed.y);
 
     }
 }

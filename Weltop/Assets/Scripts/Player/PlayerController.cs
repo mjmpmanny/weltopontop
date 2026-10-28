@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         //jumping
         CapsuleCollider cap = GetComponent<CapsuleCollider>();
         RaycastHit hit;
-        bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f);
+        bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f,1);
         
         if (raycastHit && LandingTimer < 0)
         {//Ground Movement
