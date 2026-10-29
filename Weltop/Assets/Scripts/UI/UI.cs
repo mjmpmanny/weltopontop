@@ -214,6 +214,10 @@ public class UI : MonoBehaviour
     {
         Time.timeScale = 1f;
         MenuPlayerSelection.Clear();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         SceneManager.LoadScene("MainMenu");
     }
     
