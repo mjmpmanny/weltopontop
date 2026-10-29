@@ -1031,6 +1031,7 @@ MonoBehaviour:
   isRagdolled: 0
   isGetingUp: 0
   ragdollCam: {fileID: 2241233549069182207}
+  firstPerson: {fileID: 0}
 --- !u!1 &6001969543886878094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  ControllerSpeed: 2
+  ControllerSpeed: 150
   KeyboardSpeed: 0.5
   canLook: 0
 --- !u!1 &8501285007528437945
