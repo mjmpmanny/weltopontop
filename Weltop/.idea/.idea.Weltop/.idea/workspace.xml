@@ -10,11 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildMode/BuildModeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildMode/BuildModeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/ViewSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/ViewSwitcher.cs" afterDir="false" />
-    </list>
+    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="fixed possible issues" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,7 +204,7 @@
       <workItem from="1792446864567" duration="1993000" />
       <workItem from="1792769860977" duration="1879000" />
       <workItem from="1793297808869" duration="816000" />
-      <workItem from="1793300124340" duration="303000" />
+      <workItem from="1793300124340" duration="619000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -346,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793220382635</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fixed possible issues">
+      <option name="closed" value="true" />
+      <created>1793300556320</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1793300556320</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,6 +394,7 @@
     <MESSAGE value="Added shove sound effect. New player prefab with audio source attached." />
     <MESSAGE value="Added folders for all scripts" />
     <MESSAGE value="worksaopfkpaps" />
-    <option name="LAST_COMMIT_MESSAGE" value="worksaopfkpaps" />
+    <MESSAGE value="fixed possible issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed possible issues" />
   </component>
 </project>
