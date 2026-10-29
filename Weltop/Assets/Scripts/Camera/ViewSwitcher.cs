@@ -3,8 +3,6 @@ using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
 using Unity.Collections.Tests.CoreCLR.TestJobs;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Experimental.Animations;
 using UnityEngine.InputSystem;
