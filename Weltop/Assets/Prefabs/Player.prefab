@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  ControllerSpeed: 150
+  ControllerSpeed: 180
   KeyboardSpeed: 0.5
   canLook: 0
 --- !u!1 &8501285007528437945
