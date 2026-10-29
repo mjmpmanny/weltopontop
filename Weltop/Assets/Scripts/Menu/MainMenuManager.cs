@@ -9,6 +9,21 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private PlayerLobbyManager playerLobbyManager;
     [SerializeField] private GameObject playButton;
 
+    
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        playerLobbyPanel.SetActive(false);
+
+        if (EventSystem.current != null && playButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(playButton);
+        }
+    }
+    
     public void PlayGame()
     {
         playerLobbyPanel.SetActive(true);
