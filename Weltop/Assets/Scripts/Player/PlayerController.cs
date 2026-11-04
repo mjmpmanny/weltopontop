@@ -64,19 +64,13 @@ public class PlayerController : MonoBehaviour
 
     void jump(CallbackContext ctx)
     {
-        if ( OnGround > 0)
-        {
+        if (OnGround <= 0 && !canMove) return;
+
             OnGround = 0;
             LandingTimer = LandingCooldown;
             rb.linearDamping = 0;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) + (Vector3.up * JumpStrength);
             origionaldir = new Vector2(rb.linearVelocity.x,rb.linearVelocity.z);
-        } else
-        {
-            Debug.Log("not on ground");
-        }
-
-
     }
     void FixedUpdate()
     {

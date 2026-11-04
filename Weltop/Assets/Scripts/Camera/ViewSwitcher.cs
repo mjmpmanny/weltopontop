@@ -3,9 +3,11 @@ using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
 using Unity.Collections.Tests.CoreCLR.TestJobs;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Experimental.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -15,10 +17,18 @@ public class ViewSwitcher : MonoBehaviour
     private BuildModeController BuildMode;
     private CamBrain camBrain;
 
+    [Header("Sensitivity Settings")]
     private float Camspeed;
     public float CamControllerSpeed;
     public float CamKeyboardSpeed;
     private PlayerInput playerInput;
+
+
+    [Header("Cameras to Shake")]
+    public CamShake[] camShakes;
+
+    [Header("PostProccesing Volumes")]
+    public Volume[] PostProccesingVolumes;
 
     public GameObject TestObjectToHoldOnTo; // test only
 
@@ -31,14 +41,15 @@ public class ViewSwitcher : MonoBehaviour
         Build
     }
     private camState state;
-    private CinemachineCamera cam;
-    public CinemachineCamera RagdollCam;
-    private System.Action<InputAction.CallbackContext> testbm;
+    [Header("Cameras")]
+    private ICamera cam;
+    public Cam3rdPerson RagdollCam;
+    private ICamera CurCam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
 
-        cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
+        cam = transform.parent.GetComponentInChildren<ICamera>();
         BuildMode = transform.parent.GetComponentInChildren<BuildModeController>();
         camBrain = transform.parent.GetComponentInChildren<CamBrain>();
         playerController = GetComponent<PlayerController>();
@@ -48,30 +59,29 @@ public class ViewSwitcher : MonoBehaviour
 
     private void Start()
     {
-        testbm = TestEnterBuldMode;
-        //GetComponent<PlayerInput>().actions["Next"].started += testbm;
+        foreach (ICamera c in transform.parent.GetComponentsInChildren<ICamera>())
+        {
+            c.SetSensitivity(Camspeed);
+        }
     }
 
-    public void TestEnterBuldMode(CallbackContext ctx)// for testing only
-    {
-        SwitchToBuild(TestObjectToHoldOnTo, new Vector3(0,10,0));
-    }
 
     public void SwitchToBuild(GameObject obj, Vector3 StartPos)
     {
         state = camState.Build;
         GameObject nobj = Instantiate(obj);
         BuildMode.SetController(nobj, 10, StartPos);
+        SwitchFromLastCam();
+        CurCam = BuildMode;
         playerController.canMove = false;
-        cam.Priority = 0;
     }
     public void SwitchToPlayer()
     {
         state = camState.Parkour;
-        BuildMode.SetController(null,0,new Vector3(0,-1000,0));
+        SwitchFromLastCam();
         playerController.canMove = true;
-        RagdollCam.Priority = 0;
-        cam.Priority = 10;
+        cam.SwitchTo();
+        CurCam = cam;
         camBrain.EnableCullingMask();
 
 
@@ -81,8 +91,9 @@ public class ViewSwitcher : MonoBehaviour
     {
         if (state != camState.Build) {
             state = camState.Ragdoll;
-            cam.Priority = 0;
-            RagdollCam.Priority = 10;
+            SwitchFromLastCam();
+            RagdollCam.SwitchTo();
+            CurCam = RagdollCam;
             camBrain.DisableCullingMask();
             return true;
         }
@@ -92,17 +103,15 @@ public class ViewSwitcher : MonoBehaviour
     {
         if (state != camState.Build)
         {
-            state = camState.Parkour;
-            BuildMode.SetController(null, 0, new Vector3(0, -1000, 0));
-            playerController.canMove = true;
-            RagdollCam.Priority = 0;
-            cam.Priority = 10;
-            camBrain.EnableCullingMask();
+            SwitchToPlayer();
         }
-
     }
 
-    public float GetCamSpeed()
+    private void SwitchFromLastCam()
+    {
+        CurCam?.SwitchFrom();
+    }
+    public float GetSensitivity()
     {
         return Camspeed;
     }
@@ -111,9 +120,14 @@ public class ViewSwitcher : MonoBehaviour
     {
         return playerInput;
     }
-    private void OnDestroy()
+
+    public void ShakeCams(float duration,float strength)
     {
-        //GetComponent<PlayerInput>().actions["Next"].started -= testbm;
+        foreach (CamShake cs in camShakes)
+        {
+            cs.ShakeCamera(duration, strength);
+        }
     }
+
 
 }

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using static UnityEngine.InputSystem.InputAction;
 
-public class BuildModeController : MonoBehaviour
+public class BuildModeController : MonoBehaviour, ICamera
 {
     public float acceleration;
     public float maxSpeed;
@@ -38,7 +38,6 @@ public class BuildModeController : MonoBehaviour
         ui = FindFirstObjectByType<UI>();
         viewSwitcher = transform.parent.transform.parent.GetComponentInChildren<ViewSwitcher>();
         input = viewSwitcher.GetComponent<PlayerInput>();
-        Camspeed = viewSwitcher.GetCamSpeed();
         Cam = transform.parent.GetComponentInChildren<CinemachineCamera>();
 
         //rb = GetComponent<Rigidbody>();
@@ -118,7 +117,7 @@ public class BuildModeController : MonoBehaviour
         {
 
 
-            Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>();
+            Vector2 lookinput = input.actions["Look"].ReadValue<Vector2>() * (input.devices[0] is Gamepad ? Time.deltaTime : 1);
 
             pitch = Mathf.Clamp(pitch - lookinput.y * Camspeed, -80f, 80f);
 
@@ -199,4 +198,27 @@ public class BuildModeController : MonoBehaviour
         return (transform.forward.ProjectOntoPlane(Vector3.up).normalized * moveinput.y * GridSize * speed.x + transform.right.ProjectOntoPlane(Vector3.up).normalized * moveinput.x * GridSize * speed.z + Vector3.up * vert * GridSize * speed.y);
 
     }
+
+    public void SwitchTo()
+    {
+        Cam.Priority = 10;
+
+    }
+    public void SwitchFrom()
+    {
+        Cam.Priority = 0;
+        if (!hasPlacedObject && follow != null)
+        {
+            OnTimeOut();
+        }
+        follow = null;
+        active = false;
+        hasPlacedObject = true;
+    }
+
+    public void SetSensitivity(float _Sensitivity)
+    {
+        Camspeed = _Sensitivity;
+    }
+
 }
