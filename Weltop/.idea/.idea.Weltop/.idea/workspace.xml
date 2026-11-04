@@ -10,8 +10,9 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="fixed possible issues">
+    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="Added UI for pause menu and tweaked main menu UI">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +96,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Game.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TutorialInfo/Readme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@e178ec6338de/Shaders/Terrain/TerrainLitBasemapGen.shader" root0="SKIP_HIGHLIGHTING" />
@@ -207,7 +209,7 @@
       <workItem from="1792769860977" duration="1879000" />
       <workItem from="1793297808869" duration="816000" />
       <workItem from="1793300124340" duration="619000" />
-      <workItem from="1793750014827" duration="679000" />
+      <workItem from="1793750014827" duration="2073000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -353,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793300556320</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added UI for pause menu and tweaked main menu UI">
+      <option name="closed" value="true" />
+      <created>1793752536043</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1793752536043</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,6 +408,7 @@
     <MESSAGE value="Added folders for all scripts" />
     <MESSAGE value="worksaopfkpaps" />
     <MESSAGE value="fixed possible issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed possible issues" />
+    <MESSAGE value="Added UI for pause menu and tweaked main menu UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added UI for pause menu and tweaked main menu UI" />
   </component>
 </project>
