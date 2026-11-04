@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEngine.InputSystem.UI;
+using System.Linq;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -22,6 +25,13 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused;
     private bool showingGuide;
     private float previousTimeScale = 1f;
+    private PlayerInput pauseOwner;
+    
+    [SerializeField] private InputSystemUIInputModule uiInputModule;
+
+    private InputActionAsset pauseUIActions;
+    private InputDevice[] originalUIDevices;
+    private InputActionAsset originalUIActions;
 
     private void Start()
     {
@@ -30,26 +40,32 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
+    
     private void Update()
     {
-        if (!PausePressed())
+        PlayerInput player = GetPlayerPressingPause();
+
+        if (player == null)
             return;
 
         if (!isPaused)
         {
+            pauseOwner = player;
             OpenPauseMenu();
+
+            Debug.Log("Pause opened by Player " +
+                      (pauseOwner.playerIndex + 1));
         }
-        else if (showingGuide)
+        else if (player == pauseOwner)
         {
-            CloseControllerGuide();
-        }
-        else
-        {
-            ResumeGame();
+            if (showingGuide)
+                CloseControllerGuide();
+            else
+                ResumeGame();
         }
     }
 
-    private bool PausePressed()
+    private PlayerInput GetPlayerPressingPause()
     {
         foreach (PlayerInput player in PlayerInput.all)
         {
@@ -58,18 +74,50 @@ public class PauseMenu : MonoBehaviour
                 if (device is Keyboard keyboard &&
                     keyboard.escapeKey.wasPressedThisFrame)
                 {
-                    return true;
+                    return player;
                 }
 
                 if (device is Gamepad gamepad &&
                     gamepad.startButton.wasPressedThisFrame)
                 {
-                    return true;
+                    return player;
                 }
             }
         }
 
-        return false;
+        return null;
+    }
+    
+    private void RestrictUIToPauseOwner()
+    {
+        if (uiInputModule == null || pauseOwner == null)
+            return;
+        
+        if (pauseUIActions == null)
+        {
+            originalUIActions = uiInputModule.actionsAsset;
+            pauseUIActions = Instantiate(uiInputModule.actionsAsset);
+            originalUIDevices = pauseUIActions.devices?.ToArray();
+        }
+
+        pauseUIActions.devices = pauseOwner.devices.ToArray();
+
+        uiInputModule.actionsAsset = pauseUIActions;
+    }
+    
+    private void RestoreUIInput()
+    {
+        if (uiInputModule != null && originalUIActions != null)
+            uiInputModule.actionsAsset = originalUIActions;
+
+        if (pauseUIActions != null)
+        {
+            Destroy(pauseUIActions);
+            pauseUIActions = null;
+        }
+
+        originalUIActions = null;
+        pauseOwner = null;
     }
 
     public void OpenPauseMenu()
@@ -79,6 +127,7 @@ public class PauseMenu : MonoBehaviour
 
         isPaused = true;
         showingGuide = false;
+        RestrictUIToPauseOwner();
 
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
@@ -101,6 +150,9 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         showingGuide = false;
 
+        RestoreUIInput();
+        pauseOwner = null;
+        
         pauseMenuPanel.SetActive(false);
         controllerGuidePanel.SetActive(false);
 
@@ -147,6 +199,9 @@ public class PauseMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        
+        RestoreUIInput();
+        pauseOwner = null;
 
         SceneManager.LoadScene(mainMenuSceneName);
     }
@@ -167,5 +222,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = previousTimeScale;
             isPaused = false;
         }
+        
+        RestoreUIInput();
     }
 }

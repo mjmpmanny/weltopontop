@@ -20536,6 +20536,7 @@ MonoBehaviour:
   controllerGuideButton: {fileID: 1580437132}
   backButton: {fileID: 40224227}
   mainMenuSceneName: MainMenu
+  uiInputModule: {fileID: 1673307652}
 --- !u!1 &1730394211
 GameObject:
   m_ObjectHideFlags: 0
