@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
@@ -9,13 +10,18 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private PlayerLobbyManager playerLobbyManager;
     [SerializeField] private GameObject playButton;
 
-    
+    [Header("Controller Guide")]
+    [SerializeField] private GameObject controllerGuidePanel;
+    [SerializeField] private GameObject controllerGuideButton;
+    [SerializeField] private GameObject guideBackButton;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         playerLobbyPanel.SetActive(false);
+        controllerGuidePanel.SetActive(false);
 
         if (EventSystem.current != null && playButton != null)
         {
@@ -23,7 +29,7 @@ public class MainMenuManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(playButton);
         }
     }
-    
+
     public void PlayGame()
     {
         playerLobbyPanel.SetActive(true);
@@ -51,7 +57,22 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(playButton);
     }
 
-    
+    public void OpenControllerGuide()
+    {
+        controllerGuidePanel.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(guideBackButton);
+    }
+
+    public void CloseControllerGuide()
+    {
+        controllerGuidePanel.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(controllerGuideButton);
+    }
+
     public void StartGameplay()
     {
         if (playerLobbyManager == null ||
@@ -62,7 +83,6 @@ public class MainMenuManager : MonoBehaviour
 
         SceneManager.LoadScene(gameplaySceneName);
     }
-
 
     public void QuitGame()
     {
