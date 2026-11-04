@@ -23,6 +23,7 @@ public class CamShake : MonoBehaviour
             .OnComplete(() => camOffset.Offset = Vector3.zero);
 
         if (PostproccesingVolume == null) return;
+        Debug.Log("postProcessing");
         StartCoroutine(ShovePostProcessing());
     }
 

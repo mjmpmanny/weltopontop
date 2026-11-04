@@ -818,7 +818,6 @@ GameObject:
   - component: {fileID: 6401443588675081848}
   - component: {fileID: 4772940859167904407}
   - component: {fileID: 7372187572972943668}
-  - component: {fileID: 824267639369121826}
   - component: {fileID: 4146621491053113759}
   - component: {fileID: 4027326663822818577}
   - component: {fileID: 6932687401081731943}
@@ -936,19 +935,6 @@ MonoBehaviour:
     m_Bits: 960
   playerAudio: {fileID: 3868262790746722679}
   playerVolume: {fileID: 5528933355535322180}
---- !u!114 &824267639369121826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CamShake
-  PostproccesingVolume: {fileID: 0}
 --- !u!114 &4146621491053113759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1007,10 +993,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3e224e53c639e4a94c84cbb5bf55cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  CamControllerSpeed: 2
+  CamControllerSpeed: 180
   CamKeyboardSpeed: 0.5
   camShakes:
-  - {fileID: 0}
+  - {fileID: 6392102270587736264}
   PostProccesingVolumes:
   - {fileID: 5528933355535322180}
   TestObjectToHoldOnTo: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
@@ -1200,7 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CamShake
-  PostproccesingVolume: {fileID: 0}
+  PostproccesingVolume: {fileID: 5528933355535322180}
 --- !u!1 &6461207390355290698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1214,7 @@ Transform:
   m_GameObject: {fileID: 6461207390355290698}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59039986, z: 8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1511,7 +1497,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 16
+  BlendHint: 24
 --- !u!114 &2783763439452848621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,10 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  ControllerSpeed: 180
-  KeyboardSpeed: 0.5
   canLook: 0
-  Cam: {fileID: 0}
 --- !u!1 &8501285007528437945
 GameObject:
   m_ObjectHideFlags: 0

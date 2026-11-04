@@ -5,14 +5,12 @@ using UnityEngine.InputSystem;
 public class CamFirstPerson : MonoBehaviour, ICamera
 {
     private float speed;
-    public float ControllerSpeed;
-    public float KeyboardSpeed;
     private PlayerInput input;
 
     private bool usingController;
     private float pitch;
     public bool canLook = true;
-    public CinemachineCamera Cam;
+    private CinemachineCamera Cam;
 
 
     void Start()
@@ -24,6 +22,8 @@ public class CamFirstPerson : MonoBehaviour, ICamera
 
         pitch = transform.eulerAngles.x;
         if (pitch > 180) pitch -= 360;
+
+        usingController = input.devices[0] is Gamepad;
     }
 
     void Update()
