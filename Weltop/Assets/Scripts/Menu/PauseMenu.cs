@@ -157,8 +157,7 @@ public class PauseMenu : MonoBehaviour
             return;
 
         EventSystem.current.SetSelectedGameObject(null);
-
-        button.Select();
+        EventSystem.current.SetSelectedGameObject(button.gameObject);
     }
 
     private void OnDisable()
