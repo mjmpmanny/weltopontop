@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestKnockback
   m_EditorClassIdentifier: Assembly-CSharp::ObjectEffectDefinition
   effectType: 2
-  multiplier: 1
+  multiplier: 5
   durationSeconds: 3
-  localImpulse: {x: 0, y: 5, z: 20}
+  localImpulse: {x: 0, y: 20, z: 30}
+  causesRagdoll: 1
