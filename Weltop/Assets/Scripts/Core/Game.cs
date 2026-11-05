@@ -183,7 +183,7 @@ public class Game : MonoBehaviour
         }
     }
     
-    private void InitializeBuildRound()
+    private void InitializeBuildRound(ObjectSelectionCursors selection = null)
     {
         ui.ToBuildRoundUI();
         ui.UpdateBuildRoundObjectsPlaced();
@@ -192,7 +192,18 @@ public class Game : MonoBehaviour
         foreach (GameObject player in GetActivePlayers())
         {
             ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
-            viewSwitcher.SwitchToBuild(viewSwitcher.TestObjectToHoldOnTo, new Vector3(0,10,0));
+            GameObject prefab = viewSwitcher.TestObjectToHoldOnTo;
+
+            if (selection != null)
+            {
+                int playerIndex = viewSwitcher.GetPlayerInput().playerIndex;
+                GameObject selectedPrefab = selection.GetClaimedPrefab(playerIndex);
+
+                if (selectedPrefab != null)
+                    prefab = selectedPrefab;
+            }
+
+            viewSwitcher.SwitchToBuild(prefab, new Vector3(0, 10, 0));
         }
     }
 
@@ -263,13 +274,14 @@ public class Game : MonoBehaviour
             yield return null;
         }
 
+        selection.AssignUnclaimedPlayers();
         objectSelectionPanel.SetActive(false);
 
         Cursor.lockState = previousLockMode;
 
         currentBuildRound++;
         currentRoundState = RoundState.Build;
-        InitializeBuildRound();
+        InitializeBuildRound(selection);
         gameIsActive = true;
 
         Debug.Log($"[Match] Starting Build {currentBuildRound}/{TotalBuildRounds}");
