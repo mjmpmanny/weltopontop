@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     private float pointGivingCounter;
     private bool isInsideHill;
     private bool isDead;
+    public bool IsDead => isDead;
 
     public int PlayerIndex =>
         playerInput != null ? playerInput.playerIndex : -1;
@@ -95,6 +95,7 @@ public class PlayerStats : MonoBehaviour
     private IEnumerator Kill()
     {
         isDead = true;
+        GetComponent<PlayerObjectEffects>()?.ClearEffects();
 
         // Stop scoring when the player dies.
         isInsideHill = false;

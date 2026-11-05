@@ -77,7 +77,7 @@ public class Shove : MonoBehaviour
             
             if (playerToShove != null)
             {
-                if(CanBeShoved(playerToShove));
+                if(CanBeShoved(playerToShove))
                 {
                     playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
                     ExecuteShove(playerToShove);
