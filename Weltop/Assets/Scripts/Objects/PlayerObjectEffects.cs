@@ -78,7 +78,15 @@ public class PlayerObjectEffects : MonoBehaviour
         Vector3 impulse =
             source.transform.TransformDirection(definition.LocalImpulse);
 
-        targetBody.AddForce(impulse, ForceMode.Impulse);
+        if (definition.causesRagdoll)
+        {
+            //THIS DOESN'T WORK!!! Please fix
+            ragdollController.Ragdoll(transform.position, definition.LocalImpulse * definition.Multiplier);
+        }
+        else
+        {
+            targetBody.AddForce(impulse, ForceMode.Impulse);
+        }
         return true;
     }
 
