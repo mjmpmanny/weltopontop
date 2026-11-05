@@ -31,10 +31,17 @@ public class PlayerController : MonoBehaviour
     private GameObject cam;
     private PlayerAnimationController animationController;
     private ViewSwitcher viewSwitcher;
+
+    private PlayerObjectEffects objectEffects;
+    private float MovementMultiplier =>
+        objectEffects != null ? objectEffects.MovementMultiplier : 1f;
+    private float JumpMultiplier =>
+        objectEffects != null ? objectEffects.JumpMultiplier : 1f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        objectEffects = GetComponent<PlayerObjectEffects>();
         viewSwitcher = GetComponent<ViewSwitcher>();
         inp = GetComponent<PlayerInput>();
         jump_ = jump;
@@ -69,7 +76,7 @@ public class PlayerController : MonoBehaviour
             OnGround = 0;
             LandingTimer = LandingCooldown;
             rb.linearDamping = 0;
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) + (Vector3.up * JumpStrength);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) + (Vector3.up * JumpStrength * JumpMultiplier);
             origionaldir = new Vector2(rb.linearVelocity.x,rb.linearVelocity.z);
         } else
         {
@@ -110,12 +117,12 @@ public class PlayerController : MonoBehaviour
 
 
             bool goingForward = Vector3.Dot(move, rb.linearVelocity) > 0;
-            if (rb.linearVelocity.magnitude > speed && goingForward) {
+            if (rb.linearVelocity.magnitude > speed * MovementMultiplier && goingForward) {
                     Vector3 cross = Vector3.Cross(Vector3.up, rb.linearVelocity);
                     move = Vector3.Project(move, cross);
 
             }
-            rb.AddForce(move * accel, ForceMode.VelocityChange);
+            rb.AddForce(move * accel * MovementMultiplier, ForceMode.VelocityChange);
             
             
 
@@ -128,17 +135,16 @@ public class PlayerController : MonoBehaviour
 
             bool goingForward = Vector3.Dot(move,rb.linearVelocity) > 0;
 
-            if (goingForward && HorizontalVal.magnitude >= MaxAirSpeed)
+            if (goingForward && HorizontalVal.magnitude >= MaxAirSpeed * MovementMultiplier)
             {
                 Vector3 cross = Vector3.Cross(Vector3.up,rb.linearVelocity);
                 move = Vector3.Project(move,cross);
 
             }
             rb.linearVelocity = rb.linearVelocity - HorizontalVal * AirDampening / 100;
-            rb.AddForce(move * AirAccel, ForceMode.VelocityChange);
+            rb.AddForce(move * AirAccel * MovementMultiplier, ForceMode.VelocityChange);
 
         }
     }
-
-
+    
 }

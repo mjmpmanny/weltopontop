@@ -824,6 +824,7 @@ GameObject:
   - component: {fileID: 4027326663822818577}
   - component: {fileID: 6932687401081731943}
   - component: {fileID: 3373532751297725736}
+  - component: {fileID: 6749751772715467851}
   m_Layer: 3
   m_Name: Main
   m_TagString: Player
@@ -1032,6 +1033,18 @@ MonoBehaviour:
   isGetingUp: 0
   ragdollCam: {fileID: 2241233549069182207}
   firstPerson: {fileID: 0}
+--- !u!114 &6749751772715467851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a3109452ddb254d9b94cae3a4a0487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectEffects
 --- !u!1 &6001969543886878094
 GameObject:
   m_ObjectHideFlags: 0
