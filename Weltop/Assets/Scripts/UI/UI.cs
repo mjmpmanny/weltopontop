@@ -16,6 +16,7 @@ public class UI : MonoBehaviour
     public TMP_Text parkourRoundTimerText;
     public TMP_Text buildRoundTimerText;
     public TMP_Text buildRoundObjectsPlacedText;
+    [SerializeField] private TMP_Text objectSelectionTimerText;
     
     [Header("Round Tracker")]
     [SerializeField] private TMP_Text roundTrackerText;
@@ -88,6 +89,12 @@ public class UI : MonoBehaviour
         buildRoundTimerText.text = formattedTime;
         double wholeSeconds = Math.Floor(time.TotalSeconds); 
         transitions.countdownText.text = wholeSeconds.ToString("N0");
+    }
+    
+    public void UpdateObjectSelectionTimer(float remainingTime)
+    {
+        int seconds = Mathf.CeilToInt(remainingTime);
+        objectSelectionTimerText.text = $"{seconds / 60}:{seconds % 60:00}";
     }
 
     public void UpdateBuildRoundObjectsPlaced()
