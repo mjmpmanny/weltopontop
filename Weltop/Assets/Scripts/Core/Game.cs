@@ -9,6 +9,9 @@ public class Game : MonoBehaviour
     public RoundState currentRoundState;
     public bool gameIsActive;
     
+    [SerializeField] private GameObject objectSelectionPanel;
+    [SerializeField] private float objectSelectionDuration = 8f;
+    
     [Header("Match Progress")]
     public int currentParkourRound = 1;
     public int currentBuildRound = 0;
@@ -35,7 +38,8 @@ public class Game : MonoBehaviour
     public enum RoundState
     {
         Parkour,
-        Build
+        Build,
+        ObjectSelection
     }
 
     private void Awake()
@@ -159,14 +163,8 @@ public class Game : MonoBehaviour
                     return;
                 }
 
-                currentBuildRound++;
-
-                currentRoundState = RoundState.Build;
-                InitializeBuildRound();
-
-                Debug.Log(
-                    $"[Match] Starting Build {currentBuildRound}/{TotalBuildRounds}"
-                );
+                StartCoroutine(ShowObjectSelectionThenStartBuild());
+                
                 break;
 
             case RoundState.Build:
@@ -185,7 +183,7 @@ public class Game : MonoBehaviour
         }
     }
     
-    private void InitializeBuildRound()
+    private void InitializeBuildRound(ObjectSelectionCursors selection = null)
     {
         ui.ToBuildRoundUI();
         ui.UpdateBuildRoundObjectsPlaced();
@@ -194,7 +192,18 @@ public class Game : MonoBehaviour
         foreach (GameObject player in GetActivePlayers())
         {
             ViewSwitcher viewSwitcher = player.GetComponent<ViewSwitcher>();
-            viewSwitcher.SwitchToBuild(viewSwitcher.TestObjectToHoldOnTo, new Vector3(0,10,0));
+            GameObject prefab = viewSwitcher.TestObjectToHoldOnTo;
+
+            if (selection != null)
+            {
+                int playerIndex = viewSwitcher.GetPlayerInput().playerIndex;
+                GameObject selectedPrefab = selection.GetClaimedPrefab(playerIndex);
+
+                if (selectedPrefab != null)
+                    prefab = selectedPrefab;
+            }
+
+            viewSwitcher.SwitchToBuild(prefab, new Vector3(0, 10, 0));
         }
     }
 
@@ -232,6 +241,50 @@ public class Game : MonoBehaviour
                 }
                 break;
         }
+    }
+    
+    private IEnumerator ShowObjectSelectionThenStartBuild()
+    {
+        currentRoundState = RoundState.ObjectSelection;
+        gameIsActive = false;
+
+        ExecuteCodeOnAllPlayerControllers(controller => controller.canMove = false);
+        ExecuteCodeOnAllPlayerCameras(camera => camera.canLook = false);
+
+        CursorLockMode previousLockMode = Cursor.lockState;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
+        ObjectSelectionCursors selection =
+            objectSelectionPanel.GetComponent<ObjectSelectionCursors>();
+
+        objectSelectionPanel.SetActive(true);
+
+        float selectionDeadline = Time.time + objectSelectionDuration;
+
+        while (true)
+        {
+            float remaining = Mathf.Max(0f, selectionDeadline - Time.time);
+            ui.UpdateObjectSelectionTimer(remaining);
+
+            if (Time.timeScale > 0f &&
+                (selection.AllPlayersHaveClaimed || remaining <= 0f))
+                break;
+
+            yield return null;
+        }
+
+        selection.AssignUnclaimedPlayers();
+        objectSelectionPanel.SetActive(false);
+
+        Cursor.lockState = previousLockMode;
+
+        currentBuildRound++;
+        currentRoundState = RoundState.Build;
+        InitializeBuildRound(selection);
+        gameIsActive = true;
+
+        Debug.Log($"[Match] Starting Build {currentBuildRound}/{TotalBuildRounds}");
     }
 
     public void CheckIfAllPlayersPlacedAnObject(BuildModeController buildModeController)

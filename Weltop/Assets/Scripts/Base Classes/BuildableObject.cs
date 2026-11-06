@@ -8,6 +8,9 @@ public class BuildableObject : MonoBehaviour
 {
     private ObjectEffectSource effectSource;
     
+    private PlaceableObject placeable;
+    private bool behaviorStarted;
+    
     #region Exposed Parameters
     public BuildObjectType buildObjectType;
     public float secondsBetweenStates = 0;
@@ -49,12 +52,14 @@ public class BuildableObject : MonoBehaviour
         isActive = true;
         effectSource = GetComponent<ObjectEffectSource>();
         
-        if(movingObject)
-            TriggerMovingObject();
+        placeable = GetComponent<PlaceableObject>();
     }
     
     private void OnTriggerEnter(Collider other)
     {
+        if (placeable != null && placeable.IsBeingPlaced)
+            return;
+        
         if (other.CompareTag("Player"))
         {
             if(isActive) 
@@ -64,6 +69,17 @@ public class BuildableObject : MonoBehaviour
 
     private void Update()
     {
+        if (placeable != null && placeable.IsBeingPlaced)
+            return;
+
+        if (!behaviorStarted)
+        {
+            behaviorStarted = true;
+
+            if (movingObject)
+                TriggerMovingObject();
+        }
+        
         //While on cooldown, calls OnCooldown() every frame
         if (!isActive)
         {

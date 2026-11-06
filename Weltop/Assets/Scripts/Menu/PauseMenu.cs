@@ -25,6 +25,10 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused;
     private bool showingGuide;
     private float previousTimeScale = 1f;
+    
+    private CursorLockMode previousCursorLockMode;
+    private bool previousCursorVisible;
+    
     private PlayerInput pauseOwner;
     
     [SerializeField] private InputSystemUIInputModule uiInputModule;
@@ -136,6 +140,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuContainer.SetActive(true);
         controllerGuidePanel.SetActive(false);
 
+        previousCursorLockMode = Cursor.lockState;
+        previousCursorVisible = Cursor.visible;
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -163,6 +170,9 @@ public class PauseMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        Cursor.lockState = previousCursorLockMode;
+        Cursor.visible = previousCursorVisible;
     }
 
     public void OpenControllerGuide()

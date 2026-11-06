@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834bfce9946a0e747a2ef9e04265dc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectEffectSource
-  definition: {fileID: 11400000, guid: 7f384805ade514849ae645cfb702e060, type: 2}
+  definition: {fileID: 11400000, guid: ab20c7686583395479be7e214eb82b21, type: 2}
   testTarget: {fileID: 0}
 --- !u!114 &6047407165054838504
 MonoBehaviour:

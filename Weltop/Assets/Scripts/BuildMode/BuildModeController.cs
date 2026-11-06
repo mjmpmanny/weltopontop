@@ -32,6 +32,7 @@ public class BuildModeController : MonoBehaviour
     private System.Action<InputAction.CallbackContext> _place;
     private System.Action<InputAction.CallbackContext> _rotate;
     private System.Action<InputAction.CallbackContext> _firstMove;
+    
     void Start()
     {
         game = FindFirstObjectByType<Game>();
@@ -72,6 +73,7 @@ public class BuildModeController : MonoBehaviour
         if (obj != null)
         { // Has switched to buildmode
             follow = obj.GetComponent<PlaceableObject>();
+            follow.BeginPlacement();
             hasPlacedObject = false;
             active = true;
             inWorldPos = location;

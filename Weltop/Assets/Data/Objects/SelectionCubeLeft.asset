@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 406cd9f0b705ae0418518d069610a48a, type: 3}
-  m_Name: TestKnockbackDefinition
+  m_Name: SelectionCubeLeft
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDefinition
-  displayName: Test Knockback
+  displayName: Standard Cube
   category: 2
-  prefab: {fileID: 1535250928229649355, guid: ef022176545810e49975673f397d368e, type: 3}
-  effects:
-  - {fileID: 11400000, guid: 0b55457bb87e63147aed083963083cc3, type: 2}
+  prefab: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+  effects: []
