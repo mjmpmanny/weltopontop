@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     void jump(CallbackContext ctx)
     {
-        if ( OnGround > 0)
+        if (canMove && OnGround > 0)
         {
             OnGround = 0;
             LandingTimer = LandingCooldown;
