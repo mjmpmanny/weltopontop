@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CamControllerSpeed: 2
   CamKeyboardSpeed: 0.5
-  TestObjectToHoldOnTo: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+  TestObjectToHoldOnTo: {fileID: 9103088141614523238, guid: 60f13779c5771dc439ecb6eb765faec8, type: 3}
   RagdollCam: {fileID: 4761964318628333518}
 --- !u!114 &3373532751297725736
 MonoBehaviour:
