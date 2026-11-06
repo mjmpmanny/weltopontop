@@ -10,13 +10,9 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
+    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="Added player labels with cursors and new text showing who selected what">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/External Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/External Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ObjectSelectionPreviewRT.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ObjectSelectionPreviewRT.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildMode/ObjectSelectionCursors.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildMode/ObjectSelectionCursors.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildMode/PlaceableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildMode/PlaceableObject.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +97,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/PlacedObjectEffectTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TutorialInfo/Readme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
@@ -217,7 +214,7 @@
       <workItem from="1793750014827" duration="3347000" />
       <workItem from="1793765647754" duration="502000" />
       <workItem from="1793766301983" duration="295000" />
-      <workItem from="1793929269137" duration="1077000" />
+      <workItem from="1793929269137" duration="1896000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -379,7 +376,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793753932124</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added player labels with cursors and new text showing who selected what">
+      <option name="closed" value="true" />
+      <created>1793930828332</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1793930828332</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,6 +431,7 @@
     <MESSAGE value="fixed possible issues" />
     <MESSAGE value="Added UI for pause menu and tweaked main menu UI" />
     <MESSAGE value="Pause menu functions almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pause menu functions almost done" />
+    <MESSAGE value="Added player labels with cursors and new text showing who selected what" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added player labels with cursors and new text showing who selected what" />
   </component>
 </project>

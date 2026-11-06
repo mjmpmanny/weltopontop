@@ -9,11 +9,13 @@ public class PlaceableObject : MonoBehaviour
     private Material normalMat;
 
     public bool followGrid = true;
+    public bool IsPlaced { get; private set; }
     private int insideObject;
     public bool Place()
     {
         if (insideObject > 0) return false;
         gameObject.layer = 0;
+        IsPlaced = true;
         Destroy(GetComponent<Rigidbody>());
         return true;
     }
@@ -23,6 +25,7 @@ public class PlaceableObject : MonoBehaviour
         if (insideObject == 0)
         {
             gameObject.layer = 0;
+            IsPlaced = true;
             Destroy(GetComponent<Rigidbody>());
         } else
         {
