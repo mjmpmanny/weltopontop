@@ -91,7 +91,7 @@ public class Shove : MonoBehaviour
     private void OperateShoveHands()
     {
         shoveArms.SetActive(true);
-        shoveArms.transform.DOLocalMoveZ(2, 0.25f)
+        shoveArms.transform.DOLocalMoveZ(1, 0.25f)
             .SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => shoveArms.SetActive(false));
     }
