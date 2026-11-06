@@ -10,9 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -215,6 +213,7 @@
       <workItem from="1793765647754" duration="502000" />
       <workItem from="1793766301983" duration="295000" />
       <workItem from="1793929269137" duration="2541000" />
+      <workItem from="1793932591351" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -392,7 +391,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793932116028</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Put definitions and effects into folders">
+      <option name="closed" value="true" />
+      <created>1793932615259</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1793932615259</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,6 +448,7 @@
     <MESSAGE value="Pause menu functions almost done" />
     <MESSAGE value="Added player labels with cursors and new text showing who selected what" />
     <MESSAGE value="Added usage of speed, jump, and knockback placeable objects in selection screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added usage of speed, jump, and knockback placeable objects in selection screen" />
+    <MESSAGE value="Put definitions and effects into folders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Put definitions and effects into folders" />
   </component>
 </project>
