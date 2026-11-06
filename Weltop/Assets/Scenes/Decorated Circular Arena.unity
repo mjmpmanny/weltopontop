@@ -20680,6 +20680,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 328060979884921054, guid: 9d31e2bee3a415048a796bccc917d662, type: 3}
+      propertyPath: movingObject
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1535250928229649355, guid: 9d31e2bee3a415048a796bccc917d662, type: 3}
       propertyPath: m_Name
       value: TestSpringTrap
@@ -20734,7 +20738,7 @@ PrefabInstance:
       objectReference: {fileID: 274425559}
     - target: {fileID: 6047407165054838504, guid: 9d31e2bee3a415048a796bccc917d662, type: 3}
       propertyPath: m_VersionIndex
-      value: 200
+      value: 206
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23051,7 +23055,7 @@ PrefabInstance:
       objectReference: {fileID: 668739197}
     - target: {fileID: 485175803279514471, guid: 60f13779c5771dc439ecb6eb765faec8, type: 3}
       propertyPath: m_VersionIndex
-      value: 822
+      value: 828
       objectReference: {fileID: 0}
     - target: {fileID: 2614423900282067754, guid: 60f13779c5771dc439ecb6eb765faec8, type: 3}
       propertyPath: m_Mesh
@@ -23115,7 +23119,7 @@ PrefabInstance:
       objectReference: {fileID: 1652524699}
     - target: {fileID: 9188189798177976604, guid: 60f13779c5771dc439ecb6eb765faec8, type: 3}
       propertyPath: m_VersionIndex
-      value: 11
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 9188189798177976604}
   - component: {fileID: 4794198619602399391}
   - component: {fileID: 1151427184950160606}
+  - component: {fileID: 4051251897500128283}
   m_Layer: 0
   m_Name: Floor Door
   m_TagString: Untagged
@@ -1696,3 +1697,17 @@ MonoBehaviour:
   movingObjectDestinationPoint: {fileID: 0}
   animatingObject: 1
   animator: {fileID: 7651622394722786133}
+--- !u!114 &4051251897500128283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103088141614523238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b566315f701424089d52d79e305b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableObject
+  incorrectMat: {fileID: 2100000, guid: d2c06e657fe07e44b8e17cbdb2260ef5, type: 2}
+  followGrid: 1

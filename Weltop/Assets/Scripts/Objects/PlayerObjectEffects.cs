@@ -68,9 +68,7 @@ public class PlayerObjectEffects : MonoBehaviour
         if (ragdollController != null && ragdollController.isGetingUp)
             return false;
 
-        Rigidbody targetBody = ragdollController != null
-            ? ragdollController.CurrentRigidBody()
-            : rb;
+        Rigidbody targetBody = ragdollController.CurrentRigidBody();
 
         if (targetBody == null || targetBody.isKinematic)
             return false;
@@ -81,7 +79,7 @@ public class PlayerObjectEffects : MonoBehaviour
         if (definition.causesRagdoll)
         {
             //THIS DOESN'T WORK!!! Please fix
-            ragdollController.Ragdoll(transform.position, definition.LocalImpulse * definition.Multiplier);
+            ragdollController.Ragdoll(targetBody.transform.position, definition.LocalImpulse * definition.Multiplier);
         }
         else
         {
