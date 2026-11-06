@@ -16,4 +16,4 @@ MonoBehaviour:
   category: 2
   prefab: {fileID: 8803797871038684533, guid: c99d686a5c475bb4081d4d1f511d489e, type: 3}
   effects:
-  - {fileID: 11400000, guid: 0b55457bb87e63147aed083963083cc3, type: 2}
+  - {fileID: 11400000, guid: 05eb4e42339ed814eb0e7585a37f4218, type: 2}

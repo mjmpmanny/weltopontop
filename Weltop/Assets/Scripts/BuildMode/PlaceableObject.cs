@@ -10,10 +10,21 @@ public class PlaceableObject : MonoBehaviour
 
     public bool followGrid = true;
     public bool IsPlaced { get; private set; }
+    public bool IsBeingPlaced => placementStarted && !IsPlaced;
+
+    private bool placementStarted;
     private int insideObject;
+
+    public void BeginPlacement()
+    {
+        placementStarted = true;
+    }
+
     public bool Place()
     {
-        if (insideObject > 0) return false;
+        if (insideObject > 0)
+            return false;
+
         gameObject.layer = 0;
         IsPlaced = true;
         Destroy(GetComponent<Rigidbody>());
@@ -27,7 +38,8 @@ public class PlaceableObject : MonoBehaviour
             gameObject.layer = 0;
             IsPlaced = true;
             Destroy(GetComponent<Rigidbody>());
-        } else
+        }
+        else
         {
             Debug.Log("destroyed object");
             Destroy(gameObject);
@@ -38,44 +50,47 @@ public class PlaceableObject : MonoBehaviour
     {
         if (followGrid)
         {
-            transform.position = (new Vector3(GridSize * Mathf.Round(pos.x / GridSize), GridSize * Mathf.Floor(pos.y / GridSize), GridSize * Mathf.Round(pos.z / GridSize)) + offset);
-        } else
+            transform.position = new Vector3(
+                GridSize * Mathf.Round(pos.x / GridSize),
+                GridSize * Mathf.Floor(pos.y / GridSize),
+                GridSize * Mathf.Round(pos.z / GridSize)) + offset;
+        }
+        else
         {
             transform.position = pos;
         }
-
-
     }
+
     public void Rotate()
     {
-        transform.Rotate(0,90,0);
+        transform.Rotate(0, 90, 0);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == 0)
-        {
             insideObject++;
-        }
+
         Debug.Log("collision" + collision.contactCount);
+
         if (insideObject > 0)
-        {
             GetComponent<Renderer>().material = incorrectMat;
-        }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.gameObject.layer == 0)
-        {
             insideObject--;
-        }
+
         if (insideObject == 0)
-        {
             GetComponent<Renderer>().material = normalMat;
-        }
     }
+
     private void Start()
     {
-        GetComponent<BoxCollider>().size -= Vector3.one *0.1f;
+        if (TryGetComponent(out BoxCollider boxCollider))
+            boxCollider.size -= Vector3.one * 0.1f;
+
         normalMat = GetComponent<Renderer>().material;
     }
 }

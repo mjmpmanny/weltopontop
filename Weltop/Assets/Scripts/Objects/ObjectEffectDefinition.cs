@@ -23,6 +23,9 @@ public class ObjectEffectDefinition : ScriptableObject
     [Tooltip("Instant force in the activating object's local direction.")]
     [SerializeField] private Vector3 localImpulse = Vector3.up * 10f;
 
+    [Tooltip("Does this impulse cause the player to ragdoll?")]
+    public bool causesRagdoll = false;
+
     public ObjectEffectType EffectType => effectType;
     public float Multiplier => multiplier;
     public float DurationSeconds => durationSeconds;

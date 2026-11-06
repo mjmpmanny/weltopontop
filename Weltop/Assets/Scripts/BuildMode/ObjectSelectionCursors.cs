@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.ProBuilder;
 
 public class ObjectSelectionCursors : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class ObjectSelectionCursors : MonoBehaviour
 
     [SerializeField] private Transform previewStage;
 
-    private RectTransform[] previewClaimAreas;
-    private Transform[] previewAnchors;
+    private RectTransform[] previewClaimAreas = System.Array.Empty<RectTransform>();
+    private Transform[] previewAnchors = System.Array.Empty<Transform>();
+    
+    private readonly List<Mesh> generatedPreviewMeshes = new();
     
     [SerializeField] private float previewFitSize = 1.25f;
     
@@ -132,13 +135,38 @@ public class ObjectSelectionCursors : MonoBehaviour
         copy.localRotation = source.localRotation;
         copy.localScale = source.localScale;
 
-        if (source.TryGetComponent(out MeshFilter sourceMesh) &&
-            source.TryGetComponent(out MeshRenderer sourceRenderer) &&
-            sourceMesh.sharedMesh != null && sourceRenderer.enabled)
+        if (source.TryGetComponent(out MeshRenderer sourceRenderer) &&
+            sourceRenderer.enabled)
         {
-            copy.gameObject.AddComponent<MeshFilter>().sharedMesh = sourceMesh.sharedMesh;
-            copy.gameObject.AddComponent<MeshRenderer>().sharedMaterials =
-                sourceRenderer.sharedMaterials;
+            if (source.TryGetComponent(out MeshFilter sourceMesh) &&
+                sourceMesh.sharedMesh != null)
+            {
+                copy.gameObject.AddComponent<MeshFilter>().sharedMesh = sourceMesh.sharedMesh;
+                copy.gameObject.AddComponent<MeshRenderer>().sharedMaterials =
+                    sourceRenderer.sharedMaterials;
+            }
+            else if (source.TryGetComponent(out ProBuilderMesh sourceProBuilder))
+            {
+                ProBuilderMesh previewMesh = copy.gameObject.AddComponent<ProBuilderMesh>();
+                previewMesh.Clear();
+
+                var faces = new List<Face>();
+                foreach (Face sourceFace in sourceProBuilder.faces)
+                {
+                    var previewFace = new Face(sourceFace);
+                    previewFace.manualUV = false;
+                    faces.Add(previewFace);
+                }
+
+                previewMesh.positions = sourceProBuilder.positions;
+                previewMesh.faces = faces;
+                copy.GetComponent<MeshRenderer>().sharedMaterials = sourceRenderer.sharedMaterials;
+
+                previewMesh.ToMesh();
+                previewMesh.Refresh();
+
+                generatedPreviewMeshes.Add(copy.GetComponent<MeshFilter>().sharedMesh);
+            }
         }
 
         foreach (Transform child in source)
@@ -326,14 +354,31 @@ public class ObjectSelectionCursors : MonoBehaviour
     private void OnDisable()
     {
         foreach (var (_, _, _, _, cursor) in cursors)
-            Destroy(cursor.gameObject);
+        {
+            if (cursor != null)
+                Destroy(cursor.gameObject);
+        }
 
         cursors.Clear();
-        
+
         foreach (Transform anchor in previewAnchors)
-            Destroy(anchor.gameObject);
+        {
+            if (anchor != null)
+                Destroy(anchor.gameObject);
+        }
 
         foreach (RectTransform claimArea in previewClaimAreas)
-            Destroy(claimArea.gameObject);
+        {
+            if (claimArea != null)
+                Destroy(claimArea.gameObject);
+        }
+
+        foreach (Mesh mesh in generatedPreviewMeshes)
+        {
+            if (mesh != null)
+                Destroy(mesh);
+        }
+
+        generatedPreviewMeshes.Clear();
     }
 }
