@@ -46,9 +46,26 @@ public class ObjectSelectionCursors : MonoBehaviour
             int slot = cursors.Count;
             Image cursor = Instantiate(cursorTemplate, transform);
             cursor.name = $"Player {player.playerIndex + 1} Selection Cursor";
-            cursor.color = CursorColors[slot % CursorColors.Length];
-            cursor.rectTransform.anchoredPosition =
-                new Vector2((slot - (PlayerInput.all.Count - 1) * 0.5f) * 60f, -160f);
+            cursor.color = CursorColors[player.playerIndex % CursorColors.Length];
+            TMP_Text cursorLabel = cursor.GetComponentInChildren<TMP_Text>(true);
+            cursorLabel.text = $"P{player.playerIndex + 1}";
+            Rect panel = ((RectTransform)transform).rect;
+            Vector2 cursorHalfSize = cursor.rectTransform.rect.size * 0.5f;
+            const float cornerMargin = 40f;
+
+            float left = panel.xMin + cursorHalfSize.x + cornerMargin;
+            float right = panel.xMax - cursorHalfSize.x - cornerMargin;
+            float top = panel.yMax - cursorHalfSize.y - cornerMargin;
+            float bottom = panel.yMin + cursorHalfSize.y + cornerMargin;
+
+            cursor.rectTransform.anchoredPosition = player.playerIndex switch
+            {
+                0 => new Vector2(left, top),
+                1 => new Vector2(right, top),
+                2 => new Vector2(left, bottom),
+                _ => new Vector2(right, bottom)
+            };
+            
             cursor.gameObject.SetActive(true);
 
             Mouse pairedMouse = null;
@@ -62,7 +79,7 @@ public class ObjectSelectionCursors : MonoBehaviour
                 if (device is Gamepad gamepad)
                     pairedGamepad = gamepad;
             }
-
+            
             cursors.Add((player, player.actions["Move"], pairedMouse, pairedGamepad, cursor));
         }
     }
@@ -95,9 +112,15 @@ public class ObjectSelectionCursors : MonoBehaviour
 
             model.position += frame.transform.position - bounds.center;
 
-            float slotScale = previewClaimAreas[slotIndex].rect.width / 100f;
-            frame.transform.localScale =
-                Vector3.one * (previewFitSize * slotScale / diameter);
+            float slotFraction = previewClaimAreas[slotIndex].rect.height /
+                                 previewImageRect.rect.height;
+
+            float cameraHeight = Vector3.Distance(
+                previewCamera.ViewportToWorldPoint(new Vector3(0.5f, 0f, 4f)),
+                previewCamera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 4f)));
+
+            float targetSize = cameraHeight * slotFraction * 0.8f;
+            frame.transform.localScale = Vector3.one * (targetSize / diameter);
         }
     }
     
@@ -174,12 +197,34 @@ public class ObjectSelectionCursors : MonoBehaviour
                     break;
 
                 claimedSlotByPlayer.Add(player.playerIndex, slotIndex);
+                ShowClaimMarker(slotIndex, player.playerIndex);
                 selectionTitle.text =
                     $"Player {player.playerIndex + 1} claimed object {slotIndex + 1}" +
                     $"\n{claimedSlotByPlayer.Count}/{cursors.Count} players ready";
                 break;
             }
         }
+    }
+    
+    private void ShowClaimMarker(int slotIndex, int playerIndex)
+    {
+        GameObject marker = new GameObject("Claim Marker", typeof(RectTransform));
+        RectTransform markerRect = (RectTransform)marker.transform;
+        markerRect.SetParent(previewClaimAreas[slotIndex], false);
+
+        markerRect.anchorMin = new Vector2(0f, 0f);
+        markerRect.anchorMax = new Vector2(1f, 0f);
+        markerRect.pivot = new Vector2(0.5f, 0f);
+        markerRect.anchoredPosition = Vector2.zero;
+        markerRect.sizeDelta = new Vector2(0f, 40f);
+
+        TextMeshProUGUI label = marker.AddComponent<TextMeshProUGUI>();
+        label.font = selectionTitle.font;
+        label.text = $"P{playerIndex + 1} CLAIMED";
+        label.fontSize = 26f;
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = CursorColors[playerIndex % CursorColors.Length];
+        label.raycastTarget = false;
     }
     
     public void AssignUnclaimedPlayers()
@@ -227,14 +272,14 @@ public class ObjectSelectionCursors : MonoBehaviour
 
         Rect image = previewImageRect.rect;
         Rect safeArea = Rect.MinMaxRect(
-            image.xMin + 20f, image.yMin + 20f,
-            image.xMax - 20f, 70f);
+            image.xMin + 120f, image.yMin + 120f,
+            image.xMax - 120f, image.yMax - 200f);
 
-        int columns = Mathf.Min(count, 4);
+        int columns = Mathf.Min(count, 2);
         int rows = Mathf.CeilToInt((float)count / columns);
         float cellWidth = safeArea.width / columns;
         float cellHeight = safeArea.height / rows;
-        float hitSize = Mathf.Min(100f, Mathf.Min(cellWidth, cellHeight) - 16f);
+        float hitSize = Mathf.Min(360f, Mathf.Min(cellWidth, cellHeight) - 16f);
 
         var availableCells = new List<int>();
         for (int i = 0; i < count; i++)
