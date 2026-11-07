@@ -1319,6 +1319,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab20c7686583395479be7e214eb82b21, type: 2}
   - {fileID: 11400000, guid: e2b86bd8d386f4c4f8a853dabec1a561, type: 2}
   - {fileID: 11400000, guid: 7a812ac9e997d404e9cf8adb49dcfefa, type: 2}
+  - {fileID: 11400000, guid: 474d408e32d0c284eb511492503b2912, type: 2}
   previewStage: {fileID: 798251799}
   previewFitSize: 1.25
   previewCamera: {fileID: 2033430356}
@@ -9224,6 +9225,63 @@ Transform:
   - {fileID: 514699880}
   m_Father: {fileID: 1804593735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &965064547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293582904070690882, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+      propertyPath: m_Name
+      value: Speed Cloud
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
 --- !u!1 &975590510
 GameObject:
   m_ObjectHideFlags: 0
@@ -24170,3 +24228,4 @@ SceneRoots:
   - {fileID: 708051904}
   - {fileID: 822487549}
   - {fileID: 798251799}
+  - {fileID: 965064547}
