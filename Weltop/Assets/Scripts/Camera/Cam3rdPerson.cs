@@ -1,8 +1,6 @@
 using Unity.Cinemachine;
-using UnityEditor.DeviceSimulation;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class Cam3rdPerson : MonoBehaviour , ICamera
 {
@@ -13,8 +11,6 @@ public class Cam3rdPerson : MonoBehaviour , ICamera
     public Transform follow;
     public CinemachineCamera cam;
 
-
-    private int lastPriority;
     private void Start()
     {
         input = ViewSwitcher.GetPlayerInput();

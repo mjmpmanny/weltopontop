@@ -1,15 +1,6 @@
-using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
-using Unity.Cinemachine;
-using Unity.Collections.Tests.CoreCLR.TestJobs;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Experimental.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
-using UnityEngine.Windows;
-using static UnityEngine.InputSystem.InputAction;
 
 public class ViewSwitcher : MonoBehaviour
 {
@@ -66,12 +57,14 @@ public class ViewSwitcher : MonoBehaviour
     }
 
 
-    public void SwitchToBuild(GameObject obj, Vector3 StartPos)
+    public void SwitchToBuild(GameObject obj, Vector3 startPos)
     {
         state = camState.Build;
-        GameObject nobj = Instantiate(obj);
-        BuildMode.SetController(nobj, 10, StartPos);
         SwitchFromLastCam();
+    
+        GameObject buildObject = Instantiate(obj);
+        BuildMode.SetController(buildObject, 10, startPos);
+    
         CurCam = BuildMode;
         playerController.canMove = false;
     }

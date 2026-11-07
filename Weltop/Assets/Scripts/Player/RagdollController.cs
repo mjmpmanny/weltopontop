@@ -54,7 +54,7 @@ public class RagdollController : MonoBehaviour
         {
             isRagdolled = true;
             RagdollTimer = RagdollTime;
-            playerAnimationController.TriggerRagdoll(hitpoint, force,rb.linearVelocity);
+            playerAnimationController.TriggerRagdoll(force, hitpoint,rb.linearVelocity);
             playerCollider.excludeLayers = 960;
             rb.useGravity = false;
             rb.linearVelocity = Vector3.zero;

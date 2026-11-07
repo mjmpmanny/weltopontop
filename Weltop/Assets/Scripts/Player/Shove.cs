@@ -77,7 +77,7 @@ public class Shove : MonoBehaviour
             
             if (playerToShove != null)
             {
-                if(CanBeShoved(playerToShove));
+                if(CanBeShoved(playerToShove))
                 {
                     playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
                     ExecuteShove(playerToShove);
@@ -123,7 +123,7 @@ public class Shove : MonoBehaviour
         //StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
         //rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
 
-        shoveTarget.GetComponent<RagdollController>().Ragdoll(playerCam.transform.forward * GlobalParameters.ShovePower, shoveTarget.transform.position);
+        shoveTarget.GetComponent<RagdollController>().Ragdoll(shoveTarget.transform.position, playerCam.transform.forward * GlobalParameters.ShovePower);
 
         CameraShake.ShakeCams(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
 

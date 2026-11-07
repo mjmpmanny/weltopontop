@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406cd9f0b705ae0418518d069610a48a, type: 3}
+  m_Name: SelectionSpeedDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDefinition
+  displayName: Speed Boost
+  category: 2
+  prefab: {fileID: 8803797871038684533, guid: 9e08f55fd967f6f40a149d7aed704ce1, type: 3}
+  effects:
+  - {fileID: 11400000, guid: 226ab2a8cfe470b498eb3f27c1f3e70d, type: 2}
