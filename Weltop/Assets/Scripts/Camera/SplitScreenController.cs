@@ -45,6 +45,8 @@ public class SplitScreenController : MonoBehaviour
             players[i].SetPlayer(i);
         }
 
+        //Runs only once all players are added to players array
+
         switch (playerCount)
         {
             case 1:

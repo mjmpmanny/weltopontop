@@ -69,22 +69,18 @@ public class PlayerController : MonoBehaviour
         LandingTimer -= Time.deltaTime;
     }
 
-    void jump(CallbackContext ctx)
-    {
-        if (canMove && OnGround > 0)
+        void jump(CallbackContext ctx)
         {
+            if (OnGround <= 0 || !canMove)
+                return;
+    
             OnGround = 0;
             LandingTimer = LandingCooldown;
             rb.linearDamping = 0;
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z) + (Vector3.up * JumpStrength * JumpMultiplier);
-            origionaldir = new Vector2(rb.linearVelocity.x,rb.linearVelocity.z);
-        } else
-        {
-            Debug.Log("not on ground");
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z)
+                + Vector3.up * JumpStrength * JumpMultiplier;
+            origionaldir = new Vector2(rb.linearVelocity.x, rb.linearVelocity.z);
         }
-
-
-    }
     void FixedUpdate()
     {
 

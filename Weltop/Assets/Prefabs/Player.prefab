@@ -120,11 +120,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 0.26, y: 0.53, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 805445073311843396}
   - {fileID: 3936026998370658910}
+  - {fileID: 805445073311843396}
   m_Father: {fileID: 8440488456426195551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8254203348008948405
@@ -268,6 +268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   channel: 0
   PlayerNum: 0
+  HideFromOtherPlayers:
+  - {fileID: 3673393187569635722}
 --- !u!1 &1952621905687116448
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,8 +619,8 @@ Transform:
   m_GameObject: {fileID: 3673393187569635722}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7574842, y: -0.90830916, z: 0}
-  m_LocalScale: {x: 3.8461537, y: 1.8867925, z: 2}
+  m_LocalPosition: {x: -0.49, y: -0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8426383446777464999}
@@ -819,7 +821,6 @@ GameObject:
   - component: {fileID: 6401443588675081848}
   - component: {fileID: 4772940859167904407}
   - component: {fileID: 7372187572972943668}
-  - component: {fileID: 824267639369121826}
   - component: {fileID: 4146621491053113759}
   - component: {fileID: 4027326663822818577}
   - component: {fileID: 6932687401081731943}
@@ -938,19 +939,6 @@ MonoBehaviour:
     m_Bits: 960
   playerAudio: {fileID: 3868262790746722679}
   playerVolume: {fileID: 5528933355535322180}
---- !u!114 &824267639369121826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890897575066495324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CamShake
-  playerCamera: {fileID: 4896784569592859808}
 --- !u!114 &4146621491053113759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,10 +997,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3e224e53c639e4a94c84cbb5bf55cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  CamControllerSpeed: 2
+  CamControllerSpeed: 180
   CamKeyboardSpeed: 0.5
+  camShakes:
+  - {fileID: 6392102270587736264}
+  PostProccesingVolumes:
+  - {fileID: 5528933355535322180}
   TestObjectToHoldOnTo: {fileID: 9103088141614523238, guid: 60f13779c5771dc439ecb6eb765faec8, type: 3}
-  RagdollCam: {fileID: 4761964318628333518}
+  RagdollCam: {fileID: 2241233549069182207}
 --- !u!114 &3373532751297725736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,6 +1097,7 @@ GameObject:
   - component: {fileID: 3647452080346716187}
   - component: {fileID: 4761964318628333518}
   - component: {fileID: 7586636605135335018}
+  - component: {fileID: 6392102270587736264}
   m_Layer: 0
   m_Name: RagdollCam
   m_TagString: Untagged
@@ -1196,6 +1189,19 @@ MonoBehaviour:
     CameraRadius: 0.1
     DampingIntoCollision: 0
     DampingFromCollision: 0
+--- !u!114 &6392102270587736264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171389227038603486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087f5f1c0a48e494394f225e7e0f9561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamShake
+  PostproccesingVolume: {fileID: 5528933355535322180}
 --- !u!1 &6461207390355290698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,8 +1229,8 @@ Transform:
   m_GameObject: {fileID: 6461207390355290698}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.018113514, z: 0}
-  m_LocalScale: {x: 3.8461537, y: 1.8867925, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5031838942069293886}
@@ -1506,7 +1512,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 16
+  BlendHint: 24
 --- !u!114 &2783763439452848621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,8 +1544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7fc2cd98ef3e34b89e315a88638fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
-  ControllerSpeed: 180
-  KeyboardSpeed: 0.5
   canLook: 0
 --- !u!1 &8501285007528437945
 GameObject:

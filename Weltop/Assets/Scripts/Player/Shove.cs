@@ -91,7 +91,7 @@ public class Shove : MonoBehaviour
     private void OperateShoveHands()
     {
         shoveArms.SetActive(true);
-        shoveArms.transform.DOLocalMoveZ(2, 0.25f)
+        shoveArms.transform.DOLocalMoveZ(1, 0.25f)
             .SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => shoveArms.SetActive(false));
     }
@@ -118,57 +118,28 @@ public class Shove : MonoBehaviour
 
     private void ExecuteShove(GameObject shoveTarget)
     {
-        Rigidbody rigidBody = shoveTarget.GetComponent<Rigidbody>();
-        CamShake targetCameraShake = shoveTarget.GetComponent<CamShake>();
-        Shove targetShoveCode = shoveTarget.GetComponent<Shove>();
+        ViewSwitcher CameraShake = shoveTarget.GetComponent<ViewSwitcher>();
 
-        StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
+        //StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
         //rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
 
         shoveTarget.GetComponent<RagdollController>().Ragdoll(shoveTarget.transform.position, playerCam.transform.forward * GlobalParameters.ShovePower);
 
-        targetCameraShake.ShakeCamera(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
+        CameraShake.ShakeCams(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
 
-        StartCoroutine(RecoverFromShove(shoveTarget.GetComponent<PlayerController>()));
+        //StartCoroutine(RecoverFromShove(shoveTarget.GetComponent<PlayerController>()));
     }
 
-    IEnumerator ApplyShovePostProcessing(Shove shoveTarget)
-    {
-        float time = 0;
-        Volume targetVolume = shoveTarget.playerVolume;
-        
-        while (time < 0.5f)
-        {
-            time += Time.deltaTime;
-            targetVolume.weight += time * 2;
-            yield return null;
-}
-
-        targetVolume.weight = 1;
-    }
     
-    IEnumerator RemoveShovePostProcessing(Shove shoveTarget)
-    {
-        float time = 0;
-        Volume targetVolume = shoveTarget.playerVolume;
-        
-        while (time < 0.5f)
-        {
-            time += Time.deltaTime;
-            targetVolume.weight -= time * 2;
-            yield return null;
-        }
-
-        targetVolume.weight = 0;
-    }
+    
 
     private IEnumerator RecoverFromShove(PlayerController shoveTarget)
     {
         Shove targetShove = shoveTarget.gameObject.GetComponent<Shove>();
-        shoveTarget.canMove = false;
+        //shoveTarget.canMove = false;
         yield return new WaitForSeconds(GlobalParameters.RecoverAfterShoveDelaySeconds);
-        StartCoroutine(RemoveShovePostProcessing(targetShove));
-        shoveTarget.canMove = true;
+        //StartCoroutine(RemoveShovePostProcessing(targetShove));
+        //shoveTarget.canMove = true;
     }
 }
 

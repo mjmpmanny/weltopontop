@@ -2,19 +2,31 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 using System.Dynamic;
 using Unity.Cinemachine;
+using Unity.Collections.Tests.CoreCLR.TestJobs;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CamBrain : MonoBehaviour
 {
     private SplitScreenController con;
+    [HideInInspector]
     public int channel;
+    [HideInInspector]
     public int PlayerNum;
+    private int CullMask;
+    private int DisabledCullMask;
+    [Header("Hide From Other Players")]
+    public GameObject[] HideFromOtherPlayers;
+
+    
+    private Camera camera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         con = GameObject.FindGameObjectWithTag("SplitScreenController").GetComponent<SplitScreenController>();
         SetChannel();
         con.AddPlayer(this);
+        camera = GetComponent<Camera>();
     }
 
     public void ChangeDim(Vector2 pos, Vector2 size)
@@ -42,6 +54,8 @@ public class CamBrain : MonoBehaviour
     public void SetPlayer(int PlayerNumber)
     {
         PlayerNum = PlayerNumber;
+        CullMask = ~((1 << PlayerNum + 6) + ((15 << 12) - (1 << PlayerNum + 12)));
+        DisabledCullMask = ~((15 << 12) - (1 << PlayerNum + 12));
         EnableCullingMask();
         GameObject model = transform.parent.GetComponentInChildren<Animator>().gameObject;
         GameObject player = transform.parent.GetComponentInChildren<PlayerController>().gameObject;
@@ -50,15 +64,23 @@ public class CamBrain : MonoBehaviour
         {
             child.gameObject.layer = PlayerNum + 6;
         }
+        foreach (GameObject hidden in HideFromOtherPlayers)
+        {
+            foreach(Transform child in hidden.GetComponentsInChildren<Transform>())
+            {
+                child.gameObject.layer = PlayerNum + 12;
+
+            }
+        }
     }
     public void DisableCullingMask()
     {
 
-        GetComponent<Camera>().cullingMask = ~0;
+        GetComponent<Camera>().cullingMask = DisabledCullMask;
     }
     public void EnableCullingMask()
     {
 
-        GetComponent<Camera>().cullingMask = (~(1 << PlayerNum + 6));
+        GetComponent<Camera>().cullingMask = CullMask;
     }
 }
