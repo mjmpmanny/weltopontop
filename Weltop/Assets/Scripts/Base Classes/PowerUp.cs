@@ -11,6 +11,8 @@ public class PowerUp : MonoBehaviour
     private PlaceableObject placeable;
     
     #region Exposed Parameters
+    [Tooltip("How many times can this power-up be obtained by players before deactivating for the round (0 = infinite)")]
+    public int useAmount = 1;
     [Tooltip("How many seconds does the player keep this power up for (0 = infinite)")]
     public float secondsActive = 0;
     public float cooldownSeconds = 0;
@@ -47,6 +49,10 @@ public class PowerUp : MonoBehaviour
         {
             OnCooldown();
         }
+        else
+        {
+            OnCurrentlyActive();
+        }
     }
 
     /// <summary>
@@ -68,6 +74,14 @@ public class PowerUp : MonoBehaviour
         //If this power-up has active seconds, start that countdown
         if (secondsActive > 0)
             StartCoroutine(StartActiveSecondsCountdown(player));
+    }
+    
+    /// <summary>
+    /// Called every frame while the object is active. Useful for effects while active
+    /// </summary>
+    public virtual void OnCurrentlyActive()
+    {
+        
     }
     
     /// <summary>

@@ -12,8 +12,12 @@
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Base Classes/BuildableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Base Classes/BuildableObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/HillZone.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/HillZone.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ObjectSelectionPreviewRT.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ObjectSelectionPreviewRT.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlaceAbleObjects/Cube.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlaceAbleObjects/Cube.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Base Classes/PowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Base Classes/PowerUp.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +101,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5ea965f39d74501b56f4006ef80da3421b600/d5/232e6dbc/Transform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Animations.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Audio.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/External Assets/Advaita Assets.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Demigiant.meta" root0="FORCE_HIGHLIGHTING" />
@@ -104,9 +110,22 @@
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Game.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/pange/UnityProjectz/Capstone/weltopontop/Weltop/Assets/Scenes/Decorated Circular Arena.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/chathaway/RiderProjects/weltopontop/Weltop/Assets/Scripts/Base Classes/BuildableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Base Classes/BuildableObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/GlobalParameters.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/Buildables.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/Buildables/TestSpringTrap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ObjectDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ObjectEffectDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ObjectEffectSource.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/PlacedObjectEffectTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/PlayerObjectEffects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerAnimationController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerController_Isometric.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/RagdollController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Shove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TutorialInfo/Readme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
@@ -418,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793932615259</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Created power up base class">
+      <option name="closed" value="true" />
+      <created>1793994626119</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1793994626119</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,6 +495,7 @@
     <MESSAGE value="Added player labels with cursors and new text showing who selected what" />
     <MESSAGE value="Added usage of speed, jump, and knockback placeable objects in selection screen" />
     <MESSAGE value="Put definitions and effects into folders" />
-    <option name="LAST_COMMIT_MESSAGE" value="Put definitions and effects into folders" />
+    <MESSAGE value="Created power up base class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created power up base class" />
   </component>
 </project>
