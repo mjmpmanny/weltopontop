@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectEffectDefinition
   effectType: 0
   multiplier: 1.5
-  durationSeconds: 15
+  durationSeconds: 5
   localImpulse: {x: 0, y: 10, z: 0}
+  causesRagdoll: 0

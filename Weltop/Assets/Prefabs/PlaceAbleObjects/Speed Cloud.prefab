@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e14155f1422824892a37dc6a5a706f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedCloud
-  secondsActive: 5
+  useAmount: 1
+  secondsActive: 0
   cooldownSeconds: 2
 --- !u!114 &4649763000032790244
 MonoBehaviour:
