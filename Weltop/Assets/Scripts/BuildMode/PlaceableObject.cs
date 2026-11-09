@@ -33,7 +33,7 @@ public class PlaceableObject : MonoBehaviour
         foreach (Transform tr in GetComponentsInChildren<Transform>())
         {
             tr.TryGetComponent<Collider>(out Collider cl);
-            if (cl != null && cl.isTrigger){ 
+            if (cl != null && cl.isTrigger && tr.gameObject != gameObject){ 
                 tr.gameObject.layer = 1; 
             } else{
                 tr.gameObject.layer = 0; 
