@@ -20,10 +20,10 @@ TagManager:
   - Player 4
   - IgnoreLayer
   - NoBuildZone
-  - 
-  - 
-  - 
-  - 
+  - Player 1 Cull
+  - 'Player 2 Cull '
+  - Player 3 Cull
+  - Player 4 Cull
   - 
   - 
   - 

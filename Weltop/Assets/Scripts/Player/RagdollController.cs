@@ -33,6 +33,7 @@ public class RagdollController : MonoBehaviour
         playerCollider = GetComponent<Collider>();
         playerCon = GetComponent<PlayerController>();
     }
+
     private void Update()
     {
         if (_testRagdoll)
@@ -70,7 +71,7 @@ public class RagdollController : MonoBehaviour
         playerAnimationController.Getup();
         playerCollider.excludeLayers = 0;
         rb.useGravity = true;
-            ragdollCam.SwitchedTo();
+        ragdollCam.SwitchTo();
         }
     }
 
@@ -122,5 +123,9 @@ public class RagdollController : MonoBehaviour
         return null;
         
     }
+
+   
+
+
 
 }

@@ -115,7 +115,7 @@ public class BuildableObject : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when the player touches the trigger collider of this object
+    /// Called when the player touches the trigger collider of this object while it is active
     /// </summary>
     /// <param name="playerTarget">The player gameobject that enters the trigger collider</param>
     public virtual void OnTouch(GameObject playerTarget)
