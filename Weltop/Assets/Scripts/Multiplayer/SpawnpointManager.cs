@@ -10,7 +10,12 @@ public class SpawnpointManager : MonoBehaviour
 
     public void SendToSpawnpoint(GameObject objectToSend)
     {
-        objectToSend.transform.position = spawnpoint.position;
+        RagdollController ragdollController = objectToSend.GetComponent<RagdollController>();
+        ViewSwitcher viewSwitcher = objectToSend.GetComponent<ViewSwitcher>();
+        ragdollController.MovePlayer(playerSpawns[objectToSend].position);
+        Quaternion ang = Quaternion.Euler(0, Mathf.Atan2(-playerSpawns[objectToSend].position.x, -playerSpawns[objectToSend].position.z) * Mathf.Rad2Deg, 0);
+        ragdollController.SetPlayerRotation(ang);
+        viewSwitcher.SetRotationCams(ang);
     }
 
     public void SendToSpawnpointsRandom(GameObject objectToSend)
@@ -39,8 +44,7 @@ public class SpawnpointManager : MonoBehaviour
         Transform selected = availableSpawns[Random.Range(0, availableSpawns.Count)];
 
         playerSpawns[objectToSend] = selected;
-        objectToSend.GetComponent<RagdollController>().MovePlayer(selected.position);
-        objectToSend.GetComponent<RagdollController>().SetPlayerRotation(Quaternion.Euler(0,Mathf.Atan2(-selected.position.x,-selected.position.z)*Mathf.Rad2Deg,0));
+        SendToSpawnpoint(objectToSend);
     }
 
     public void ResetSpawnAssignments()

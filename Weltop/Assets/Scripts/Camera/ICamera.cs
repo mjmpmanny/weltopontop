@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public interface ICamera
 {
@@ -6,5 +7,5 @@ public interface ICamera
     public void SwitchTo();
     public void SwitchFrom();
 
-
+    public void RotateTo(Quaternion rot);
 }

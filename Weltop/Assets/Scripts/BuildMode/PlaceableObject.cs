@@ -14,6 +14,10 @@ public class PlaceableObject : MonoBehaviour
 
     private bool placementStarted;
     private int insideObject;
+    private BoxCollider boxCollider;
+    private Vector3 origialBoxColliderSize;
+    private float ybound;
+    public bool DeleteBoxColliderOnPlace;
 
     public void BeginPlacement()
     {
@@ -25,9 +29,19 @@ public class PlaceableObject : MonoBehaviour
         if (insideObject > 0)
             return false;
 
-        gameObject.layer = 0;
+
+        foreach (Transform tr in GetComponentsInChildren<Transform>())
+        {
+            tr.TryGetComponent<Collider>(out Collider cl);
+            if (cl != null && cl.isTrigger){ 
+                tr.gameObject.layer = 1; 
+            } else{
+                tr.gameObject.layer = 0; 
+            } 
+        }
         IsPlaced = true;
         Destroy(GetComponent<Rigidbody>());
+        if (DeleteBoxColliderOnPlace) Destroy(boxCollider);
         return true;
     }
 
@@ -35,9 +49,7 @@ public class PlaceableObject : MonoBehaviour
     {
         if (insideObject == 0)
         {
-            gameObject.layer = 0;
-            IsPlaced = true;
-            Destroy(GetComponent<Rigidbody>());
+            Place();
         }
         else
         {
@@ -52,7 +64,7 @@ public class PlaceableObject : MonoBehaviour
         {
             transform.position = new Vector3(
                 GridSize * Mathf.Round(pos.x / GridSize),
-                GridSize * Mathf.Floor(pos.y / GridSize),
+                GridSize * Mathf.Round(pos.y / GridSize) - ybound - GridSize,
                 GridSize * Mathf.Round(pos.z / GridSize)) + offset;
         }
         else
@@ -88,8 +100,19 @@ public class PlaceableObject : MonoBehaviour
 
     private void Start()
     {
-        if (TryGetComponent(out BoxCollider boxCollider))
-            boxCollider.size -= Vector3.one * 0.1f;
+        boxCollider = GetComponent<BoxCollider>();
+        origialBoxColliderSize = boxCollider.size;
+        ybound = boxCollider.bounds.min.y;
+        boxCollider.size = new Vector3(
+            (boxCollider.size.x*transform.localScale.x - 0.1f)/ transform.localScale.x,
+            (boxCollider.size.y * transform.localScale.y - 0.1f) / transform.localScale.y,
+            (boxCollider.size.z * transform.localScale.z - 0.1f) / transform.localScale.z
+            );
+
+        foreach (Transform tr in GetComponentsInChildren<Transform>())
+        {
+            tr.gameObject.layer = 3;
+        }
 
         normalMat = GetComponent<Renderer>().material;
     }
