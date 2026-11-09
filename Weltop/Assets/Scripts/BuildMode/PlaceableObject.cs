@@ -41,7 +41,12 @@ public class PlaceableObject : MonoBehaviour
         }
         IsPlaced = true;
         Destroy(GetComponent<Rigidbody>());
-        if (DeleteBoxColliderOnPlace) Destroy(boxCollider);
+        if (DeleteBoxColliderOnPlace) {
+            Destroy(boxCollider);
+        } 
+        else { 
+            boxCollider.size = origialBoxColliderSize; 
+        };
         return true;
     }
 
