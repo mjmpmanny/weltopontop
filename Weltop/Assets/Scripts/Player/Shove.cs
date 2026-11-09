@@ -99,7 +99,7 @@ public class Shove : MonoBehaviour
     private GameObject FindPlayerToShove()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerCam.transform.forward, out hit, 2, layerMask))
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 2, layerMask))
         {
             return hit.collider.gameObject;
         }
