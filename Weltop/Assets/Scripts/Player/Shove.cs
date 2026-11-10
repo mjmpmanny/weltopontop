@@ -18,7 +18,7 @@ public class Shove : MonoBehaviour
     
     private Rigidbody rb;
     
-    private bool canShove;
+    public bool canShove;
 
     private PlayerInput inp;
     
@@ -99,7 +99,8 @@ public class Shove : MonoBehaviour
     private GameObject FindPlayerToShove()
     {
         RaycastHit hit;
-        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 2, layerMask))
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward,
+                out hit, GlobalParameters.ShoveRaycastDistance, layerMask))
         {
             return hit.collider.gameObject;
         }

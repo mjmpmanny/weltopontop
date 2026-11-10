@@ -12,12 +12,15 @@
   <component name="ChangeListManager">
     <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/HillZone.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/HillZone.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ObjectSelectionPreviewRT.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ObjectSelectionPreviewRT.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlaceAbleObjects/Cube.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlaceAbleObjects/Cube.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Decorated Circular Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Base Classes/PowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Base Classes/PowerUp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/GlobalParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GlobalParameters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Objects/PlayerObjectEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Objects/PlayerObjectEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Shove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Shove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="WEL-57-Object-Selection" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -38,68 +41,68 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABHuAK-A",
-        "number": 5
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABHuAK-A&quot;,
+        &quot;number&quot;: 5
       },
-      "lastSeen": 1791671949961
+      &quot;lastSeen&quot;: 1791671949961
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABIT9ZCQ",
-        "number": 13
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABIT9ZCQ&quot;,
+        &quot;number&quot;: 13
       },
-      "lastSeen": 1791992601535
+      &quot;lastSeen&quot;: 1791992601535
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABI6ZepA",
-        "number": 16
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABI6ZepA&quot;,
+        &quot;number&quot;: 16
       },
-      "lastSeen": 1792187499175
+      &quot;lastSeen&quot;: 1792187499175
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABLJfl-w",
-        "number": 21
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABLJfl-w&quot;,
+        &quot;number&quot;: 21
       },
-      "lastSeen": 1793203959038
+      &quot;lastSeen&quot;: 1793203959038
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABLW2aVQ",
-        "number": 23
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABLW2aVQ&quot;,
+        &quot;number&quot;: 23
       },
-      "lastSeen": 1793220475202
+      &quot;lastSeen&quot;: 1793220475202
     },
     {
-      "id": {
-        "id": "PR_kwDOUfq6yM8AAAABNO4XCA",
-        "number": 33
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOUfq6yM8AAAABNO4XCA&quot;,
+        &quot;number&quot;: 33
       },
-      "lastSeen": 1793984754150
+      &quot;lastSeen&quot;: 1793984754150
     }
   ]
-}]]></component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/mjmpmanny/weltopontop.git&quot;,
-    &quot;accountId&quot;: &quot;e285284b-19c2-4b5a-8619-68960131ce9a&quot;
-  },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
-    },
-    &quot;owner&quot;: &quot;mjmpmanny&quot;,
-    &quot;repository&quot;: &quot;weltopontop&quot;
-  }
 }</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mjmpmanny/weltopontop",
+    "accountId": "90acc10c-aea6-4486-aa3c-0622ef6910c1"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "mjmpmanny",
+    "repository": "weltopontop"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5ea965f39d74501b56f4006ef80da3421b600/d5/232e6dbc/Transform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Animations.meta" root0="FORCE_HIGHLIGHTING" />
@@ -110,12 +113,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Game.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/3dPersonTest.unity" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/chathaway/RiderProjects/weltopontop/Weltop/Assets/Scripts/Base Classes/BuildableObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Base Classes/BuildableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/GlobalParameters.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/Buildables.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/Buildables/TestSpringTrap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/Items/TestItemHitscan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ObjectDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ObjectEffectDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/ObjectEffectSource.cs" root0="FORCE_HIGHLIGHTING" />
@@ -128,6 +131,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Shove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TutorialInfo/Readme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Plugins/PlayerInput/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@e178ec6338de/Shaders/Terrain/TerrainLitBasemapGen.shader" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -151,7 +155,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "WEL-93-Power-Up-Base-Class",
+    "git-widget-placeholder": "WEL-92-Item-Base-Class",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
