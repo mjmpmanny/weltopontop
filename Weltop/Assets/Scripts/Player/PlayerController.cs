@@ -93,8 +93,21 @@ public class PlayerController : MonoBehaviour
         }
     void FixedUpdate()
     {
-        if (!canMove)
-            return;
+
+        CapsuleCollider cap = GetComponent<CapsuleCollider>();
+        RaycastHit hit;
+        bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f, 1);
+        if (raycastHit && LandingTimer < 0)
+        {
+            OnGround = CoyoteJumpTime;
+            rb.linearDamping = momentumDampening;
+            animationController.OnLand();
+        } else
+        {
+            animationController.OnJump();
+            rb.linearDamping = 0;
+
+        }
         
         //basic movement
         Vector2 moveinput = inp.actions["Move"].ReadValue<Vector2>();
@@ -108,17 +121,12 @@ public class PlayerController : MonoBehaviour
         {
             animationController.stopMoving();
         }
-        
-        //jumping
-        CapsuleCollider cap = GetComponent<CapsuleCollider>();
-        RaycastHit hit;
-        bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f,1);
-        
+
+        if (!canMove)
+            return;
+
         if (raycastHit && LandingTimer < 0)
         {//Ground Movement
-            OnGround = CoyoteJumpTime;
-            rb.linearDamping = momentumDampening;
-            animationController.OnLand();
 
 
             bool goingForward = Vector3.Dot(move, rb.linearVelocity) > 0;
@@ -133,8 +141,6 @@ public class PlayerController : MonoBehaviour
 
         } else//air movement
         {
-            animationController.OnJump();
-            rb.linearDamping = 0;
 
             Vector3 HorizontalVal = (rb.linearVelocity - Vector3.up * rb.linearVelocity.y);
 

@@ -223,4 +223,9 @@ public class BuildModeController : MonoBehaviour, ICamera
         Camspeed = _Sensitivity;
     }
 
+    public void RotateTo(Quaternion rot)
+    {
+        transform.rotation = rot;
+        pitch = transform.rotation.eulerAngles.x;
+    }
 }

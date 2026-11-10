@@ -214,7 +214,6 @@ public class PlayerAnimationController : MonoBehaviour
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName(GetStandUpStateName()) == false)
         {
             _currentState = State.Walking;
-            _playerController.canMove = true;
             _ragdollController.HasGotup();
         }
         _playerController.transform.position = transform.position + _playerController.GetComponent<CapsuleCollider>().height * Vector3.up * 0.5f;

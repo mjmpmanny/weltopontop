@@ -71,7 +71,7 @@ public class RagdollController : MonoBehaviour
         playerAnimationController.Getup();
         playerCollider.excludeLayers = 0;
         rb.useGravity = true;
-        ragdollCam.SwitchTo();
+        ragdollCam.RotateTo(ragdollCam.transform.rotation);
         }
     }
 

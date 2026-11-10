@@ -100,13 +100,11 @@ public class PlayerStats : MonoBehaviour
         // Stop scoring when the player dies.
         isInsideHill = false;
         pointGivingCounter = 0f;
-        HideBody();
         ragdollController.Ragdoll(Vector3.zero,Vector3.zero);
 
         yield return new WaitForSeconds(GlobalParameters.RespawnDelaySeconds);
         spawnManager.SendToSpawnpointsRandom(gameObject);
         ragdollController.GetUp();
-        ShowBody();
 
         StartCoroutine(InvincibilityFrames());
         isDead = false;
@@ -114,7 +112,6 @@ public class PlayerStats : MonoBehaviour
 
     private void HideBody()
     {
-        playerController.canMove = false;
         playerCamera.canLook = false;
 
         // Hide the visible character model, including child renderers.
@@ -126,7 +123,6 @@ public class PlayerStats : MonoBehaviour
 
     private void ShowBody()
     {
-        playerController.canMove = true;
         playerCamera.canLook = true;
 
         // Restore the visible character model.
