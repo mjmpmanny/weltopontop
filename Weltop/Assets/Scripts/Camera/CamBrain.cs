@@ -21,12 +21,15 @@ public class CamBrain : MonoBehaviour
     
     private Camera camera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        camera = GetComponent<Camera>();
+    }
     void Start()
     {
         con = GameObject.FindGameObjectWithTag("SplitScreenController").GetComponent<SplitScreenController>();
         SetChannel();
         con.AddPlayer(this);
-        camera = GetComponent<Camera>();
     }
 
     public void ChangeDim(Vector2 pos, Vector2 size)
@@ -36,7 +39,7 @@ public class CamBrain : MonoBehaviour
         rec.y = pos.y;
         rec.width = size.x;
         rec.height = size.y;
-        GetComponent<Camera>().rect = rec;
+        camera.rect = rec;
     }
 
     public void SetChannel()
@@ -76,11 +79,16 @@ public class CamBrain : MonoBehaviour
     public void DisableCullingMask()
     {
 
-        GetComponent<Camera>().cullingMask = DisabledCullMask;
+        camera.cullingMask = DisabledCullMask;
     }
     public void EnableCullingMask()
     {
 
-        GetComponent<Camera>().cullingMask = CullMask;
+        camera.cullingMask = CullMask;
+    }
+    public void EnableFullCullingMask()
+    {
+
+        camera.cullingMask = ~((15 <<  6) + (15 << 12));
     }
 }

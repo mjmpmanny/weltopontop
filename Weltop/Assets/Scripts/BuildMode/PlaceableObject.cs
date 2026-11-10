@@ -14,20 +14,44 @@ public class PlaceableObject : MonoBehaviour
 
     private bool placementStarted;
     private int insideObject;
+    private BoxCollider boxCollider;
+    private Vector3 origialBoxColliderSize;
+    private float ybound;
+    public bool DeleteBoxColliderOnPlace;
 
     public void BeginPlacement()
     {
         placementStarted = true;
-    }
 
+        foreach (Transform child in GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.layer = 3;
+        }
+    }
+    
     public bool Place()
     {
         if (insideObject > 0)
             return false;
 
-        gameObject.layer = 0;
+
+        foreach (Transform tr in GetComponentsInChildren<Transform>())
+        {
+            tr.TryGetComponent<Collider>(out Collider cl);
+            if (cl != null && cl.isTrigger && tr.gameObject != gameObject){ 
+                tr.gameObject.layer = 1; 
+            } else{
+                tr.gameObject.layer = 0; 
+            } 
+        }
         IsPlaced = true;
         Destroy(GetComponent<Rigidbody>());
+        if (DeleteBoxColliderOnPlace) {
+            Destroy(boxCollider);
+        } 
+        else { 
+            boxCollider.size = origialBoxColliderSize; 
+        };
         return true;
     }
 
@@ -35,9 +59,7 @@ public class PlaceableObject : MonoBehaviour
     {
         if (insideObject == 0)
         {
-            gameObject.layer = 0;
-            IsPlaced = true;
-            Destroy(GetComponent<Rigidbody>());
+            Place();
         }
         else
         {
@@ -52,7 +74,7 @@ public class PlaceableObject : MonoBehaviour
         {
             transform.position = new Vector3(
                 GridSize * Mathf.Round(pos.x / GridSize),
-                GridSize * Mathf.Floor(pos.y / GridSize),
+                GridSize * Mathf.Round(pos.y / GridSize) - ybound - GridSize,
                 GridSize * Mathf.Round(pos.z / GridSize)) + offset;
         }
         else
@@ -88,9 +110,28 @@ public class PlaceableObject : MonoBehaviour
 
     private void Start()
     {
-        if (TryGetComponent(out BoxCollider boxCollider))
-            boxCollider.size -= Vector3.one * 0.1f;
-
         normalMat = GetComponent<Renderer>().material;
+
+        if (!IsBeingPlaced)
+            return;
+
+        boxCollider = GetComponent<BoxCollider>();
+        origialBoxColliderSize = boxCollider.size;
+        
+        Vector3 halfSize = boxCollider.size * 0.5f;
+        Vector3 centerOffset = transform.TransformVector(boxCollider.center);
+
+        float verticalHalfExtent =
+            Mathf.Abs(transform.TransformVector(Vector3.right * halfSize.x).y) +
+            Mathf.Abs(transform.TransformVector(Vector3.up * halfSize.y).y) +
+            Mathf.Abs(transform.TransformVector(Vector3.forward * halfSize.z).y);
+
+        ybound = centerOffset.y - verticalHalfExtent;
+
+        Vector3 scale = transform.localScale;
+        boxCollider.size = new Vector3(
+            (boxCollider.size.x * scale.x - 0.1f) / scale.x,
+            (boxCollider.size.y * scale.y - 0.1f) / scale.y,
+            (boxCollider.size.z * scale.z - 0.1f) / scale.z);
     }
 }

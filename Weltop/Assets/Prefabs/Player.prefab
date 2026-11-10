@@ -317,6 +317,7 @@ MonoBehaviour:
   ViewSwitcher: {fileID: 6932687401081731943}
   follow: {fileID: 4297328617775628493}
   cam: {fileID: 4761964318628333518}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2832645989831487543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1513,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 24
+  BlendHint: 16
 --- !u!114 &2783763439452848621
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -72,4 +72,9 @@ public class CamFirstPerson : MonoBehaviour, ICamera
     {
         speed = _sensitivity;
     }
+    public void RotateTo(Quaternion rot)
+    {
+        transform.rotation = rot;
+        pitch = transform.rotation.eulerAngles.x;
+    }
 }

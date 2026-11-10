@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class ViewSwitcher : MonoBehaviour
 {
@@ -64,7 +65,8 @@ public class ViewSwitcher : MonoBehaviour
     
         GameObject buildObject = Instantiate(obj);
         BuildMode.SetController(buildObject, 10, startPos);
-    
+        camBrain.EnableFullCullingMask();
+
         CurCam = BuildMode;
         playerController.canMove = false;
     }
@@ -120,6 +122,12 @@ public class ViewSwitcher : MonoBehaviour
         {
             cs.ShakeCamera(duration, strength);
         }
+    }
+
+    public void SetRotationCams(Quaternion rot)
+    {
+        cam.RotateTo(rot);
+        RagdollCam.RotateTo(rot);
     }
 
 
