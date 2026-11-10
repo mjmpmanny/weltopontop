@@ -18,7 +18,7 @@ public static class GlobalParameters
     public static float ScreenShakeSeconds = 0.5f;
 
     //Round State Settings
-    public static float ParkourRoundTimeSeconds = 30f;//120f;
+    public static float ParkourRoundTimeSeconds = 90f;//120f;
     public static float BuildRoundTimeSeconds = 45f;//120f;
     public static float CountdownToGameSeconds = 5f;
     public static float StartRoundCountDownAtXSeconds = 10f; //At how many seconds will the big countdown to next round appear?

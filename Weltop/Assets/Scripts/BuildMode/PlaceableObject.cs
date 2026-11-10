@@ -22,8 +22,13 @@ public class PlaceableObject : MonoBehaviour
     public void BeginPlacement()
     {
         placementStarted = true;
-    }
 
+        foreach (Transform child in GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.layer = 3;
+        }
+    }
+    
     public bool Place()
     {
         if (insideObject > 0)
@@ -105,20 +110,28 @@ public class PlaceableObject : MonoBehaviour
 
     private void Start()
     {
+        normalMat = GetComponent<Renderer>().material;
+
+        if (!IsBeingPlaced)
+            return;
+
         boxCollider = GetComponent<BoxCollider>();
         origialBoxColliderSize = boxCollider.size;
-        ybound = boxCollider.bounds.min.y;
+        
+        Vector3 halfSize = boxCollider.size * 0.5f;
+        Vector3 centerOffset = transform.TransformVector(boxCollider.center);
+
+        float verticalHalfExtent =
+            Mathf.Abs(transform.TransformVector(Vector3.right * halfSize.x).y) +
+            Mathf.Abs(transform.TransformVector(Vector3.up * halfSize.y).y) +
+            Mathf.Abs(transform.TransformVector(Vector3.forward * halfSize.z).y);
+
+        ybound = centerOffset.y - verticalHalfExtent;
+
+        Vector3 scale = transform.localScale;
         boxCollider.size = new Vector3(
-            (boxCollider.size.x*transform.localScale.x - 0.1f)/ transform.localScale.x,
-            (boxCollider.size.y * transform.localScale.y - 0.1f) / transform.localScale.y,
-            (boxCollider.size.z * transform.localScale.z - 0.1f) / transform.localScale.z
-            );
-
-        foreach (Transform tr in GetComponentsInChildren<Transform>())
-        {
-            tr.gameObject.layer = 3;
-        }
-
-        normalMat = GetComponent<Renderer>().material;
+            (boxCollider.size.x * scale.x - 0.1f) / scale.x,
+            (boxCollider.size.y * scale.y - 0.1f) / scale.y,
+            (boxCollider.size.z * scale.z - 0.1f) / scale.z);
     }
 }

@@ -24484,7 +24484,7 @@ GameObject:
   - component: {fileID: 8639048596166528953}
   - component: {fileID: 5730520850628306873}
   - component: {fileID: 2614423898465084870}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24521,7 +24521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2999839124235234960}
   - component: {fileID: 7651622395181475257}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -24844,7 +24844,7 @@ GameObject:
   - component: {fileID: 4794198617936531059}
   - component: {fileID: 1151427186624401970}
   - component: {fileID: 4051251895967705847}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Floor Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
