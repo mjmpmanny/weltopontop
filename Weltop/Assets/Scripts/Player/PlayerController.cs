@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public float accel;
     public float momentumDampening;
     public bool canMove;
-
+    public bool canJump;
+    
     [Header("Jump Settings")]
     public float CoyoteJumpTime;
     public float JumpStrength;
@@ -21,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public float AirAccel;
     public float MaxAirSpeed;
     public float AirDampening;
+
+    [Header("Misc Settings")]
+    public Transform holdItemPosition;
 
     private Vector2 origionaldir;
     private float LandingTimer;
@@ -33,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private ViewSwitcher viewSwitcher;
 
     private PlayerObjectEffects objectEffects;
+    public float itemMovementMultiplier;
+    public float itemJumpMultiplier;
     private float MovementMultiplier =>
         objectEffects != null ? objectEffects.MovementMultiplier : 1f;
     private float JumpMultiplier =>
@@ -56,6 +62,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         canMove = false;
+        canJump = true;
         
         cam = transform.parent.GetComponentInChildren<Camera>().gameObject;
         animationController = transform.parent.GetComponentInChildren<PlayerAnimationController>();
@@ -73,17 +80,19 @@ public class PlayerController : MonoBehaviour
         {
             if (OnGround <= 0 || !canMove)
                 return;
-    
+
+            if (!canJump)
+                return;
+            
             OnGround = 0;
             LandingTimer = LandingCooldown;
             rb.linearDamping = 0;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z)
-                + Vector3.up * JumpStrength * JumpMultiplier;
+                + Vector3.up * JumpStrength * (JumpMultiplier + itemJumpMultiplier);
             origionaldir = new Vector2(rb.linearVelocity.x, rb.linearVelocity.z);
         }
     void FixedUpdate()
     {
-
         if (!canMove)
             return;
         
@@ -113,12 +122,12 @@ public class PlayerController : MonoBehaviour
 
 
             bool goingForward = Vector3.Dot(move, rb.linearVelocity) > 0;
-            if (rb.linearVelocity.magnitude > speed * MovementMultiplier && goingForward) {
+            if (rb.linearVelocity.magnitude > speed * (MovementMultiplier + itemMovementMultiplier) && goingForward) {
                     Vector3 cross = Vector3.Cross(Vector3.up, rb.linearVelocity);
                     move = Vector3.Project(move, cross);
 
             }
-            rb.AddForce(move * accel * MovementMultiplier, ForceMode.VelocityChange);
+            rb.AddForce(move * accel * (MovementMultiplier + itemMovementMultiplier), ForceMode.VelocityChange);
             
             
 
@@ -131,14 +140,14 @@ public class PlayerController : MonoBehaviour
 
             bool goingForward = Vector3.Dot(move,rb.linearVelocity) > 0;
 
-            if (goingForward && HorizontalVal.magnitude >= MaxAirSpeed * MovementMultiplier)
+            if (goingForward && HorizontalVal.magnitude >= MaxAirSpeed * (MovementMultiplier + itemMovementMultiplier))
             {
                 Vector3 cross = Vector3.Cross(Vector3.up,rb.linearVelocity);
                 move = Vector3.Project(move,cross);
 
             }
             rb.linearVelocity = rb.linearVelocity - HorizontalVal * AirDampening / 100;
-            rb.AddForce(move * AirAccel * MovementMultiplier, ForceMode.VelocityChange);
+            rb.AddForce(move * AirAccel * (MovementMultiplier + itemMovementMultiplier), ForceMode.VelocityChange);
 
         }
     }
