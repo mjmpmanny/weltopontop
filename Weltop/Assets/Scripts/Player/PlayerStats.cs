@@ -46,8 +46,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        
-
         if (!isInsideHill || isDead || !playerController.canMove)
             return;
 
@@ -87,9 +85,14 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.CompareTag("HillZone"))
         {
-            isInsideHill = false;
-            pointGivingCounter = 0f;
+            PlayerExitHill();
         }
+    }
+
+    public void PlayerExitHill()
+    {
+        isInsideHill = false;
+        pointGivingCounter = 0f;
     }
 
     private IEnumerator Kill()
