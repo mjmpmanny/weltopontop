@@ -10,12 +10,14 @@ public class HillMover : MonoBehaviour
     public Transform[] possibleSpawnLocations;
 
     private Game game;
+    private UI ui;
 
     private int previousChoice;
     
     private void Awake()
     {
         game = GetComponent<Game>();
+        ui = GetComponent<UI>();
     }
 
     //Game calls this script, which automatically starts the timing and everything.
@@ -54,6 +56,8 @@ public class HillMover : MonoBehaviour
                 yield break;
             }
             
+            ui.UpdateHillMoverTimer(timer);
+            
             timer -= Time.deltaTime;
             yield return null;
         }
@@ -87,6 +91,7 @@ public class HillMover : MonoBehaviour
     {
         //Make sure everyone stops recieving points when its exited
         game.ExecuteCodeOnAllPlayerStats(stats => stats.PlayerExitHill());
+        ui.HillMovingText();
         hill.SetActive(false);
     }
 }
