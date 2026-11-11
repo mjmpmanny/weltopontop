@@ -72,7 +72,9 @@ public class PlayerItemInteraction : MonoBehaviour
         if (item == null || item.currentPlayer != player)
             return;
 
-        Vector3 dropPosition = transform.position + transform.forward * 1.25f;
+        Transform aim = player.GetComponent<Shove>().playerCam.transform;
+        Quaternion facing = Quaternion.Euler(0f, aim.eulerAngles.y, 0f);
+        Vector3 dropPosition = transform.position + (facing * Vector3.forward) * 1.25f;
 
         bool foundGround = Physics.Raycast(
             dropPosition + Vector3.up, Vector3.down,
@@ -89,6 +91,6 @@ public class PlayerItemInteraction : MonoBehaviour
             return;
         }
 
-        item.transform.position = dropPosition;
+        item.transform.SetPositionAndRotation(dropPosition, facing);
     }
 }
