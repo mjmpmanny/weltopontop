@@ -91,7 +91,7 @@ public class ObjectSelectionCursors : MonoBehaviour
     {
         for (int slotIndex = 0; slotIndex < slotDefinitions.Length; slotIndex++)
         {
-            GameObject prefab = slotDefinitions[slotIndex].Prefab;
+            GameObject prefab = slotDefinitions[slotIndex].PreviewPrefab;
             Transform anchor = previewAnchors[slotIndex];
 
             GameObject frame = new GameObject("Generated Preview");

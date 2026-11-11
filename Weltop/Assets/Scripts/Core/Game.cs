@@ -142,6 +142,12 @@ public class Game : MonoBehaviour
             viewSwitcher.SwitchToPlayer();
             spawnpointManager.SendToSpawnpointsRandom(player);
         }
+        
+        foreach (PlacedItemSpawner spawner in
+                 FindObjectsByType<PlacedItemSpawner>(FindObjectsSortMode.None))
+        {
+            spawner.SpawnIfPlaced(currentParkourRound);
+        }
 
         transitions.currentTransitionCoroutine = StartCoroutine(transitions.StartParkourRound());
     }
@@ -155,6 +161,14 @@ public class Game : MonoBehaviour
         {
             case RoundState.Parkour:
                 parkourRoundTimer = 0;
+                
+                foreach (Item item in FindObjectsByType<Item>(FindObjectsSortMode.None))
+                {
+                    if (item.currentPlayer != null)
+                        item.OnDrop();
+
+                    Destroy(item.gameObject);
+                }
 
                 // Check whether the final Parkour round has ended.
                 if (currentParkourRound >= GlobalParameters.TotalParkourRounds)

@@ -1314,10 +1314,10 @@ MonoBehaviour:
   cursorSpeed: 750
   selectionTitle: {fileID: 1371396606}
   slotDefinitions:
-  - {fileID: 11400000, guid: 49b8db08daa7c8b40b7baad395b26073, type: 2}
-  - {fileID: 11400000, guid: aa91c3818f7c5ae4d8c6b2a97fa2f7aa, type: 2}
+  - {fileID: 11400000, guid: e876150e887bc4347b36842b84394a6c, type: 2}
+  - {fileID: 11400000, guid: 8c80779375847264c92c2ff1d7dff84e, type: 2}
   - {fileID: 11400000, guid: ab20c7686583395479be7e214eb82b21, type: 2}
-  - {fileID: 11400000, guid: e2b86bd8d386f4c4f8a853dabec1a561, type: 2}
+  - {fileID: 11400000, guid: 2301d810b672aa2448c67bc600caf66c, type: 2}
   - {fileID: 11400000, guid: 7a812ac9e997d404e9cf8adb49dcfefa, type: 2}
   - {fileID: 11400000, guid: 474d408e32d0c284eb511492503b2912, type: 2}
   previewStage: {fileID: 798251799}

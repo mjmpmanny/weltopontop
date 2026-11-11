@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 6932687401081731943}
   - component: {fileID: 3373532751297725736}
   - component: {fileID: 6749751772715467851}
+  - component: {fileID: 6254660067860083020}
   m_Layer: 3
   m_Name: Main
   m_TagString: Player
@@ -916,6 +917,7 @@ MonoBehaviour:
   accel: 2
   momentumDampening: 10
   canMove: 0
+  canJump: 0
   CoyoteJumpTime: 0.1
   JumpStrength: 8
   LandingCooldown: 0.5
@@ -923,6 +925,8 @@ MonoBehaviour:
   MaxAirSpeed: 5
   AirDampening: 2
   holdItemPosition: {fileID: 2090427247027326700}
+  itemMovementMultiplier: 0
+  itemJumpMultiplier: 0
 --- !u!114 &7372187572972943668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,6 +944,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 960
+  canShove: 0
   playerAudio: {fileID: 3868262790746722679}
   playerVolume: {fileID: 5528933355535322180}
 --- !u!114 &4146621491053113759
@@ -1040,6 +1045,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a3109452ddb254d9b94cae3a4a0487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectEffects
+--- !u!114 &6254660067860083020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b8f531538e7a1419b220af67a96f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteraction
+  pickupRange: 2.5
 --- !u!1 &6001969543886878094
 GameObject:
   m_ObjectHideFlags: 0

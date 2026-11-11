@@ -95,6 +95,7 @@ public class PlayerStats : MonoBehaviour
     private IEnumerator Kill()
     {
         isDead = true;
+        GetComponent<PlayerItemInteraction>()?.DropHeldItem(discardIfNoGround: true);
         GetComponent<PlayerObjectEffects>()?.ClearEffects();
 
         // Stop scoring when the player dies.

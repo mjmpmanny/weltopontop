@@ -51,6 +51,13 @@ public class Item : MonoBehaviour
 
     private bool canUseItem = true;
     
+    private Game game;
+
+    private void Start()
+    {
+        game = FindFirstObjectByType<Game>();
+    }
+    
     private void Update()
     {
         if (isEquipped)
@@ -63,6 +70,12 @@ public class Item : MonoBehaviour
             
             AdjustPlayerStats();
             UpdateHoldPosition();
+            
+            if (game == null || !game.gameIsActive ||
+                game.currentRoundState != Game.RoundState.Parkour ||
+                Time.timeScale == 0f || !currentPlayer.canMove)
+                return;
+            
             OnHold();
             
             bool attackPressed = inp.actions["Secondary Attack"].triggered;
@@ -137,7 +150,7 @@ public class Item : MonoBehaviour
         if (disableJump)
             currentPlayer.canJump = false;
         if (disableShove)
-            currentPlayer.GetComponent<Shove>().canShove = false;
+            currentPlayer.GetComponent<Shove>().blockedByHeldItem = true;
         
         currentPlayer.itemMovementMultiplier = walkSpeedModifier;
         currentPlayer.itemJumpMultiplier = jumpStrengthModifier;
@@ -168,7 +181,7 @@ public class Item : MonoBehaviour
     /// <param name="playerEquipping">The player equipping this item</param>
     public void EquipItem(PlayerController playerEquipping)
     {
-        if (playerEquipping == null)
+        if (playerEquipping == null || isEquipped || currentPlayer != null)
             return;
 
         currentPlayer = playerEquipping;
@@ -227,7 +240,7 @@ public class Item : MonoBehaviour
         if (disableJump)
             currentPlayer.canJump = true;
         if (disableShove)
-            currentPlayer.GetComponent<Shove>().canShove = true;
+            currentPlayer.GetComponent<Shove>().blockedByHeldItem = false;
         
         currentPlayer.itemMovementMultiplier = 0;
         currentPlayer.itemJumpMultiplier = 0;
@@ -251,7 +264,7 @@ public class Item : MonoBehaviour
         if (disableJump)
             currentPlayer.canJump = true;
         if (disableShove)
-            currentPlayer.GetComponent<Shove>().canShove = true;
+            currentPlayer.GetComponent<Shove>().blockedByHeldItem = false;
         
         currentPlayer.itemMovementMultiplier = 0;
         currentPlayer.itemJumpMultiplier = 0;

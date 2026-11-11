@@ -18,7 +18,8 @@ public class Shove : MonoBehaviour
     
     private Rigidbody rb;
     
-    public bool canShove;
+    private bool canShove;
+    public bool blockedByHeldItem;
 
     private PlayerInput inp;
     
@@ -67,7 +68,7 @@ public class Shove : MonoBehaviour
 
         if (shovePressed)
         {
-            if (!canShove || !playerController.canMove)
+            if (!canShove || blockedByHeldItem || !playerController.canMove)
                 return;
                 
             transform.parent.GetComponentInChildren<Animator>().Play("Attack", 1);
