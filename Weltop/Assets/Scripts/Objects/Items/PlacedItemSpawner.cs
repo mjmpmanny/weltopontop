@@ -6,11 +6,12 @@ public class PlacedItemSpawner : MonoBehaviour
     [SerializeField] private Item itemPrefab;
     [SerializeField] private Transform spawnPoint;
 
-    private bool hasSpawned;
+    private int lastSpawnedParkourRound = -1;
 
-    public void SpawnIfPlaced()
+    public void SpawnIfPlaced(int parkourRound)
     {
-        if (hasSpawned || !GetComponent<PlaceableObject>().IsPlaced)
+        if (lastSpawnedParkourRound == parkourRound ||
+            !GetComponent<PlaceableObject>().IsPlaced)
             return;
 
         if (itemPrefab == null || spawnPoint == null)
@@ -20,6 +21,6 @@ public class PlacedItemSpawner : MonoBehaviour
         }
 
         Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
-        hasSpawned = true;
+        lastSpawnedParkourRound = parkourRound;
     }
 }

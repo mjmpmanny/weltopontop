@@ -146,7 +146,7 @@ public class Game : MonoBehaviour
         foreach (PlacedItemSpawner spawner in
                  FindObjectsByType<PlacedItemSpawner>(FindObjectsSortMode.None))
         {
-            spawner.SpawnIfPlaced();
+            spawner.SpawnIfPlaced(currentParkourRound);
         }
 
         transitions.currentTransitionCoroutine = StartCoroutine(transitions.StartParkourRound());
@@ -162,10 +162,13 @@ public class Game : MonoBehaviour
             case RoundState.Parkour:
                 parkourRoundTimer = 0;
                 
-                ExecuteCodeOnAllPlayerControllers(controller =>
+                foreach (Item item in FindObjectsByType<Item>(FindObjectsSortMode.None))
                 {
-                    controller.GetComponent<PlayerItemInteraction>()?.DropHeldItem();
-                });
+                    if (item.currentPlayer != null)
+                        item.OnDrop();
+
+                    Destroy(item.gameObject);
+                }
 
                 // Check whether the final Parkour round has ended.
                 if (currentParkourRound >= GlobalParameters.TotalParkourRounds)
