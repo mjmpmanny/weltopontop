@@ -64,20 +64,31 @@ public class PlayerItemInteraction : MonoBehaviour
             heldItem = nearest;
     }
     
-    private void DropHeldItem()
+    public void DropHeldItem(bool discardIfNoGround = false)
     {
         Item item = heldItem;
         heldItem = null;
 
+        if (item == null || item.currentPlayer != player)
+            return;
+
         Vector3 dropPosition = transform.position + transform.forward * 1.25f;
 
-        if (Physics.Raycast(dropPosition + Vector3.up, Vector3.down,
-                out RaycastHit ground, 4f, 1 << 0, QueryTriggerInteraction.Ignore))
-        {
+        bool foundGround = Physics.Raycast(
+            dropPosition + Vector3.up, Vector3.down,
+            out RaycastHit ground, 4f, 1 << 0, QueryTriggerInteraction.Ignore);
+
+        if (foundGround)
             dropPosition.y = ground.point.y + 0.25f;
-        }
 
         item.OnDrop();
+
+        if (!foundGround && discardIfNoGround)
+        {
+            Destroy(item.gameObject);
+            return;
+        }
+
         item.transform.position = dropPosition;
     }
 }
