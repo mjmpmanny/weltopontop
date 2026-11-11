@@ -172,7 +172,12 @@ public class Item : MonoBehaviour
 
     private void UpdateHoldPosition()
     {
-        gameObject.transform.position = currentPlayer.holdItemPosition.position + itemHoldPositionOffset;
+        Transform aim = currentPlayer.GetComponent<Shove>().playerCam.transform;
+        Quaternion facing = Quaternion.Euler(0f, aim.eulerAngles.y, 0f);
+
+        transform.SetPositionAndRotation(
+            currentPlayer.holdItemPosition.position + facing * itemHoldPositionOffset,
+            facing);
     }
 
     /// <summary>
