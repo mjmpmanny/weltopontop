@@ -29,39 +29,53 @@ public class HillMover : MonoBehaviour
     private IEnumerator HillMovementTimer()
     {
         RemoveHill();
-        
+
         float delayedTimer = GlobalParameters.DelayBetweenMovingHillSeconds;
 
-        while (delayedTimer >= 0)
+        while (delayedTimer >= 0f)
         {
             if (game.currentRoundState != Game.RoundState.Parkour)
             {
                 RemoveHill();
                 yield break;
             }
-            
+
             delayedTimer -= Time.deltaTime;
             yield return null;
         }
-        
+
         SpawnHillRandom();
 
         float timer = GlobalParameters.HowLongTheHillStaysSeconds;
-        
-        while (timer >= 0)
+        ui.UpdateHillMoverTimer(timer);
+
+        // Show the hill during the opening countdown and hold its timer at 20.
+        while (!game.gameIsActive)
         {
             if (game.currentRoundState != Game.RoundState.Parkour)
             {
                 RemoveHill();
                 yield break;
             }
-            
+
+            yield return null;
+        }
+
+        // Count down once players can move.
+        while (timer > 0f)
+        {
+            if (!game.gameIsActive ||
+                game.currentRoundState != Game.RoundState.Parkour)
+            {
+                RemoveHill();
+                yield break;
+            }
+
             ui.UpdateHillMoverTimer(timer);
-            
             timer -= Time.deltaTime;
             yield return null;
         }
-        
+
         StartHillRoutine();
     }
 

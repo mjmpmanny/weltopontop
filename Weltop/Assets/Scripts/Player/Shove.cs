@@ -75,15 +75,9 @@ public class Shove : MonoBehaviour
             OperateShoveHands();
             
             GameObject playerToShove = FindPlayerToShove();
-            
-            if (playerToShove != null)
-            {
-                if(CanBeShoved(playerToShove))
-                {
-                    playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
-                    ExecuteShove(playerToShove);
-                }
-            }
+
+            if (ApplyShoveHit(playerToShove, playerCam.transform.forward))
+                playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
 
             StartCoroutine(ShoveCooldown());
         }
@@ -111,30 +105,37 @@ public class Shove : MonoBehaviour
         }
     }
 
-    private bool CanBeShoved(GameObject shoveTarget)
+    public static bool ApplyShoveHit(
+        GameObject target,
+        Vector3 direction,
+        float strengthMultiplier = 1f)
     {
-        PlayerStats targetStats = shoveTarget.GetComponent<PlayerStats>();
+        if (target == null || direction.sqrMagnitude < 0.0001f)
+            return false;
 
-        return !targetStats.isInvincible;
+        PlayerStats stats = target.GetComponentInParent<PlayerStats>();
+        if (stats == null || stats.isInvincible)
+            return false;
+
+        RagdollController ragdoll = stats.GetComponent<RagdollController>();
+        ViewSwitcher view = stats.GetComponent<ViewSwitcher>();
+        if (ragdoll == null || view == null || ragdoll.isRagdolled || ragdoll.isGetingUp)
+            return false;
+
+        Vector3 force = direction.normalized *
+                        (GlobalParameters.ShovePower * strengthMultiplier);
+
+        ragdoll.Ragdoll(stats.transform.position, force);
+        if (!ragdoll.isRagdolled)
+            return false;
+
+        view.ShakeCams(
+            GlobalParameters.ShoveCameraShakeDurationSeconds,
+            GlobalParameters.ShoveCameraShakeStrength);
+
+        return true;
     }
-
-    private void ExecuteShove(GameObject shoveTarget)
-    {
-        ViewSwitcher CameraShake = shoveTarget.GetComponent<ViewSwitcher>();
-
-        //StartCoroutine(ApplyShovePostProcessing(targetShoveCode));
-        //rigidBody.AddForce(playerCam.transform.forward * GlobalParameters.ShovePower);
-
-        shoveTarget.GetComponent<RagdollController>().Ragdoll(shoveTarget.transform.position, playerCam.transform.forward * GlobalParameters.ShovePower);
-
-        CameraShake.ShakeCams(GlobalParameters.ShoveCameraShakeDurationSeconds, GlobalParameters.ShoveCameraShakeStrength);
-
-        //StartCoroutine(RecoverFromShove(shoveTarget.GetComponent<PlayerController>()));
-    }
-
     
-    
-
     private IEnumerator RecoverFromShove(PlayerController shoveTarget)
     {
         Shove targetShove = shoveTarget.gameObject.GetComponent<Shove>();

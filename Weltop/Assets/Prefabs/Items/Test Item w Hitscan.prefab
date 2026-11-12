@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3221806852177534572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2913825613210982452}
+  m_Layer: 0
+  m_Name: HitscanMuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2913825613210982452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221806852177534572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.28, z: 0.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2742172830826458794}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7082817062611548972
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +64,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3179618216330943632}
+  - {fileID: 2913825613210982452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &943336417757412844
@@ -104,18 +136,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2504565666b6b945acd7a6da25ec273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestItemHitscan
-  useAmount: -1
+  useAmount: 3
   secondsBetweenUse: 1
   walkSpeedModifier: 0
   jumpStrengthModifier: 0
   itemHoldPositionOffset: {x: 0, y: 0, z: 0}
   disableJump: 0
-  disableShove: 0
+  disableShove: 1
   shootsProjectile: 0
   shootsHitscan: 1
   projectile: {fileID: 0}
   isEquipped: 0
   currentPlayer: {fileID: 0}
+  hitscanBeamPrefab: {fileID: 7651930043003461683, guid: 8534b422d31ef9d47b38d577cb137fd0, type: 3}
+  hitscanMuzzle: {fileID: 2913825613210982452}
 --- !u!1 &7450266662509100233
 GameObject:
   m_ObjectHideFlags: 0

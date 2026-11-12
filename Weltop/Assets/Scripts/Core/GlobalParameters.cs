@@ -5,7 +5,7 @@ public static class GlobalParameters
 {
     //Game Settings
     public static bool CanPlayerLookDuringRoundStartCountdown = false;
-    public static float HowLongTheHillStaysSeconds = 3;
+    public static float HowLongTheHillStaysSeconds = 20;
     public static float DelayBetweenMovingHillSeconds = 1;
     
     //Player Stats

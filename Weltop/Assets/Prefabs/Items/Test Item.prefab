@@ -116,6 +116,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   isEquipped: 0
   currentPlayer: {fileID: 0}
+  swingVisual: {fileID: 1189453602466518608}
 --- !u!1001 &3616294711907743933
 PrefabInstance:
   m_ObjectHideFlags: 0
