@@ -52,16 +52,16 @@ public class BuildModeController : MonoBehaviour, ICamera
         input.actions["Place"].started += _place;
         input.actions["Rotate"].started += _rotate;
         input.actions["Move"].started += _firstMove;
-        input.actions["Jump"].started += _firstMove;
-        input.actions["Crouch"].started += _firstMove;
+        input.actions["BuildUp"].performed += _firstMove;
+        input.actions["BuildDown"].performed += _firstMove;
     }
     private void OnDestroy()
     {
         input.actions["Place"].started -= _place;
         input.actions["Rotate"].started -= _rotate;
         input.actions["Move"].started -= _firstMove;
-        input.actions["Jump"].started -= _firstMove;
-        input.actions["Crouch"].started -= _firstMove;
+        input.actions["BuildUp"].performed -= _firstMove;
+        input.actions["BuildDown"].performed -= _firstMove;
 
     }
 
@@ -139,7 +139,7 @@ public class BuildModeController : MonoBehaviour, ICamera
         if (active)
         {
             Vector2 moveinput = input.actions["Move"].ReadValue<Vector2>();
-            int vert = (input.actions["Jump"].IsPressed() ? 1 : 0) + (input.actions["Crouch"].IsPressed() ? -1 : 0);
+            int vert = (input.actions["BuildUp"].IsPressed() ? 1 : 0) - (input.actions["BuildDown"].IsPressed() ? 1 : 0);
 
             if (moveinput != Vector2.zero || vert != 0)
             {
@@ -194,7 +194,7 @@ public class BuildModeController : MonoBehaviour, ICamera
     Vector3 MovementVector(PlayerInput inp,Vector3 speed)
     {
         Vector2 moveinput = (inp.actions["Move"].ReadValue<Vector2>()).normalized;
-        int vert = (inp.actions["Jump"].IsPressed() ? 1 : 0) + (inp.actions["Crouch"].IsPressed() ? -1 : 0);
+        int vert = (inp.actions["BuildUp"].IsPressed() ? 1 : 0) - (inp.actions["BuildDown"].IsPressed() ? 1 : 0);
         float GridSize = GlobalParameters.GridSize;
 
         return (transform.forward.ProjectOntoPlane(Vector3.up).normalized * moveinput.y * GridSize * speed.x + transform.right.ProjectOntoPlane(Vector3.up).normalized * moveinput.x * GridSize * speed.z + Vector3.up * vert * GridSize * speed.y);

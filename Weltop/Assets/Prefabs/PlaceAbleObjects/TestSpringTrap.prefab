@@ -155,7 +155,7 @@ MonoBehaviour:
   secondsBetweenStates: 2
   currentState: 0
   cooldownSeconds: 0
-  movingObject: 1
+  movingObject: 0
   movingObjectDestinationPoint: {fileID: 6799101902463165134}
   animatingObject: 0
   animator: {fileID: 0}
@@ -404,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableObject
   incorrectMat: {fileID: 2100000, guid: d2c06e657fe07e44b8e17cbdb2260ef5, type: 2}
   followGrid: 1
+  DeleteBoxColliderOnPlace: 0
 --- !u!1 &3821924969320873421
 GameObject:
   m_ObjectHideFlags: 0

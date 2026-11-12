@@ -4,6 +4,7 @@ public class TestItemHitscan : Item
 {
     public override void OnHitOpponentHitscan(GameObject playerHit)
     {
-        Debug.Log($"Hit Player {playerHit.name}");
+        Shove.ApplyShoveHit(
+            playerHit, currentPlayer.GetComponent<Shove>().playerCam.transform.forward, 2f);
     }
 }

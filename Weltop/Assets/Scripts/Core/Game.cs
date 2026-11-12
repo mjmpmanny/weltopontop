@@ -22,6 +22,7 @@ public class Game : MonoBehaviour
     
     private SpawnpointManager spawnpointManager;
     private Transitions transitions;
+    private HillMover hillMover;
     private UI ui;
     
     public bool currentlyInTransition = false;
@@ -47,6 +48,7 @@ public class Game : MonoBehaviour
         ui = GetComponent<UI>();
         transitions = GetComponent<Transitions>();
         spawnpointManager = GetComponent<SpawnpointManager>();
+        hillMover = GetComponent<HillMover>();
     }
 
     private IEnumerator Start()
@@ -81,6 +83,19 @@ public class Game : MonoBehaviour
             PlayerController playerController = player.GetComponent<PlayerController>();
             
             action(playerController);
+        }
+    }
+    
+    public void ExecuteCodeOnAllPlayerStats(Action<PlayerStats> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+                
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            
+            action(playerStats);
         }
     }
     
@@ -132,6 +147,9 @@ public class Game : MonoBehaviour
     {
         ui.ToParkourRoundUI();
         parkourRoundTimer = GlobalParameters.ParkourRoundTimeSeconds;
+        
+        if(hillMover != null)
+            hillMover.StartHillRoutine();
 
         spawnpointManager.ResetSpawnAssignments();
 
