@@ -38,13 +38,12 @@ public class ViewSwitcher : MonoBehaviour
     private ICamera cam;
     public Cam3rdPerson RagdollCam;
     private ICamera CurCam;
-    public Action OnBuildMode;
-    public Action OnRagdoll;
-    public Action OnParkor;
+    public event Action OnBuildMode;
+    public event Action OnRagdoll;
+    public event Action OnParkor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-
         cam = transform.parent.GetComponentInChildren<ICamera>();
         BuildMode = transform.parent.GetComponentInChildren<BuildModeController>();
         camBrain = transform.parent.GetComponentInChildren<CamBrain>();

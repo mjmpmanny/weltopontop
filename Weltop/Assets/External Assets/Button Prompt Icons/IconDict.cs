@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "IconDict", menuName = "Scriptable Objects/IconDict")]
 public class IconDict : ScriptableObject
@@ -29,7 +30,9 @@ public class IconDict : ScriptableObject
 
     public Texture2D GetIcon(InputAction action)
     {
-        return Icons[GetBinding(action).path.Split('/',2)[1]];
+        Texture2D tex = Icons[GetBinding(action).path.Split('/', 2)[1]];
+        if (tex == null) { Debug.LogError("Cant find " + GetBinding(action).path.Split('/', 2)[1] + " in " + this.name); }
+        return tex;
     }
 
 

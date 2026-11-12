@@ -7,6 +7,6 @@ public class LegendElement : MonoBehaviour
     public void SetElement(Texture2D tex, string name)
     {
         GetComponentInChildren<RawImage>().texture = tex;
-        GetComponentInChildren<TextMeshPro>().text = name;
+        GetComponentInChildren<TextMeshProUGUI>().text = name;
     }
 }
