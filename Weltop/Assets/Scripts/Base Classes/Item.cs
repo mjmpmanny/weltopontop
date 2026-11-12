@@ -52,6 +52,11 @@ public class Item : MonoBehaviour
     private bool canUseItem = true;
     
     private Game game;
+    
+    [Header("Hitscan Visuals")]
+    [SerializeField] private LineRenderer hitscanBeamPrefab;
+    [SerializeField] private Transform hitscanMuzzle;
+    [SerializeField, Min(0f)] private float hitscanAimAssistRadius = 0.20f;
 
     private void Start()
     {
@@ -118,10 +123,7 @@ public class Item : MonoBehaviour
     {
         if (shootsHitscan)
         {
-            GameObject target = FindPlayerToTarget(999);
-            
-            if(target != null)
-                OnHitOpponentHitscan(target);
+            FireHitscan();
         }
         else
         {
@@ -143,6 +145,111 @@ public class Item : MonoBehaviour
         {
             return null;
         }
+    }
+    
+    private void FireHitscan()
+    {
+        const float range = 999f;
+
+        Shove shove = currentPlayer.GetComponent<Shove>();
+        Transform aim = shove.playerCam.transform;
+
+        // Include the player layers and solid geometry on Default.
+        int hitMask = shove.layerMask.value | (1 << 0);
+        RaycastHit[] hits = Physics.RaycastAll(
+            aim.position, aim.forward, range, hitMask, QueryTriggerInteraction.Ignore);
+
+        PlayerStats shooter = currentPlayer.GetComponent<PlayerStats>();
+        PlayerStats target = null;
+        float nearestDistance = range;
+        Vector3 endPoint = aim.position + aim.forward * range;
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.distance >= nearestDistance ||
+                hit.collider.transform.IsChildOf(transform))
+                continue;
+
+            PlayerStats hitPlayer = hit.collider.GetComponentInParent<PlayerStats>();
+            
+            if (hitPlayer != null && hitPlayer == shooter)
+                continue;
+
+            nearestDistance = hit.distance;
+            endPoint = hit.point;
+            target = hitPlayer;
+        }
+        
+        if (target == null && hitscanAimAssistRadius > 0f && IsUsingGamepad())
+        {
+            target = FindAssistedHitscanTarget(
+                aim, shove.layerMask.value, shooter, nearestDistance, ref endPoint);
+        }
+
+        if (hitscanBeamPrefab != null)
+        {
+            LineRenderer beam = Instantiate(hitscanBeamPrefab);
+            beam.useWorldSpace = true;
+            beam.widthMultiplier = 0.03f;
+            beam.positionCount = 2;
+            beam.SetPosition(0, hitscanMuzzle != null ? hitscanMuzzle.position : transform.position);
+            beam.SetPosition(1, endPoint);
+            Destroy(beam.gameObject, 0.08f);
+        }
+
+        if (target != null)
+            OnHitOpponentHitscan(target.gameObject);
+    }
+    
+    private bool IsUsingGamepad()
+    {
+        foreach (InputDevice device in inp.devices)
+        {
+            if (device is Gamepad)
+                return true;
+        }
+
+        return false;
+    }
+
+    private PlayerStats FindAssistedHitscanTarget(
+        Transform aim,
+        int playerMask,
+        PlayerStats shooter,
+        float maxDistance,
+        ref Vector3 endPoint)
+    {
+        RaycastHit[] nearbyHits = Physics.SphereCastAll(
+            aim.position,
+            hitscanAimAssistRadius,
+            aim.forward,
+            maxDistance,
+            playerMask,
+            QueryTriggerInteraction.Ignore);
+
+        PlayerStats nearestPlayer = null;
+        float nearestDistance = maxDistance;
+
+        foreach (RaycastHit hit in nearbyHits)
+        {
+            if (hit.distance <= 0f || hit.distance >= nearestDistance)
+                continue;
+
+            PlayerStats candidate = hit.collider.GetComponentInParent<PlayerStats>();
+            if (candidate == null || candidate == shooter)
+                continue;
+
+            // Check the angled path to the assisted hit for arena walls.
+            if (Physics.Linecast(
+                    aim.position, hit.point, 1 << 0, QueryTriggerInteraction.Ignore))
+                continue;
+
+            nearestPlayer = candidate;
+            nearestDistance = hit.distance;
+            endPoint = hit.point;
+        }
+
+        return nearestPlayer;
     }
 
     private void AdjustPlayerStats()
