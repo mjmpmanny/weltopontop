@@ -78,7 +78,7 @@ public class PlayerObjectEffects : MonoBehaviour
 
         if (definition.causesRagdoll)
         {
-            //THIS DOESN'T WORK!!! Please fix
+            //THIS DOESN'T WORK REALLY!!! Please fix
             ragdollController.Ragdoll(targetBody.transform.position, definition.LocalImpulse * definition.Multiplier);
         }
         else

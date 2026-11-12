@@ -10,7 +10,7 @@ public class Cam3rdPerson : MonoBehaviour , ICamera
     public ViewSwitcher ViewSwitcher;
     public Transform follow;
     public CinemachineCamera cam;
-
+    public Quaternion rotation;
     private void Start()
     {
         input = ViewSwitcher.GetPlayerInput();
@@ -21,12 +21,12 @@ public class Cam3rdPerson : MonoBehaviour , ICamera
 
         pitch = Mathf.Clamp(pitch - lookinput.y * Camspeed, -80f, 80f);
 
-        transform.rotation = Quaternion.Euler(
+        rotation = Quaternion.Euler(
             pitch,
-            transform.rotation.eulerAngles.y + lookinput.x * Camspeed,
+            rotation.eulerAngles.y + lookinput.x * Camspeed,
             0
         );
-
+        transform.rotation = rotation;
     }
     private void FixedUpdate()
     {
@@ -34,8 +34,8 @@ public class Cam3rdPerson : MonoBehaviour , ICamera
     }
     public void SwitchTo()
     {
-        pitch = 45;
         cam.Priority = 10;
+        pitch = 45;
     }
     public void SwitchFrom()
     {
@@ -44,5 +44,11 @@ public class Cam3rdPerson : MonoBehaviour , ICamera
     public void SetSensitivity(float _Sensitivity)
     {
         Camspeed = _Sensitivity;
+    }
+
+    public void RotateTo(Quaternion rot)
+    {
+        rotation = rot;
+        pitch = 45;
     }
 }

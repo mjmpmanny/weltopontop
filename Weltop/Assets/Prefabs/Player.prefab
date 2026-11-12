@@ -124,6 +124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3936026998370658910}
+  - {fileID: 2090427247027326700}
   - {fileID: 805445073311843396}
   m_Father: {fileID: 8440488456426195551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -317,6 +318,7 @@ MonoBehaviour:
   ViewSwitcher: {fileID: 6932687401081731943}
   follow: {fileID: 4297328617775628493}
   cam: {fileID: 4761964318628333518}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2832645989831487543
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,6 +829,7 @@ GameObject:
   - component: {fileID: 6932687401081731943}
   - component: {fileID: 3373532751297725736}
   - component: {fileID: 6749751772715467851}
+  - component: {fileID: 6254660067860083020}
   m_Layer: 3
   m_Name: Main
   m_TagString: Player
@@ -915,12 +918,16 @@ MonoBehaviour:
   accel: 2
   momentumDampening: 10
   canMove: 0
+  canJump: 0
   CoyoteJumpTime: 0.1
   JumpStrength: 8
   LandingCooldown: 0.5
   AirAccel: 0.6
   MaxAirSpeed: 5
   AirDampening: 2
+  holdItemPosition: {fileID: 2090427247027326700}
+  itemMovementMultiplier: 0
+  itemJumpMultiplier: 0
 --- !u!114 &7372187572972943668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +945,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 960
+  canShove: 0
   playerAudio: {fileID: 3868262790746722679}
   playerVolume: {fileID: 5528933355535322180}
 --- !u!114 &4146621491053113759
@@ -1038,6 +1046,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a3109452ddb254d9b94cae3a4a0487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectEffects
+--- !u!114 &6254660067860083020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890897575066495324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b8f531538e7a1419b220af67a96f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteraction
+  pickupRange: 2.5
 --- !u!1 &6001969543886878094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,6 +1334,37 @@ Transform:
   - {fileID: 7264210479528546881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6677586030622766857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2090427247027326700}
+  m_Layer: 0
+  m_Name: Item Hold Position
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2090427247027326700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677586030622766857}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.457, y: -0.533, z: 0.391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5031838942069293886}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6778065779384225460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1565,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 24
+  BlendHint: 16
 --- !u!114 &2783763439452848621
 MonoBehaviour:
   m_ObjectHideFlags: 0

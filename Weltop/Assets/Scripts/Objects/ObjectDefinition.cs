@@ -16,11 +16,13 @@ public class ObjectDefinition : ScriptableObject
     [SerializeField] private string displayName;
     [SerializeField] private ObjectCategory category;
     [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject previewPrefab;
     [SerializeField] private ObjectEffectDefinition[] effects =
         new ObjectEffectDefinition[0];
 
     public string DisplayName => displayName;
     public ObjectCategory Category => category;
     public GameObject Prefab => prefab;
+    public GameObject PreviewPrefab => previewPrefab != null ? previewPrefab : prefab;
     public IReadOnlyList<ObjectEffectDefinition> Effects => effects;
 }

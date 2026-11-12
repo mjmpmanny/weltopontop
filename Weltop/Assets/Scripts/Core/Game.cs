@@ -22,6 +22,7 @@ public class Game : MonoBehaviour
     
     private SpawnpointManager spawnpointManager;
     private Transitions transitions;
+    private HillMover hillMover;
     private UI ui;
     
     public bool currentlyInTransition = false;
@@ -47,6 +48,7 @@ public class Game : MonoBehaviour
         ui = GetComponent<UI>();
         transitions = GetComponent<Transitions>();
         spawnpointManager = GetComponent<SpawnpointManager>();
+        hillMover = GetComponent<HillMover>();
     }
 
     private IEnumerator Start()
@@ -81,6 +83,19 @@ public class Game : MonoBehaviour
             PlayerController playerController = player.GetComponent<PlayerController>();
             
             action(playerController);
+        }
+    }
+    
+    public void ExecuteCodeOnAllPlayerStats(Action<PlayerStats> action)
+    {
+        foreach (GameObject player in GetActivePlayers())
+        {
+            if (player == null)
+                return;
+                
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            
+            action(playerStats);
         }
     }
     
@@ -132,6 +147,9 @@ public class Game : MonoBehaviour
     {
         ui.ToParkourRoundUI();
         parkourRoundTimer = GlobalParameters.ParkourRoundTimeSeconds;
+        
+        if(hillMover != null)
+            hillMover.StartHillRoutine();
 
         spawnpointManager.ResetSpawnAssignments();
 
@@ -141,6 +159,12 @@ public class Game : MonoBehaviour
 
             viewSwitcher.SwitchToPlayer();
             spawnpointManager.SendToSpawnpointsRandom(player);
+        }
+        
+        foreach (PlacedItemSpawner spawner in
+                 FindObjectsByType<PlacedItemSpawner>(FindObjectsSortMode.None))
+        {
+            spawner.SpawnIfPlaced(currentParkourRound);
         }
 
         transitions.currentTransitionCoroutine = StartCoroutine(transitions.StartParkourRound());
@@ -155,6 +179,14 @@ public class Game : MonoBehaviour
         {
             case RoundState.Parkour:
                 parkourRoundTimer = 0;
+                
+                foreach (Item item in FindObjectsByType<Item>(FindObjectsSortMode.None))
+                {
+                    if (item.currentPlayer != null)
+                        item.OnDrop();
+
+                    Destroy(item.gameObject);
+                }
 
                 // Check whether the final Parkour round has ended.
                 if (currentParkourRound >= GlobalParameters.TotalParkourRounds)

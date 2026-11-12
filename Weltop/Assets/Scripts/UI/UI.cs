@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     [SerializeField] private TMP_Text[] playerScoreTexts = new TMP_Text[4];
 
     public TMP_Text parkourRoundTimerText;
+    public TMP_Text hillMoverTimerText;
     public TMP_Text buildRoundTimerText;
     public TMP_Text buildRoundObjectsPlacedText;
     [SerializeField] private TMP_Text objectSelectionTimerText;
@@ -81,6 +82,16 @@ public class UI : MonoBehaviour
         
         transitions.countdownText.text = wholeSeconds.ToString("N0");
     }
+
+    public void HillMovingText()
+    {
+        hillMoverTimerText.text = "The Hill is moving...";
+    }
+    
+    public void UpdateHillMoverTimer(float currentTime)
+    {
+        hillMoverTimerText.text = $"The Hill will move in: {currentTime.ToString("N0")} seconds";
+    }
     
     public void UpdateBuildRoundTimer(float currentTime)
     {
@@ -108,7 +119,7 @@ public class UI : MonoBehaviour
         {
             UpdateHillPoints(player);
         }
-
+        
         parkourRoundPanel.SetActive(true);
         buildRoundPanel.SetActive(false);
 
