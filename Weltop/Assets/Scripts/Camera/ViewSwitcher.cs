@@ -64,6 +64,7 @@ public class ViewSwitcher : MonoBehaviour
 
     public void SwitchToBuild(GameObject obj, Vector3 startPos)
     {
+        OnBuildMode.Invoke();
         state = camState.Build;
         SwitchFromLastCam();
     
@@ -75,6 +76,7 @@ public class ViewSwitcher : MonoBehaviour
     }
     public void SwitchToPlayer()
     {
+        OnParkor.Invoke();
         state = camState.Parkour;
         SwitchFromLastCam();
         playerController.canMove = true;
@@ -87,6 +89,7 @@ public class ViewSwitcher : MonoBehaviour
 
     public bool SwitchToRagdoll()
     {
+        OnRagdoll.Invoke();
         if (state != camState.Build) {
             state = camState.Ragdoll;
             SwitchFromLastCam();

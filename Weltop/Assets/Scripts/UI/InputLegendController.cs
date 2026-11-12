@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.XInput;
 
 public class InputLegendController : MonoBehaviour
 {
-    
+    public ViewSwitcher viewSwitcher;
     public GameObject element;
     public IconDict XboxDict;
     public IconDict PlaystationDict;
@@ -15,6 +15,9 @@ public class InputLegendController : MonoBehaviour
     private float height;
     private int MaxElements;
     private GameObject[] elementList;
+    private Action onBuildMode;
+    private Action onParkorMode;
+    private Action onRagdollMode;
     void Start()
     {
         height = ((RectTransform)element.transform).rect.height;
