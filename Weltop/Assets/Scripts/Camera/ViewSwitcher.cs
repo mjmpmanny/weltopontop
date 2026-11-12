@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -21,6 +22,7 @@ public class ViewSwitcher : MonoBehaviour
     [Header("PostProccesing Volumes")]
     public Volume[] PostProccesingVolumes;
 
+
     public GameObject TestObjectToHoldOnTo; // test only
 
 
@@ -36,6 +38,9 @@ public class ViewSwitcher : MonoBehaviour
     private ICamera cam;
     public Cam3rdPerson RagdollCam;
     private ICamera CurCam;
+    public Action OnBuildMode;
+    public Action OnRagdoll;
+    public Action OnParkor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
