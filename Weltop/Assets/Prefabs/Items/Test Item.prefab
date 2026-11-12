@@ -110,7 +110,7 @@ MonoBehaviour:
   jumpStrengthModifier: 0
   itemHoldPositionOffset: {x: 0, y: 0, z: 0}
   disableJump: 0
-  disableShove: 0
+  disableShove: 1
   shootsProjectile: 0
   shootsHitscan: 0
   projectile: {fileID: 0}
