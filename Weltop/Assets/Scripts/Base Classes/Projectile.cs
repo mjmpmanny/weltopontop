@@ -17,6 +17,9 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody rb;
 
+    private bool hitWall = false;
+    private bool hitOpponent = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,12 +41,19 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.gameObject != playerOwner)
+            if (other.gameObject != playerOwner && !hitOpponent)
             {
                 OnHitOpponent(other.gameObject);
+                hitOpponent = true;
                 if(destroyOnHit)
                     Destroy(gameObject);
             }
+        }
+        
+        if (!other.gameObject.CompareTag("Player") && !hitWall)
+        {
+            OnHitWall(other.gameObject);
+            hitWall = true;
         }
     }
 
@@ -62,6 +72,23 @@ public class Projectile : MonoBehaviour
     public virtual void OnHitOpponent(GameObject playerTarget)
     {
         
+    }
+    
+    /// <summary>
+    /// Called once when this projectile hits a collider
+    /// </summary>
+    /// <param name="wallHit">The object that this projectile hit</param>
+    public virtual void OnHitWall(GameObject wallHit)
+    {
+        
+    }
+
+    /// <summary>
+    /// Helper method to destroy projectile.
+    /// </summary>
+    public virtual void KillSelf()
+    {
+        Destroy(gameObject);
     }
 
     /// <summary>
