@@ -11,6 +11,16 @@ public class PlayerItemInteraction : MonoBehaviour
     private PlayerStats stats;
     private InputAction interact;
     private Item heldItem;
+    public bool IsHoldingItem => heldItem != null && heldItem.isEquipped && heldItem.currentPlayer == player;
+    
+    private int lastItemAttackFrame = -1;
+
+    public bool UsedItemThisFrame => lastItemAttackFrame == Time.frameCount;
+
+    public void MarkItemAttackUsed()
+    {
+        lastItemAttackFrame = Time.frameCount;
+    }
 
     private void Start()
     {

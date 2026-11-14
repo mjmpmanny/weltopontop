@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -22,6 +23,7 @@ public class ViewSwitcher : MonoBehaviour
     [Header("PostProccesing Volumes")]
     public Volume[] PostProccesingVolumes;
 
+
     public GameObject TestObjectToHoldOnTo; // test only
 
 
@@ -37,10 +39,12 @@ public class ViewSwitcher : MonoBehaviour
     private ICamera cam;
     public Cam3rdPerson RagdollCam;
     private ICamera CurCam;
+    public event Action OnBuildMode;
+    public event Action OnRagdoll;
+    public event Action OnParkour;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-
         cam = transform.parent.GetComponentInChildren<ICamera>();
         BuildMode = transform.parent.GetComponentInChildren<BuildModeController>();
         camBrain = transform.parent.GetComponentInChildren<CamBrain>();
@@ -60,6 +64,7 @@ public class ViewSwitcher : MonoBehaviour
 
     public void SwitchToBuild(GameObject obj, Vector3 startPos)
     {
+        OnBuildMode?.Invoke();
         state = camState.Build;
         SwitchFromLastCam();
     
@@ -72,6 +77,7 @@ public class ViewSwitcher : MonoBehaviour
     }
     public void SwitchToPlayer()
     {
+        OnParkour?.Invoke();
         state = camState.Parkour;
         SwitchFromLastCam();
         playerController.canMove = true;
@@ -84,6 +90,7 @@ public class ViewSwitcher : MonoBehaviour
 
     public bool SwitchToRagdoll()
     {
+        OnRagdoll?.Invoke();
         if (state != camState.Build) {
             state = camState.Ragdoll;
             SwitchFromLastCam();
