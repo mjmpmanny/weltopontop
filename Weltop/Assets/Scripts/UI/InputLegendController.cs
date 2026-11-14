@@ -18,7 +18,7 @@ public class InputLegendController : MonoBehaviour
     private int MaxElements;
     private GameObject[] elementList;
     private Action onBuildMode;
-    private Action onParkorMode;
+    private Action onParkourMode;
     private Action onRagdollMode;
     private PlayerInput input;
     void Start()
@@ -27,8 +27,8 @@ public class InputLegendController : MonoBehaviour
         SetDict(input);
         viewSwitcher.OnBuildMode += ShowLegend;
         viewSwitcher.OnBuildMode += BuildMode;
-        viewSwitcher.OnParkor += ShowLegend;
-        viewSwitcher.OnParkor += ParkorMode;
+        viewSwitcher.OnParkour += ShowLegend;
+        viewSwitcher.OnParkour += ParkourMode;
         viewSwitcher.OnRagdoll += HideLegend;
         height = ((RectTransform)element.transform).rect.height;
         MaxElements = (int)Mathf.Floor(((RectTransform)transform).rect.height/height);
@@ -40,12 +40,15 @@ public class InputLegendController : MonoBehaviour
 
         viewSwitcher.OnBuildMode -= ShowLegend;
         viewSwitcher.OnBuildMode -= BuildMode;
-        viewSwitcher.OnParkor -= ShowLegend;
-        viewSwitcher.OnParkor -= ParkorMode;
+        viewSwitcher.OnParkour -= ShowLegend;
+        viewSwitcher.OnParkour -= ParkourMode;
         viewSwitcher.OnRagdoll -= HideLegend;
     }
     public void SetDict(PlayerInput inp)
     {
+        if (inp == null || inp.devices.Count == 0)
+            return;
+        
         if (inp.devices[0] is XInputController)
         {
             curDict = XboxDict;
@@ -122,15 +125,16 @@ public class InputLegendController : MonoBehaviour
         CreateElement(input.actions["Place"]);
         CreateElement(input.actions["Rotate"]);
         CreateElement(input.actions["Move"]);
-        CreateElement(input.actions["Jump"],"Move Up");
-        CreateElement(input.actions["Crouch"],"Move Down");
+        CreateElement(input.actions["BuildUp"],"Move Up");
+        CreateElement(input.actions["BuildDown"],"Move Down");
     }
-    public void ParkorMode()
+    public void ParkourMode()
     {
         ResetElements();
         CreateElement(input.actions["Move"]);
         CreateElement(input.actions["Jump"]);
-        CreateElement(input.actions["Attack"]);
+        CreateElement(input.actions["Attack"], "Shove / Use Item");
+        CreateElement(input.actions["Interact"], "Pick Up / Drop");
     }
 
 }

@@ -41,7 +41,7 @@ public class ViewSwitcher : MonoBehaviour
     private ICamera CurCam;
     public event Action OnBuildMode;
     public event Action OnRagdoll;
-    public event Action OnParkor;
+    public event Action OnParkour;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -64,7 +64,7 @@ public class ViewSwitcher : MonoBehaviour
 
     public void SwitchToBuild(GameObject obj, Vector3 startPos)
     {
-        OnBuildMode.Invoke();
+        OnBuildMode?.Invoke();
         state = camState.Build;
         SwitchFromLastCam();
     
@@ -77,7 +77,7 @@ public class ViewSwitcher : MonoBehaviour
     }
     public void SwitchToPlayer()
     {
-        OnParkor.Invoke();
+        OnParkour?.Invoke();
         state = camState.Parkour;
         SwitchFromLastCam();
         playerController.canMove = true;
@@ -90,7 +90,7 @@ public class ViewSwitcher : MonoBehaviour
 
     public bool SwitchToRagdoll()
     {
-        OnRagdoll.Invoke();
+        OnRagdoll?.Invoke();
         if (state != camState.Build) {
             state = camState.Ragdoll;
             SwitchFromLastCam();

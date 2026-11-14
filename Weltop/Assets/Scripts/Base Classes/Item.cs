@@ -83,12 +83,13 @@ public class Item : MonoBehaviour
             
             OnHold();
             
-            bool attackPressed = inp.actions["Secondary Attack"].triggered;
+            bool attackPressed = inp.actions["Attack"].triggered;
 
             if (attackPressed)
             {
                 if(canUseItem)
                 {
+                    currentPlayer.GetComponent<PlayerItemInteraction>()?.MarkItemAttackUsed();
                     OnUse();
                     
                     if (shootsProjectile || shootsHitscan)
