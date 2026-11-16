@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f270dd4e0fdc04db473fe27d244640, type: 3}
+  m_Name: PlayStationIconDict
+  m_EditorClassIdentifier: Assembly-CSharp::IconDict
+  Device: <Gamepad>
+  Icons:
+  - key: buttonEast
+    value: {fileID: 2800000, guid: 89ae12c231ba59a4b82b38a5b880f272, type: 3}
+  - key: buttonNorth
+    value: {fileID: 2800000, guid: 613a8dd41aa0af44e907e8f3503f7e96, type: 3}
+  - key: buttonSouth
+    value: {fileID: 2800000, guid: 408f0387544d50f4d96079e570e38d7b, type: 3}
+  - key: buttonWest
+    value: {fileID: 2800000, guid: 9c70a4bdc2842454ca618a9cff8b84fa, type: 3}
+  - key: dpad/down
+    value: {fileID: 2800000, guid: 1095df58b564d5a4cb3f1fb5ece82929, type: 3}
+  - key: dpad/left
+    value: {fileID: 2800000, guid: e68905dd3d599974bbf75653efda147a, type: 3}
+  - key: dpad/right
+    value: {fileID: 2800000, guid: e7cad9d63b200d5448cc4ad8f9641814, type: 3}
+  - key: dpad/up
+    value: {fileID: 2800000, guid: 8a1f25d645a1b944f815617c84cc5969, type: 3}
+  - key: leftShoulder
+    value: {fileID: 2800000, guid: 99cd399055559de40af3f4bb34f00942, type: 3}
+  - key: leftStick/down
+    value: {fileID: 2800000, guid: f3c0fa01250ee544ba474138b612174e, type: 3}
+  - key: rightShoulder
+    value: {fileID: 2800000, guid: 6c505b7bc5e64c24ca5eaa651377efc3, type: 3}
+  - key: leftStick/right
+    value: {fileID: 2800000, guid: e56af8f9974ba7a46a07db4b4e5dd3f8, type: 3}
+  - key: leftStick/left
+    value: {fileID: 2800000, guid: cfa8eb5e14150ff4c992430913a1a5bb, type: 3}
+  - key: leftStick/up
+    value: {fileID: 2800000, guid: 0a9e347aac12f1145a6b9e99c3e4fc5c, type: 3}
+  - key: leftStickPress
+    value: {fileID: 2800000, guid: cf47b5b42ca0750418005178eebf6553, type: 3}
+  - key: leftTrigger
+    value: {fileID: 2800000, guid: 6f50fd950ffbb0246bb50794f4c986ad, type: 3}
+  - key: rightTrigger
+    value: {fileID: 2800000, guid: b1aae01db45a664429df4fcb65cf3aa6, type: 3}
+  - key: rightStick/down
+    value: {fileID: 2800000, guid: 4e060a0901525534abf4537932fa2466, type: 3}
+  - key: rightStick/right
+    value: {fileID: 2800000, guid: ce0b22a2ddc87da4d917524f96c69459, type: 3}
+  - key: rightStick/left
+    value: {fileID: 2800000, guid: 7b8e5acd74e24cd45b04203fd65d5b10, type: 3}
+  - key: rightStick/up
+    value: {fileID: 2800000, guid: ce0b22a2ddc87da4d917524f96c69459, type: 3}
+  - key: rightStickPress
+    value: {fileID: 2800000, guid: 84b8c04d174a4684194f8f004afa1801, type: 3}
+  - key: select
+    value: {fileID: 2800000, guid: ef453a3231a6d584197fb317ccb14698, type: 3}
+  - key: start
+    value: {fileID: 2800000, guid: c879faf2ba8e1414bb0c3c9fbeb9407b, type: 3}
+  - key: touchpadButton
+    value: {fileID: 0}
+  - key: leftTriggerButton
+    value: {fileID: 2800000, guid: d03d926b2a7bfba449b4f510bc94f59a, type: 3}
+  - key: rightTriggerButton
+    value: {fileID: 2800000, guid: 82da5eb649f208c4f8a25700f56726c2, type: 3}
+  - key: leftStick
+    value: {fileID: 2800000, guid: 0ad145166257cf941bad4c3542064993, type: 3}
+  - key: rightStick
+    value: {fileID: 2800000, guid: a587147cee8261c449cee449596ca9f7, type: 3}
+  - key: dpad
+    value: {fileID: 2800000, guid: 1b1577b14864ca2439a63762d3159b80, type: 3}

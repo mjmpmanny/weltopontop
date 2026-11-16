@@ -25,6 +25,7 @@ public class Shove : MonoBehaviour
     
     private PlayerController playerController;
     public PlayerAudio playerAudio;
+    private PlayerItemInteraction itemInteraction;
 
     public Volume playerVolume;
     
@@ -32,6 +33,7 @@ public class Shove : MonoBehaviour
     {
         inp = GetComponent<PlayerInput>();
         playerController = GetComponent<PlayerController>();
+        itemInteraction = GetComponent<PlayerItemInteraction>();
     }
 
     private void Start()
@@ -68,7 +70,8 @@ public class Shove : MonoBehaviour
 
         if (shovePressed)
         {
-            if (!canShove || blockedByHeldItem || !playerController.canMove)
+            if (!canShove || blockedByHeldItem || !playerController.canMove || (itemInteraction != null &&
+                 (itemInteraction.IsHoldingItem || itemInteraction.UsedItemThisFrame)))
                 return;
                 
             transform.parent.GetComponentInChildren<Animator>().Play("Attack", 1);

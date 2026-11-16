@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f270dd4e0fdc04db473fe27d244640, type: 3}
+  m_Name: KeyBoardIconDict
+  m_EditorClassIdentifier: Assembly-CSharp::IconDict
+  Device: <Keyboard>
+  Icons:
+  - key: w
+    value: {fileID: 2800000, guid: 5c452f38398420846aed109b9c956513, type: 3}
+  - key: e
+    value: {fileID: 2800000, guid: 68964eb556f6ca944be3e9184d5475ea, type: 3}
+  - key: q
+    value: {fileID: 2800000, guid: 57cddcfeed158d549bc102db948cc245, type: 3}
+  - key: r
+    value: {fileID: 2800000, guid: 168c372f56700fb4e81806bb8949555c, type: 3}
+  - key: c
+    value: {fileID: 2800000, guid: ccb1d6b216eb1814288db82053c60d45, type: 3}
+  - key: enter
+    value: {fileID: 2800000, guid: 1530de646a905984f88627e0bdb58efa, type: 3}
+  - key: leftShift
+    value: {fileID: 2800000, guid: 8985a782d1208114cbb96b7e86a97fb7, type: 3}
+  - key: rightShift
+    value: {fileID: 2800000, guid: 8985a782d1208114cbb96b7e86a97fb7, type: 3}
+  - key: space
+    value: {fileID: 2800000, guid: e7cad73533f1016469ebd918b15a0c0d, type: 3}
+  - key: p
+    value: {fileID: 2800000, guid: 5e888df177594bc458ab9616d55843c7, type: 3}
