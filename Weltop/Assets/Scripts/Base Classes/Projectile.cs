@@ -52,6 +52,9 @@ public class Projectile : MonoBehaviour
         
         if (!other.gameObject.CompareTag("Player") && !hitWall)
         {
+            if (other.gameObject.CompareTag("HillZone") || other.gameObject.CompareTag("KillZone"))
+                return;
+            
             OnHitWall(other.gameObject);
             hitWall = true;
         }
@@ -92,7 +95,8 @@ public class Projectile : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper method to have a projectile apply knockback
+    /// <para>Helper method to have a projectile apply knockback</para>
+    /// <para>WARNING! Is not normalized by default</para>
     /// </summary>
     /// <param name="playerTarget">The player that will get knocked back</param>
     /// <param name="knockbackForce">The knockback strength</param>
