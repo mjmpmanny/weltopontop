@@ -10,12 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Weltop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Projectiles/Plunger.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/Projectiles/Plunger.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Base Classes/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Base Classes/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Objects/Items/Projectiles/Plunger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Objects/Items/Projectiles/Plunger.cs" afterDir="false" />
-    </list>
+    <list default="true" id="48f8f46f-2651-4b53-ae31-0e1297c7edce" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -259,7 +254,7 @@
       <workItem from="1793929269137" duration="2541000" />
       <workItem from="1793932591351" duration="33000" />
       <workItem from="1794620357083" duration="996000" />
-      <workItem from="1794868428319" duration="1242000" />
+      <workItem from="1794868428319" duration="1565000" />
     </task>
     <task id="LOCAL-00001" summary="Added dependencies: Cinemachine, TextMeshPro, DOTween">
       <option name="closed" value="true" />
@@ -469,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794621895558</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Made plunger fling opponent towards player">
+      <option name="closed" value="true" />
+      <created>1794869957958</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1794869957958</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +499,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Initial pass for shove mechanic; player has input, applies force within range to opponent, and causes physical rigidbody knockback." />
     <MESSAGE value="Added shove cooldown" />
     <MESSAGE value="Made character face the direction they are moving" />
     <MESSAGE value="Tied shove to Player layer" />
@@ -521,6 +523,7 @@
     <MESSAGE value="Created power up base class" />
     <MESSAGE value="Added moving hill" />
     <MESSAGE value="Added plunger gun and plunger projectile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added plunger gun and plunger projectile" />
+    <MESSAGE value="Made plunger fling opponent towards player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made plunger fling opponent towards player" />
   </component>
 </project>
