@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -8641856927553037600}
   - component: {fileID: 554973721464444548}
   m_Layer: 3
-  m_Name: ProjectileItemSpawner
+  m_Name: PlungerGunItemSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,5 +201,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41b7c55b18a4a44a8dfdcc4921898ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacedItemSpawner
-  itemPrefab: {fileID: 1736987874006084214, guid: c2ffc7580a592a143a95740b1394ca22, type: 3}
+  itemPrefab: {fileID: 4411438353841335493, guid: b001120cb89b53645a36193c5a1c215b, type: 3}
   spawnPoint: {fileID: 876711070993521276}
