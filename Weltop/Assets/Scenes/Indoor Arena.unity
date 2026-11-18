@@ -5347,6 +5347,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab20c7686583395479be7e214eb82b21, type: 2}
   - {fileID: 11400000, guid: 2301d810b672aa2448c67bc600caf66c, type: 2}
   - {fileID: 11400000, guid: 7a812ac9e997d404e9cf8adb49dcfefa, type: 2}
+  - {fileID: 11400000, guid: f46a30a4a0077f2418bb7be22194726c, type: 2}
   - {fileID: 11400000, guid: 474d408e32d0c284eb511492503b2912, type: 2}
   previewStage: {fileID: 798251799}
   previewFitSize: 1.25
