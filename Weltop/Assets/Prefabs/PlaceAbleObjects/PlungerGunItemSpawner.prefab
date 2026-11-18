@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -8641856927553037600}
   - component: {fileID: 554973721464444548}
   m_Layer: 3
-  m_Name: ProjectileItemSpawner
+  m_Name: PlungerGunItemSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
