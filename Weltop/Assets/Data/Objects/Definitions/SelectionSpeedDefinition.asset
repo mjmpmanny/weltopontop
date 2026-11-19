@@ -15,5 +15,7 @@ MonoBehaviour:
   displayName: Speed Boost
   category: 2
   prefab: {fileID: 8803797871038684533, guid: 9e08f55fd967f6f40a149d7aed704ce1, type: 3}
+  previewPrefab: {fileID: 0}
+  selectionWeight: 0
   effects:
   - {fileID: 11400000, guid: 226ab2a8cfe470b498eb3f27c1f3e70d, type: 2}

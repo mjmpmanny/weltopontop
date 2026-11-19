@@ -15,5 +15,7 @@ MonoBehaviour:
   displayName: Speed Cloud
   category: 1
   prefab: {fileID: 8803797871038684533, guid: f2944bbe53c9d844a9a29d9b24df3d6f, type: 3}
+  previewPrefab: {fileID: 0}
+  selectionWeight: 3
   effects:
   - {fileID: 11400000, guid: 660af972e8b67a34691bcc78bc8be090, type: 2}
