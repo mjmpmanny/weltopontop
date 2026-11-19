@@ -34,9 +34,9 @@ public class Transitions : MonoBehaviour
             camera.canLook = GlobalParameters.CanPlayerLookDuringRoundStartCountdown;
         });
         
+        game.gameIsActive = false;
         yield return new WaitForSeconds(0.5f);
         
-        game.gameIsActive = false;
         timerCountdownPanel.gameObject.SetActive(true);
         
         float timer = GlobalParameters.CountdownToGameSeconds;
@@ -93,7 +93,7 @@ public class Transitions : MonoBehaviour
     {
         timerCountdownPanel.gameObject.SetActive(true);
         
-        float timer = GlobalParameters.StartRoundCountDownAtXSeconds + 1;
+        float timer = GlobalParameters.StartRoundCountDownAtXSeconds;
 
         while (timer >= 0)
         {
@@ -105,8 +105,6 @@ public class Transitions : MonoBehaviour
         timerCountdownPanel.gameObject.SetActive(false);
         
         game.EndRound();
-        
-        audio.PlayMusic(Audio.MusicType.BuildRound);
         
         game.currentlyInTransition = false;
         currentTransitionCoroutine = null;

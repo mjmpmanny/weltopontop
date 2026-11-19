@@ -103,6 +103,7 @@ public class Audio : MonoBehaviour
         if (currentSource.clip == null)
         {
             currentSource.clip = parkourRound;
+            currentSource.volume = maximumVolume;
             currentSource.Play();
             return;
         }
@@ -139,20 +140,25 @@ public class Audio : MonoBehaviour
         incomingSource.volume = 0f;
         incomingSource.Play();
 
+        float outgoingVolume = currentSource.volume;
         float elapsedTimeInSeconds = 0f;
+
         while (elapsedTimeInSeconds < fadeDurationInSeconds)
         {
             elapsedTimeInSeconds += Time.deltaTime;
-            float percentTime = elapsedTimeInSeconds / fadeDurationInSeconds;
-            
-            currentSource.volume = maximumVolume * (1 - percentTime);
-            incomingSource.volume = maximumVolume * percentTime;
+            float percentTime = Mathf.Clamp01(
+                elapsedTimeInSeconds / fadeDurationInSeconds);
+
+            currentSource.volume = Mathf.Lerp(outgoingVolume, 0f, percentTime);
+            incomingSource.volume = Mathf.Lerp(0f, maximumVolume, percentTime);
 
             yield return null;
         }
-        
+
         currentSource.Stop();
-        currentSource.volume = maximumVolume;
+        currentSource.volume = 0f;
+        incomingSource.volume = maximumVolume;
+
         (currentSource, incomingSource) = (incomingSource, currentSource);
     }
 }
