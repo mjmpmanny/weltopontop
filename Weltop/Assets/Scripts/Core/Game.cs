@@ -250,7 +250,7 @@ public class Game : MonoBehaviour
                 parkourRoundTimer = Mathf.Max(0f, parkourRoundTimer - Time.deltaTime);
                 ui.UpdateParkourRoundTimer(parkourRoundTimer);
 
-                if (parkourRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds + 1)
+                if (parkourRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds)
                 {
                     if (!currentlyInTransition)
                     {
@@ -263,7 +263,7 @@ public class Game : MonoBehaviour
                 buildRoundTimer = Mathf.Max(0f, buildRoundTimer - Time.deltaTime);
                 ui.UpdateBuildRoundTimer(buildRoundTimer);
                 
-                if (buildRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds + 1)
+                if (buildRoundTimer <= GlobalParameters.StartRoundCountDownAtXSeconds)
                 {
                     if (!currentlyInTransition)
                     {
@@ -279,6 +279,7 @@ public class Game : MonoBehaviour
     {
         currentRoundState = RoundState.ObjectSelection;
         gameIsActive = false;
+        GetComponent<Audio>().PlayMusic(Audio.MusicType.BuildRound);
 
         ExecuteCodeOnAllPlayerControllers(controller => controller.canMove = false);
         ExecuteCodeOnAllPlayerCameras(camera => camera.canLook = false);

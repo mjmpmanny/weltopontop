@@ -24,7 +24,7 @@ public class Shove : MonoBehaviour
     private PlayerInput inp;
     
     private PlayerController playerController;
-    public PlayerAudio playerAudio;
+    private Audio audio;
     private PlayerItemInteraction itemInteraction;
 
     public Volume playerVolume;
@@ -34,6 +34,7 @@ public class Shove : MonoBehaviour
         inp = GetComponent<PlayerInput>();
         playerController = GetComponent<PlayerController>();
         itemInteraction = GetComponent<PlayerItemInteraction>();
+        audio = FindFirstObjectByType<Audio>();
     }
 
     private void Start()
@@ -80,7 +81,7 @@ public class Shove : MonoBehaviour
             GameObject playerToShove = FindPlayerToShove();
 
             if (ApplyShoveHit(playerToShove, playerCam.transform.forward))
-                playerAudio.PlaySoundEffect(PlayerAudio.PlayerSoundEffect.Shove);
+                audio.PlayPlayerSoundEffect(playerController, Audio.PlayerSoundEffect.Shove);
 
             StartCoroutine(ShoveCooldown());
         }

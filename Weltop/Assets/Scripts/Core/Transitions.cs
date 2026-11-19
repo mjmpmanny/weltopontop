@@ -12,9 +12,12 @@ public class Transitions : MonoBehaviour
     public TMP_Text countdownText;
 
     public Coroutine currentTransitionCoroutine = null;
+
+    private Audio audio;
     
     private void Awake()
     {
+        audio = GetComponent<Audio>();
         game = GetComponent<Game>();
     }
     
@@ -32,10 +35,14 @@ public class Transitions : MonoBehaviour
         });
         
         game.gameIsActive = false;
+        yield return new WaitForSeconds(0.5f);
+        
         timerCountdownPanel.gameObject.SetActive(true);
-
+        
         float timer = GlobalParameters.CountdownToGameSeconds;
-
+        
+        audio.PlayMusic(Audio.MusicType.ParkourRound);
+        
         while (timer >= 0)
         {
             timer -= Time.deltaTime;
@@ -86,7 +93,7 @@ public class Transitions : MonoBehaviour
     {
         timerCountdownPanel.gameObject.SetActive(true);
         
-        float timer = GlobalParameters.StartRoundCountDownAtXSeconds + 1;
+        float timer = GlobalParameters.StartRoundCountDownAtXSeconds;
 
         while (timer >= 0)
         {
