@@ -15,4 +15,6 @@ MonoBehaviour:
   displayName: Floor Door
   category: 2
   prefab: {fileID: 9103088141614523238, guid: 60f13779c5771dc439ecb6eb765faec8, type: 3}
+  previewPrefab: {fileID: 0}
+  selectionWeight: 3
   effects: []

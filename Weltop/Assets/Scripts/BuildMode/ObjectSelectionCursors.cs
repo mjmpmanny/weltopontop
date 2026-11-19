@@ -13,6 +13,14 @@ public class ObjectSelectionCursors : MonoBehaviour
     [SerializeField] private TMP_Text selectionTitle;
     
     [SerializeField] private ObjectDefinition[] slotDefinitions;
+    
+    [Header("Offer Size")]
+    [Tooltip("Zero uses the joined-player count. Positive values can raise the minimum.")]
+    [SerializeField, Min(0)] private int minimumOffers = 0;
+
+    [Tooltip("Zero uses the full eligible pool. Positive values can limit the maximum.")]
+    [SerializeField, Min(0)] private int maximumOffers = 0;
+    
     private ObjectDefinition[] offeredDefinitions = System.Array.Empty<ObjectDefinition>();
 
     [SerializeField] private Transform previewStage;
@@ -71,8 +79,15 @@ public class ObjectSelectionCursors : MonoBehaviour
         }
 
         int playerCount = Mathf.Max(1, PlayerInput.all.Count);
-        int minimumCount = Mathf.Min(playerCount, eligible.Count);
-        int offerCount = Random.Range(minimumCount, eligible.Count + 1);
+
+        int minimumCount = Mathf.Clamp(
+            Mathf.Max(playerCount, minimumOffers), 1, eligible.Count);
+
+        int maximumCount = maximumOffers == 0
+            ? eligible.Count
+            : Mathf.Clamp(maximumOffers, minimumCount, eligible.Count);
+
+        int offerCount = Random.Range(minimumCount, maximumCount + 1);
 
         var remaining = new List<ObjectDefinition>(eligible);
         var offers = new List<ObjectDefinition>();

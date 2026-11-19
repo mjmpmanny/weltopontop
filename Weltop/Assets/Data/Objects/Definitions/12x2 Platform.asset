@@ -16,4 +16,5 @@ MonoBehaviour:
   category: 2
   prefab: {fileID: 4454086740883758807, guid: 48b7cfcb37620ee4c9b1c1ae0be05445, type: 3}
   previewPrefab: {fileID: 0}
+  selectionWeight: 5
   effects: []

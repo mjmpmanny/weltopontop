@@ -5352,6 +5352,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b6adcb2265b94a42a69baddcd3de395, type: 2}
   - {fileID: 11400000, guid: d8ab1a13f6512394a8bae275dc0bbe41, type: 2}
   - {fileID: 11400000, guid: e0d07f6d307d52f429451d098a861698, type: 2}
+  minimumOffers: 0
+  maximumOffers: 5
   previewStage: {fileID: 798251799}
   previewFitSize: 1.25
   previewCamera: {fileID: 2033430356}
