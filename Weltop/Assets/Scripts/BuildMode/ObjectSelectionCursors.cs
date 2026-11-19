@@ -13,6 +13,7 @@ public class ObjectSelectionCursors : MonoBehaviour
     [SerializeField] private TMP_Text selectionTitle;
     
     [SerializeField] private ObjectDefinition[] slotDefinitions;
+    private ObjectDefinition[] offeredDefinitions = System.Array.Empty<ObjectDefinition>();
 
     [SerializeField] private Transform previewStage;
 
@@ -36,11 +37,99 @@ public class ObjectSelectionCursors : MonoBehaviour
     {
         Color.cyan, Color.yellow, Color.magenta, Color.green
     };
+    
+    private void GenerateOffers()
+    {
+        var eligible = new List<ObjectDefinition>();
+        var guaranteedChoices = new List<ObjectDefinition>();
+
+        foreach (ObjectDefinition definition in slotDefinitions)
+        {
+            if (definition == null ||
+                definition.Prefab == null ||
+                definition.PreviewPrefab == null ||
+                definition.SelectionWeight <= 0f ||
+                float.IsNaN(definition.SelectionWeight) ||
+                float.IsInfinity(definition.SelectionWeight) ||
+                eligible.Contains(definition))
+                continue;
+
+            eligible.Add(definition);
+
+            if (definition.Category == ObjectCategory.Buildable ||
+                definition.Category == ObjectCategory.PowerUp)
+            {
+                guaranteedChoices.Add(definition);
+            }
+        }
+
+        if (eligible.Count == 0)
+        {
+            offeredDefinitions = System.Array.Empty<ObjectDefinition>();
+            Debug.LogError("Object Selection needs at least one eligible definition.", this);
+            return;
+        }
+
+        int playerCount = Mathf.Max(1, PlayerInput.all.Count);
+        int minimumCount = Mathf.Min(playerCount, eligible.Count);
+        int offerCount = Random.Range(minimumCount, eligible.Count + 1);
+
+        var remaining = new List<ObjectDefinition>(eligible);
+        var offers = new List<ObjectDefinition>();
+
+        if (guaranteedChoices.Count > 0)
+        {
+            ObjectDefinition guaranteed = PickWeightedDefinition(guaranteedChoices);
+            offers.Add(guaranteed);
+            remaining.Remove(guaranteed);
+        }
+
+        while (offers.Count < offerCount)
+        {
+            ObjectDefinition chosen = PickWeightedDefinition(remaining);
+            offers.Add(chosen);
+            remaining.Remove(chosen);
+        }
+
+        // A small pool gets separate duplicate slots so every player can claim.
+        if (offers.Count < playerCount)
+        {
+            Debug.LogWarning(
+                "Object Selection has fewer eligible definitions than players. " +
+                "Adding duplicate offers for this round.", this);
+
+            while (offers.Count < playerCount)
+                offers.Add(PickWeightedDefinition(eligible));
+        }
+
+        offeredDefinitions = offers.ToArray();
+    }
+
+    private ObjectDefinition PickWeightedDefinition(List<ObjectDefinition> candidates)
+    {
+        double totalWeight = 0d;
+
+        foreach (ObjectDefinition definition in candidates)
+            totalWeight += definition.SelectionWeight;
+
+        double roll = Random.value * totalWeight;
+
+        foreach (ObjectDefinition definition in candidates)
+        {
+            roll -= definition.SelectionWeight;
+
+            if (roll < 0d)
+                return definition;
+        }
+
+        return candidates[candidates.Count - 1];
+    }
 
     private void OnEnable()
     {
         claimedSlotByPlayer.Clear();
         selectionTitle.text = "Object Selection";
+        GenerateOffers();
         CreatePreviewSlots();
         RefreshPreviews();
         
@@ -89,9 +178,9 @@ public class ObjectSelectionCursors : MonoBehaviour
     
     private void RefreshPreviews()
     {
-        for (int slotIndex = 0; slotIndex < slotDefinitions.Length; slotIndex++)
+        for (int slotIndex = 0; slotIndex < offeredDefinitions.Length; slotIndex++)
         {
-            GameObject prefab = slotDefinitions[slotIndex].PreviewPrefab;
+            GameObject prefab = offeredDefinitions[slotIndex].PreviewPrefab;
             Transform anchor = previewAnchors[slotIndex];
 
             GameObject frame = new GameObject("Generated Preview");
@@ -282,16 +371,17 @@ public class ObjectSelectionCursors : MonoBehaviour
     public GameObject GetClaimedPrefab(int playerIndex)
     {
         if (!claimedSlotByPlayer.TryGetValue(playerIndex, out int slotIndex) ||
-            slotIndex >= slotDefinitions.Length ||
-            slotDefinitions[slotIndex] == null)
+            slotIndex < 0 ||
+            slotIndex >= offeredDefinitions.Length ||
+            offeredDefinitions[slotIndex] == null)
             return null;
 
-        return slotDefinitions[slotIndex].Prefab;
+        return offeredDefinitions[slotIndex].Prefab;
     }
     
     private void CreatePreviewSlots()
     {
-        int count = slotDefinitions.Length;
+        int count = offeredDefinitions.Length;
         previewClaimAreas = new RectTransform[count];
         previewAnchors = new Transform[count];
 
