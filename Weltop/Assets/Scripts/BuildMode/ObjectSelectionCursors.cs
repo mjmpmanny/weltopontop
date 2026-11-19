@@ -14,12 +14,12 @@ public class ObjectSelectionCursors : MonoBehaviour
     
     [SerializeField] private ObjectDefinition[] slotDefinitions;
     
-    [Header("Offer Size")]
-    [Tooltip("Zero uses the joined-player count. Positive values can raise the minimum.")]
-    [SerializeField, Min(0)] private int minimumOffers = 0;
+    [Header("Object Offers")]
+    [Tooltip("The maximum offer count is the joined-player count plus this number.")]
+    [SerializeField, Min(0)] private int extraOfferLimit = 2;
 
-    [Tooltip("Zero uses the full eligible pool. Positive values can limit the maximum.")]
-    [SerializeField, Min(0)] private int maximumOffers = 0;
+    [Tooltip("Maximum copies of the same definition in one selection round.")]
+    [SerializeField, Min(1)] private int maximumCopiesPerObject = 2;
     
     private ObjectDefinition[] offeredDefinitions = System.Array.Empty<ObjectDefinition>();
 
@@ -49,7 +49,6 @@ public class ObjectSelectionCursors : MonoBehaviour
     private void GenerateOffers()
     {
         var eligible = new List<ObjectDefinition>();
-        var guaranteedChoices = new List<ObjectDefinition>();
 
         foreach (ObjectDefinition definition in slotDefinitions)
         {
@@ -63,58 +62,49 @@ public class ObjectSelectionCursors : MonoBehaviour
                 continue;
 
             eligible.Add(definition);
-
-            if (definition.Category == ObjectCategory.Buildable ||
-                definition.Category == ObjectCategory.PowerUp)
-            {
-                guaranteedChoices.Add(definition);
-            }
         }
 
         if (eligible.Count == 0)
         {
             offeredDefinitions = System.Array.Empty<ObjectDefinition>();
-            Debug.LogError("Object Selection needs at least one eligible definition.", this);
+            Debug.LogError(
+                "Object Selection needs at least one eligible definition.", this);
             return;
         }
 
         int playerCount = Mathf.Max(1, PlayerInput.all.Count);
+        int copyLimit = Mathf.Max(1, maximumCopiesPerObject);
+        int capacity = eligible.Count * copyLimit;
 
-        int minimumCount = Mathf.Clamp(
-            Mathf.Max(playerCount, minimumOffers), 1, eligible.Count);
-
-        int maximumCount = maximumOffers == 0
-            ? eligible.Count
-            : Mathf.Clamp(maximumOffers, minimumCount, eligible.Count);
+        int minimumCount = Mathf.Min(playerCount, capacity);
+        int maximumCount = Mathf.Min(
+            playerCount + Mathf.Max(0, extraOfferLimit), capacity);
 
         int offerCount = Random.Range(minimumCount, maximumCount + 1);
 
-        var remaining = new List<ObjectDefinition>(eligible);
+        var candidates = new List<ObjectDefinition>(eligible);
+        var copyCounts = new Dictionary<ObjectDefinition, int>();
         var offers = new List<ObjectDefinition>();
-
-        if (guaranteedChoices.Count > 0)
-        {
-            ObjectDefinition guaranteed = PickWeightedDefinition(guaranteedChoices);
-            offers.Add(guaranteed);
-            remaining.Remove(guaranteed);
-        }
 
         while (offers.Count < offerCount)
         {
-            ObjectDefinition chosen = PickWeightedDefinition(remaining);
+            ObjectDefinition chosen = PickWeightedDefinition(candidates);
             offers.Add(chosen);
-            remaining.Remove(chosen);
+
+            copyCounts.TryGetValue(chosen, out int copies);
+            copies++;
+            copyCounts[chosen] = copies;
+
+            if (copies >= copyLimit)
+                candidates.Remove(chosen);
         }
 
-        // A small pool gets separate duplicate slots so every player can claim.
-        if (offers.Count < playerCount)
+        if (capacity < playerCount)
         {
             Debug.LogWarning(
-                "Object Selection has fewer eligible definitions than players. " +
-                "Adding duplicate offers for this round.", this);
-
-            while (offers.Count < playerCount)
-                offers.Add(PickWeightedDefinition(eligible));
+                $"Object Selection can offer only {capacity} slots for " +
+                $"{playerCount} players. Enable more definitions or raise " +
+                "Maximum Copies Per Object.", this);
         }
 
         offeredDefinitions = offers.ToArray();
