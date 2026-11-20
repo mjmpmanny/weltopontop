@@ -15118,6 +15118,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 1:30
       objectReference: {fileID: 0}
+    - target: {fileID: 1850311585915255929, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407332561634069387, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3020390459442889839, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_Name
       value: Global Canvas
@@ -15233,6 +15241,10 @@ PrefabInstance:
     - target: {fileID: 7268761421816236499, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950418717891332697, guid: fe9ecb855a578bf4184bb47139e16b9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33719,6 +33731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 3897183354134790948, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: countdownText
       value: 
@@ -33727,6 +33743,10 @@ PrefabInstance:
       propertyPath: startGamePanel
       value: 
       objectReference: {fileID: 849488092}
+    - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
+      propertyPath: parkourRoundPanel
+      value: 
+      objectReference: {fileID: 649693554}
     - target: {fileID: 6057524480478498056, guid: eeb19f0d9a46eb348a1c76f0de632f2a, type: 3}
       propertyPath: timerCountdownPanel
       value: 

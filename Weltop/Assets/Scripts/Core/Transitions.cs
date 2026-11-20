@@ -7,8 +7,10 @@ using UnityEngine.UIElements;
 public class Transitions : MonoBehaviour
 {
     private Game game;
+    private UI ui;
 
     public GameObject timerCountdownPanel;
+    public GameObject parkourRoundPanel;
     public TMP_Text countdownText;
 
     public Coroutine currentTransitionCoroutine = null;
@@ -18,6 +20,7 @@ public class Transitions : MonoBehaviour
     private void Awake()
     {
         audio = GetComponent<Audio>();
+        ui = GetComponent<UI>();
         game = GetComponent<Game>();
     }
     
@@ -35,29 +38,31 @@ public class Transitions : MonoBehaviour
         });
         
         game.gameIsActive = false;
-        yield return new WaitForSeconds(0.5f);
         
-        timerCountdownPanel.gameObject.SetActive(true);
+        parkourRoundPanel.SetActive(false);
+        timerCountdownPanel.SetActive(true);
         
         float timer = GlobalParameters.CountdownToGameSeconds;
         
         audio.PlayMusic(Audio.MusicType.ParkourRound);
         
-        while (timer >= 0)
+        while (timer >= -1)
         {
             timer -= Time.deltaTime;
-            if (timer < 1)
+            if (timer <= 0)
             {
                 countdownText.text = "GO!";
             }
             else
             {
-                countdownText.text = timer.ToString("N0");
+                //countdownText.text = timer.ToString("N0");
+                ui.UpdateParkourRoundTimer(timer);
             }
             yield return null;
         }
         
-        timerCountdownPanel.gameObject.SetActive(false);
+        parkourRoundPanel.SetActive(true);
+        timerCountdownPanel.SetActive(false);
         
         game.ExecuteCodeOnAllPlayerControllers(controller =>
         {

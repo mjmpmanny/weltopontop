@@ -48,7 +48,7 @@ public class UI : MonoBehaviour
             }
         }
     }
-
+    
     public void UpdateHillPoints(PlayerStats playerStats)
     {
         int playerIndex = playerStats.PlayerIndex;
