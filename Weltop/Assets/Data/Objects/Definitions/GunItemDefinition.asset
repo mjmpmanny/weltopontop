@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDefinition
   displayName: Projectile Item
   category: 0
-  prefab: {fileID: 8803797871038684533, guid: e5221bfd46215ad49891c8503403cbfd, type: 3}
+  prefab: {fileID: 8803797871038684533, guid: 38c15aab928caf04597c7aa5d41c0dfb, type: 3}
   previewPrefab: {fileID: 7082817062611548972, guid: c2ffc7580a592a143a95740b1394ca22, type: 3}
+  selectionWeight: 1
   effects: []

@@ -17,6 +17,11 @@ public class ObjectDefinition : ScriptableObject
     [SerializeField] private ObjectCategory category;
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject previewPrefab;
+    
+    [Header("Object Selection")]
+    [Tooltip("Higher weights appear more often. Zero excludes this object from offers.")]
+    [SerializeField, Min(0f)] private float selectionWeight = 1f;
+    
     [SerializeField] private ObjectEffectDefinition[] effects =
         new ObjectEffectDefinition[0];
 
@@ -24,5 +29,6 @@ public class ObjectDefinition : ScriptableObject
     public ObjectCategory Category => category;
     public GameObject Prefab => prefab;
     public GameObject PreviewPrefab => previewPrefab != null ? previewPrefab : prefab;
+    public float SelectionWeight => selectionWeight;
     public IReadOnlyList<ObjectEffectDefinition> Effects => effects;
 }
