@@ -894,7 +894,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -926,6 +926,7 @@ MonoBehaviour:
   MaxAirSpeed: 5
   AirDampening: 2
   holdItemPosition: {fileID: 2090427247027326700}
+  LastSolidGround: {x: 0, y: 0, z: 0}
   itemMovementMultiplier: 0
   itemJumpMultiplier: 0
 --- !u!114 &7372187572972943668

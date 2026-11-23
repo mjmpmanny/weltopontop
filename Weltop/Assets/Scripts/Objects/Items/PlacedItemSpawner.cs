@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlaceableObject))]
 public class PlacedItemSpawner : MonoBehaviour
 {
-    [SerializeField] private Item itemPrefab;
+    [SerializeField] private GameObject itemPrefab;
     [SerializeField] private Transform spawnPoint;
 
     private int lastSpawnedParkourRound = -1;
@@ -20,7 +21,10 @@ public class PlacedItemSpawner : MonoBehaviour
             return;
         }
 
-        Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject obj = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.excludeLayers = (15 << 6);
         lastSpawnedParkourRound = parkourRound;
     }
 }

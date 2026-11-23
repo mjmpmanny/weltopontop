@@ -15,6 +15,7 @@ public class RagdollController : MonoBehaviour
     private Rigidbody rb;
     private Collider playerCollider;
     private CamBrain camBrain;
+    private PlayerItemInteraction playerItemInteraction;
     [SerializeField]
     private PlayerAnimationController playerAnimationController;
     [SerializeField]
@@ -26,6 +27,7 @@ public class RagdollController : MonoBehaviour
     public CamFirstPerson firstPerson;
     private void Start()
     {
+        playerItemInteraction = GetComponent<PlayerItemInteraction>();
         firstPerson = transform.parent.GetComponentInChildren<CamFirstPerson>();
         camBrain = transform.parent.GetComponentInChildren<CamBrain>();
         rb = GetComponent<Rigidbody>();
@@ -59,6 +61,7 @@ public class RagdollController : MonoBehaviour
             rb.useGravity = false;
             rb.linearVelocity = Vector3.zero;
             playerCon.canMove = false;
+            playerItemInteraction.DropHeldItem();
         }
     }
 

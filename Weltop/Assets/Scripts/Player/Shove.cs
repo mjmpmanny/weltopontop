@@ -138,7 +138,38 @@ public class Shove : MonoBehaviour
 
         return true;
     }
-    
+    public static bool ApplyShoveHit(
+        GameObject target,
+        Vector3 positionHitFrom,
+        Vector3 direction,
+        float strengthMultiplier = 1f)
+    {
+        if (target == null || direction.sqrMagnitude < 0.0001f)
+            return false;
+
+        PlayerStats stats = target.transform.root.GetComponentInChildren<PlayerStats>();
+        if (stats == null || stats.isInvincible)
+            return false;
+
+        RagdollController ragdoll = stats.GetComponent<RagdollController>();
+        ViewSwitcher view = stats.GetComponent<ViewSwitcher>();
+        if (ragdoll == null || view == null || ragdoll.isRagdolled || ragdoll.isGetingUp)
+            return false;
+
+        Vector3 force = direction.normalized *
+                        (GlobalParameters.ShovePower * strengthMultiplier);
+
+        ragdoll.Ragdoll(positionHitFrom, force);
+        if (!ragdoll.isRagdolled)
+            return false;
+
+        view.ShakeCams(
+            GlobalParameters.ShoveCameraShakeDurationSeconds,
+            GlobalParameters.ShoveCameraShakeStrength);
+
+        return true;
+    }
+
     private IEnumerator RecoverFromShove(PlayerController shoveTarget)
     {
         Shove targetShove = shoveTarget.gameObject.GetComponent<Shove>();

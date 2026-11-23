@@ -7,18 +7,18 @@ using UnityEngine;
 [RequireComponent(typeof(Component))]
 public class MeleeBaseItem : MonoBehaviour, I_Item
 {
-    [SerializeField] private Transform swingVisual;
-    private Sequence swingSequence;
-    private Quaternion swingRestRotation;
+    [SerializeField] protected Transform swingVisual;
+    protected Sequence swingSequence;
+    protected Quaternion swingRestRotation;
 
-    private bool IsBeingHeld;
-    private PlayerController player;
-    private bool isBeingThrown;
-    
-    private Rigidbody rb => _rb ??= GetComponent<Rigidbody>();
-    private Rigidbody _rb;
-    private Collider collider => _collider ??= GetComponent<Collider>();
-    private Collider _collider;
+    protected bool IsBeingHeld;
+    protected PlayerController player;
+    protected bool isBeingThrown;
+
+    protected Rigidbody rb => _rb ??= GetComponent<Rigidbody>();
+    protected Rigidbody _rb;
+    protected Collider collider => _collider ??= GetComponent<Collider>();
+    protected Collider _collider;
 
 
     [Header("Basic Settings")]
@@ -29,7 +29,7 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
     [Header("Melee Settings")]
     [Tooltip("The cooldown inbetween swings")]
     public float swingCooldown;
-    private float swingCooldownTimer;
+    protected float swingCooldownTimer;
     [Tooltip("The force applyed to the player when hit")]
     public float hitForce;
 
@@ -49,9 +49,10 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
         transform.localRotation = Quaternion.identity;
         transform.localPosition = holdingOffset;
         IsBeingHeld = true;
+        this.player = player;
 
     }
-    public void UseItem(Transform pos)
+    public void UseItem(Vector3 origin, Vector3 rotation)
     {
 
         if (swingVisual == null || swingCooldownTimer >0)
@@ -73,7 +74,7 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
             .SetLink(gameObject);
 
 
-        GameObject target = FindPlayerToTarget(2);
+        GameObject target = FindPlayerToTarget(2, origin, rotation);
         if (target != null)
         {
             target.transform.root.GetComponentInChildren<RagdollController>().Ragdoll(player.transform.position, hitForce * transform.forward);
@@ -81,14 +82,16 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
 
         swingCooldownTimer = swingCooldown;
     }
-    public void ThrowItem(Transform pos)
+    public void ThrowItem(Vector3 origin, Vector3 rotation)
     {
         transform.SetParent(null);
+        transform.position = origin;
         IsBeingHeld = false;
         isBeingThrown = true;
 
         rb.constraints = RigidbodyConstraints.None;
-        rb.AddForce(pos.forward * ThrowSpeed);
+        rb.excludeLayers = (1 << player.gameObject.layer);
+        rb.AddForce(rotation * ThrowSpeed);
     }
     public void DropItem(Vector3 pos)
     {
@@ -96,6 +99,7 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
         transform.position = pos;
         IsBeingHeld = false;
         isBeingThrown = true;
+        rb.excludeLayers = (15 << 6);
 
         rb.constraints = RigidbodyConstraints.None;
     }
@@ -117,23 +121,19 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
         if (collision.collider.gameObject.layer == 0)
         {
 
-            collider.excludeLayers = (15 << 6);//Collider cant interact players when not being thrown (can be changed if funny)
+            rb.excludeLayers = (15 << 6);
         } else if (collision.collider.gameObject.layer >= 6 && collision.collider.gameObject.layer <= 9 && isBeingThrown)
         {
-            RagdollController rd = collision.collider.transform.root.GetComponentInChildren<RagdollController>();
-            rd.Ragdoll(transform.position, rb.linearVelocity);
-            rd.gameObject.GetComponent<ViewSwitcher>().ShakeCams(
-                        GlobalParameters.ShoveCameraShakeDurationSeconds,
-                        GlobalParameters.ShoveCameraShakeStrength);
+            Shove.ApplyShoveHit(collision.collider.gameObject, transform.position, rb.linearVelocity);
 
         }
         isBeingThrown = false;
     }
 
-    private GameObject FindPlayerToTarget(int raycastDistance)
+    private GameObject FindPlayerToTarget(int raycastDistance, Vector3 origin, Vector3 forward)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.parent.forward, out hit, raycastDistance, ((15<<6) & ~player.gameObject.layer)))
+        if (Physics.Raycast(origin, forward, out hit, raycastDistance, ((15<<6) & ~player.gameObject.layer)))
         {
             return hit.collider.gameObject;
         } else
@@ -142,4 +142,12 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
         }
     }
 
+    public void DestroyItem()
+    {
+        if (IsBeingHeld)
+        {
+            player.GetComponent<PlayerItemInteraction>().DropHeldItem();
+        }
+        Destroy(gameObject);
+    }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public class BasicBaseItem : MonoBehaviour , I_Item
 {
 
-    private bool IsBeingHeld;
-    private PlayerController player;
-    private bool isBeingThrown;
-    private Rigidbody rb => _rb ??= GetComponent<Rigidbody>();
-    private Rigidbody _rb;
-    private Collider collider => _collider ??= GetComponent<Collider>();
-    private Collider _collider;
+    protected bool IsBeingHeld;
+    protected PlayerController player;
+    protected bool isBeingThrown;
+    protected Rigidbody rb => _rb ??= GetComponent<Rigidbody>();
+    protected Rigidbody _rb;
+    protected Collider collider => _collider ??= GetComponent<Collider>();
+    protected Collider _collider;
 
     [Header("Basic Settings")]
     public Vector3 holdingOffset;
@@ -30,19 +30,21 @@ public class BasicBaseItem : MonoBehaviour , I_Item
         transform.localRotation = Quaternion.identity;
         transform.localPosition = holdingOffset;
         IsBeingHeld = true;
-
+        this.player = player;
     }
-    public void UseItem(Transform pos)
+    public void UseItem(Vector3 origin, Vector3 rotation)
     {
     }
-    public void ThrowItem(Transform pos)
+    public void ThrowItem(Vector3 origin, Vector3 rotation)
     {
         transform.SetParent(null);
+        transform.position = origin;
         IsBeingHeld = false;
         isBeingThrown = true;
 
         rb.constraints = RigidbodyConstraints.None;
-        rb.AddForce(pos.forward * ThrowSpeed);
+        rb.excludeLayers = (1 << player.gameObject.layer);
+        rb.AddForce(rotation * ThrowSpeed);
     }
     public void DropItem(Vector3 pos)
     {
@@ -50,7 +52,7 @@ public class BasicBaseItem : MonoBehaviour , I_Item
         transform.position = pos;
         IsBeingHeld = false;
         isBeingThrown = true;
-
+        rb.excludeLayers = (15 << 6);
         rb.constraints = RigidbodyConstraints.None;
     }
     public bool CanPickUp()
@@ -71,15 +73,19 @@ public class BasicBaseItem : MonoBehaviour , I_Item
         if (collision.collider.gameObject.layer == 0)
         {
 
-            collider.excludeLayers = (15 << 6);//Collider cant interact players when not being thrown (can be changed if funny)
+            rb.excludeLayers = (15 << 6);//Collider cant interact players when not being thrown (can be changed if funny)
         } else if (collision.collider.gameObject.layer >= 6 && collision.collider.gameObject.layer <= 9 && isBeingThrown)
         {
-            RagdollController rd = collision.collider.transform.root.GetComponentInChildren<RagdollController>();
-            rd.Ragdoll(transform.position, rb.linearVelocity);
-            rd.gameObject.GetComponent<ViewSwitcher>().ShakeCams(
-                        GlobalParameters.ShoveCameraShakeDurationSeconds,
-                        GlobalParameters.ShoveCameraShakeStrength);
+            Shove.ApplyShoveHit(collision.collider.gameObject, transform.position, rb.linearVelocity);
         }
         isBeingThrown = false;
+    }
+    public void DestroyItem()
+    {
+        if (IsBeingHeld)
+        {
+            player.GetComponent<PlayerItemInteraction>().DropHeldItem();
+        }
+        Destroy(gameObject);
     }
 }

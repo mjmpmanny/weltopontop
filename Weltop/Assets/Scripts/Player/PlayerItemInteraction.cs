@@ -89,39 +89,18 @@ public class PlayerItemInteraction : MonoBehaviour
 
     public void DropHeldItem(bool discardIfNoGround = false)
     {
-        I_Item item = heldItem;
-        heldItem = null;
-
-        if (item == null || item.IsBeginHeldBy(player))
-            return;
-
-        Transform aim = player.GetComponent<Shove>().playerCam.transform;
-        Quaternion facing = Quaternion.Euler(0f, aim.eulerAngles.y, 0f);
-        Vector3 dropPosition = transform.position + (facing * Vector3.forward) * 1.25f;
-
-        bool foundGround = Physics.Raycast(
-            dropPosition + Vector3.up, Vector3.down,
-            out RaycastHit ground, 4f, 1 << 0, QueryTriggerInteraction.Ignore);
-
-        if (foundGround)
-            dropPosition.y = ground.point.y + 0.25f;
-
-        //item.OnDrop();
-
-        if (!foundGround && discardIfNoGround)
+        if (heldItem != null)
         {
-            //Destroy(item.gameObject);
-            return;
+            heldItem.DropItem(player.LastSolidGround);
+            heldItem = null;
         }
-
-        //item.transform.SetPositionAndRotation(dropPosition, facing);
     }
 
     public void ThrowItem()
     {
         if (IsHoldingItem)
         {
-            heldItem.ThrowItem(Cam.transform);
+            heldItem.ThrowItem(Cam.transform.position, Cam.transform.forward);
             heldItem = null;
         }
     }
@@ -130,7 +109,7 @@ public class PlayerItemInteraction : MonoBehaviour
     {
        if (heldItem != null)
         {
-            heldItem.UseItem(Cam.transform);
+            heldItem.UseItem(Cam.transform.position, Cam.transform.forward);
         }
     }
 }

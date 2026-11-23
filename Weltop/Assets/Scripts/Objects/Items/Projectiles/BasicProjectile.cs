@@ -14,7 +14,7 @@ public class BasicProjectile : Projectile
             rb = GetComponent<Rigidbody>();
             rb.useGravity = false;
             rb.linearVelocity = transform.forward * speed;
-        
+        transform.SetParent(null);
     }
     private void FixedUpdate()
     {

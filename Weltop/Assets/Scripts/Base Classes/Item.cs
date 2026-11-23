@@ -131,7 +131,7 @@ public class Item : MonoBehaviour
             Projectile instantiatedProjectile = Instantiate(projectile, currentPlayer.GetComponent<Shove>().playerCam.transform.position, currentPlayer.GetComponent<Shove>().playerCam.transform.rotation);
             instantiatedProjectile.playerOwner = currentPlayer.gameObject;
             Rigidbody projectileRb = instantiatedProjectile.GetComponent<Rigidbody>();
-            projectileRb.linearVelocity = currentPlayer.GetComponent<Shove>().playerCam.transform.forward * instantiatedProjectile.speed;
+            //projectileRb.linearVelocity = currentPlayer.GetComponent<Shove>().playerCam.transform.forward * instantiatedProjectile.speed;
         }
     }
     

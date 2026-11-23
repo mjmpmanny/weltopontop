@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Reflection;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class Game : MonoBehaviour
 {
@@ -180,12 +183,9 @@ public class Game : MonoBehaviour
             case RoundState.Parkour:
                 parkourRoundTimer = 0;
                 
-                foreach (Item item in FindObjectsByType<Item>(FindObjectsSortMode.None))
+                foreach (I_Item item in GetAllItems())
                 {
-                    if (item.currentPlayer != null)
-                        item.OnDrop();
-
-                    Destroy(item.gameObject);
+                    item.DestroyItem();
                 }
 
                 // Check whether the final Parkour round has ended.
@@ -214,7 +214,11 @@ public class Game : MonoBehaviour
                 break;
         }
     }
-    
+    public I_Item[] GetAllItems()
+    {
+        return FindObjectsByType<MonoBehaviour>().OfType<I_Item>().ToArray();
+    }
+
     private void InitializeBuildRound(ObjectSelectionCursors selection = null)
     {
         ui.ToBuildRoundUI();

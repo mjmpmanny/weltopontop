@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5139271853322568808}
   - component: {fileID: 1083076976776865447}
   - component: {fileID: 8418266127152790854}
-  - component: {fileID: 7274776587375109540}
   - component: {fileID: 3452868102794529416}
   - component: {fileID: 2230998199569260597}
+  - component: {fileID: 270876484587476934}
   m_Layer: 0
   m_Name: Test Projectile
   m_TagString: Untagged
@@ -94,22 +94,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7274776587375109540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112566345952145968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0951e866ea441734dbec88a270eff77c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestProjectile
-  speed: 17
-  gravityModifier: 0
-  destroyOnHit: 1
-  playerOwner: {fileID: 0}
 --- !u!54 &3452868102794529416
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,6 +142,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.49, y: 0.7, z: 0}
   m_Center: {x: 0, y: 0, z: -0.335}
+--- !u!114 &270876484587476934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112566345952145968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2bbc2ccd8375e49884378342f36f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicProjectile
+  destroyOnHit: 1
+  playerOwner: {fileID: 0}
+  speed: 20
+  gravityModifier: 1
 --- !u!1001 &8328834601910126107
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -201,5 +201,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41b7c55b18a4a44a8dfdcc4921898ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacedItemSpawner
-  itemPrefab: {fileID: 8631227071021470689, guid: 4c87aa55cbafae94fadb7c53da173cae, type: 3}
+  itemPrefab: {fileID: 7082817062611548972, guid: adcc2f46de2951b49a9a48251126cf4c, type: 3}
   spawnPoint: {fileID: 876711070993521276}

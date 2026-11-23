@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines.Interpolators;
+using UnityEngine.UIElements;
 using static Unity.Burst.Intrinsics.X86.Avx;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
     private GameObject cam;
     private PlayerAnimationController animationController;
     private ViewSwitcher viewSwitcher;
+
+    /// <summary>
+    /// Last spot player touched solid ground
+    /// </summary>
+    [HideInInspector] public Vector3 LastSolidGround;
 
     private PlayerObjectEffects objectEffects;
     public float itemMovementMultiplier;
@@ -91,6 +97,8 @@ public class PlayerController : MonoBehaviour
                 + Vector3.up * JumpStrength * (JumpMultiplier + itemJumpMultiplier);
             origionaldir = new Vector2(rb.linearVelocity.x, rb.linearVelocity.z);
         }
+
+   
     void FixedUpdate()
     {
 
@@ -99,6 +107,7 @@ public class PlayerController : MonoBehaviour
         bool raycastHit = Physics.SphereCast(transform.position + new Vector3(0, cap.height / 2 - cap.radius, 0), cap.radius * 0.9f, Vector3.down, out hit, (cap.radius - cap.radius * 0.1f) + 1.01f, 1);
         if (raycastHit && LandingTimer < 0)
         {
+            LastSolidGround = transform.position;
             OnGround = CoyoteJumpTime;
             rb.linearDamping = momentumDampening;
             animationController.OnLand();
@@ -158,4 +167,5 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+
 }
