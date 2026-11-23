@@ -1,52 +1,21 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
     [Header("Basic Settings")]
-    [Tooltip("How fast the projectile moves through space")]
-    public float speed = 1f;
-    [Tooltip("A multiplier of how this object is affected by gravity. Use 0 to ignore gravity.")]
-    public float gravityModifier = 0f;
     [Tooltip("Does this projectile get destroyed after hitting its target?")]
     public bool destroyOnHit = true;
     
     [HideInInspector] //Used so that the projectile does not affect the player who shot it
     public GameObject playerOwner;
 
-    private Rigidbody rb;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-    }
 
     private void Update()
     {
         OnFlying();
     }
-
-    private void FixedUpdate()
-    {
-        Vector3 customGravity = Physics.gravity * gravityModifier;
-        rb.AddForce(customGravity, ForceMode.Acceleration);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (other.gameObject != playerOwner)
-            {
-                OnHitOpponent(other.gameObject);
-                if(destroyOnHit)
-                    Destroy(gameObject);
-            }
-        }
-    }
-
     /// <summary>
     /// Called once per frame while the object exists
     /// </summary>
@@ -54,7 +23,24 @@ public class Projectile : MonoBehaviour
     {
         
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (playerOwner != null && other.gameObject.layer != playerOwner.layer)
+            {
+                OnHitOpponent(other.gameObject);
+                if (destroyOnHit)
+                    Destroy(gameObject);
+            }
+        }
+        if (other.gameObject.layer == 0)
+        {
+            if (destroyOnHit)
+                Destroy(gameObject);
+
+        }
+    }
     /// <summary>
     /// Called once when this projectile hits an opponent
     /// </summary>

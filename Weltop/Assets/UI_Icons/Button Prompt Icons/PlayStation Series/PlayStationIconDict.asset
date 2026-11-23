@@ -15,21 +15,21 @@ MonoBehaviour:
   Device: <Gamepad>
   Icons:
   - key: buttonEast
-    value: {fileID: 2800000, guid: 89ae12c231ba59a4b82b38a5b880f272, type: 3}
+    value: {fileID: 2800000, guid: b550c4c42f46eb043a1a70c91b625d34, type: 3}
   - key: buttonNorth
-    value: {fileID: 2800000, guid: 613a8dd41aa0af44e907e8f3503f7e96, type: 3}
+    value: {fileID: 2800000, guid: 4bc289255c33fe145b776c682c8f7539, type: 3}
   - key: buttonSouth
-    value: {fileID: 2800000, guid: 408f0387544d50f4d96079e570e38d7b, type: 3}
+    value: {fileID: 2800000, guid: acd77c456c4a39548a30585fe0a3c408, type: 3}
   - key: buttonWest
-    value: {fileID: 2800000, guid: 9c70a4bdc2842454ca618a9cff8b84fa, type: 3}
+    value: {fileID: 2800000, guid: d844d167b4e48f049b2026bc28ae5d4e, type: 3}
   - key: dpad/down
-    value: {fileID: 2800000, guid: 1095df58b564d5a4cb3f1fb5ece82929, type: 3}
+    value: {fileID: 2800000, guid: 30eb7465abb33b2439bff77451d374ab, type: 3}
   - key: dpad/left
-    value: {fileID: 2800000, guid: e68905dd3d599974bbf75653efda147a, type: 3}
+    value: {fileID: 2800000, guid: a06d475b29288ff49a9a36424e635928, type: 3}
   - key: dpad/right
-    value: {fileID: 2800000, guid: e7cad9d63b200d5448cc4ad8f9641814, type: 3}
+    value: {fileID: 2800000, guid: 8ee56ce9076a52e4fa36ac76ad08086a, type: 3}
   - key: dpad/up
-    value: {fileID: 2800000, guid: 8a1f25d645a1b944f815617c84cc5969, type: 3}
+    value: {fileID: 2800000, guid: 11f53ac2050ddbf4dbea21e83f6cde99, type: 3}
   - key: leftShoulder
     value: {fileID: 2800000, guid: 99cd399055559de40af3f4bb34f00942, type: 3}
   - key: leftStick/down
@@ -73,4 +73,4 @@ MonoBehaviour:
   - key: rightStick
     value: {fileID: 2800000, guid: a587147cee8261c449cee449596ca9f7, type: 3}
   - key: dpad
-    value: {fileID: 2800000, guid: 1b1577b14864ca2439a63762d3159b80, type: 3}
+    value: {fileID: 2800000, guid: df5cfa8c6d18bce4dac92996f543b106, type: 3}

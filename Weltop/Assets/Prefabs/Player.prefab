@@ -894,7 +894,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -945,7 +945,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 960
-  canShove: 0
+  blockedByHeldItem: 0
   playerAudio: {fileID: 3868262790746722679}
   playerVolume: {fileID: 5528933355535322180}
 --- !u!114 &4146621491053113759

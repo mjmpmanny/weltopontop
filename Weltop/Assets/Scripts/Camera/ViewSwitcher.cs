@@ -136,6 +136,5 @@ public class ViewSwitcher : MonoBehaviour
         cam.RotateTo(rot);
         RagdollCam.RotateTo(rot);
     }
-
-
+    
 }

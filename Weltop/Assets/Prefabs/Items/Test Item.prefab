@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2742172830826458794}
   - component: {fileID: 943336417757412844}
   - component: {fileID: 250771841126335314}
-  - component: {fileID: 1736987874006084214}
   m_Layer: 0
   m_Name: Test Item
   m_TagString: Untagged
@@ -92,31 +91,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1736987874006084214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7082817062611548972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b949ae9b5f89cd44d83b4549783a53da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestItem
-  useAmount: -1
-  secondsBetweenUse: 1
-  walkSpeedModifier: 0
-  jumpStrengthModifier: 0
-  itemHoldPositionOffset: {x: 0, y: 0, z: 0}
-  disableJump: 0
-  disableShove: 1
-  shootsProjectile: 0
-  shootsHitscan: 0
-  projectile: {fileID: 0}
-  isEquipped: 0
-  currentPlayer: {fileID: 0}
-  swingVisual: {fileID: 1189453602466518608}
 --- !u!1001 &3616294711907743933
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,9 @@
+using System.Collections.Generic;
+using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(PlayerController), typeof(PlayerInput))]
 public class PlayerItemInteraction : MonoBehaviour
@@ -10,8 +14,10 @@ public class PlayerItemInteraction : MonoBehaviour
     private PlayerController player;
     private PlayerStats stats;
     private InputAction interact;
-    private Item heldItem;
-    public bool IsHoldingItem => heldItem != null && heldItem.isEquipped && heldItem.currentPlayer == player;
+    private InputAction Attack;
+    private Camera Cam;
+    private I_Item heldItem;
+    public bool IsHoldingItem => heldItem != null && heldItem.IsBeginHeldBy(player);
     
     private int lastItemAttackFrame = -1;
 
@@ -28,6 +34,8 @@ public class PlayerItemInteraction : MonoBehaviour
         player = GetComponent<PlayerController>();
         stats = GetComponent<PlayerStats>();
         interact = GetComponent<PlayerInput>().actions["Interact"];
+        Attack = GetComponent<PlayerInput>().actions["Attack"];
+        Cam = transform.parent.GetComponentInChildren<Camera>();
     }
 
     private void Update()
@@ -38,48 +46,53 @@ public class PlayerItemInteraction : MonoBehaviour
             (stats != null && stats.IsDead))
             return;
 
-        if (!interact.WasPressedThisFrame())
-            return;
-
-        if (heldItem != null)
+        if (interact.WasPressedThisFrame())
         {
-            DropHeldItem();
-            return;
+            if (heldItem != null)
+            {
+                ThrowItem();
+                return;
+            }
+            PickupItem(new CallbackContext());
         }
+        if (Attack.WasPressedThisFrame() && IsHoldingItem)
+        {
+            UseItem();
+        }
+    }
+    
+    private void PickupItem(CallbackContext ctx)
+    {
 
-        Item nearest = null;
+        I_Item nearest = null;
+        float nearestDist = float.MaxValue;
         float nearestDistanceSquared = pickupRange * pickupRange;
 
-        foreach (Item item in FindObjectsByType<Item>(FindObjectsSortMode.None))
+        Collider[] cols = Physics.OverlapSphere(transform.position, pickupRange, 1 << 16);
+        List<I_Item> items = new List<I_Item>();
+        foreach (Collider col in cols)
         {
-            if (!item.isActiveAndEnabled || item.isEquipped ||
-                item.currentPlayer != null)
-                continue;
-
-            float distanceSquared =
-                (item.transform.position - transform.position).sqrMagnitude;
-
-            if (distanceSquared > nearestDistanceSquared)
-                continue;
-
-            nearest = item;
-            nearestDistanceSquared = distanceSquared;
+            I_Item item = col.gameObject.GetComponent<I_Item>();
+            if (item.CanPickUp() && (transform.position - item.GetPosition()).magnitude < nearestDist)
+            {
+                nearest = item;
+            }
         }
+
 
         if (nearest == null)
             return;
 
-        nearest.EquipItem(player);
-        if (nearest.currentPlayer == player)
-            heldItem = nearest;
+        nearest.EquipItem(player,Cam.gameObject);
+        heldItem = nearest;
     }
-    
+
     public void DropHeldItem(bool discardIfNoGround = false)
     {
-        Item item = heldItem;
+        I_Item item = heldItem;
         heldItem = null;
 
-        if (item == null || item.currentPlayer != player)
+        if (item == null || item.IsBeginHeldBy(player))
             return;
 
         Transform aim = player.GetComponent<Shove>().playerCam.transform;
@@ -93,14 +106,31 @@ public class PlayerItemInteraction : MonoBehaviour
         if (foundGround)
             dropPosition.y = ground.point.y + 0.25f;
 
-        item.OnDrop();
+        //item.OnDrop();
 
         if (!foundGround && discardIfNoGround)
         {
-            Destroy(item.gameObject);
+            //Destroy(item.gameObject);
             return;
         }
 
-        item.transform.SetPositionAndRotation(dropPosition, facing);
+        //item.transform.SetPositionAndRotation(dropPosition, facing);
+    }
+
+    public void ThrowItem()
+    {
+        if (IsHoldingItem)
+        {
+            heldItem.ThrowItem(Cam.transform);
+            heldItem = null;
+        }
+    }
+
+    public void UseItem()
+    {
+       if (heldItem != null)
+        {
+            heldItem.UseItem(Cam.transform);
+        }
     }
 }

@@ -116,7 +116,7 @@ public class Shove : MonoBehaviour
         if (target == null || direction.sqrMagnitude < 0.0001f)
             return false;
 
-        PlayerStats stats = target.GetComponentInParent<PlayerStats>();
+        PlayerStats stats = target.transform.root.GetComponentInChildren<PlayerStats>();
         if (stats == null || stats.isInvincible)
             return false;
 
