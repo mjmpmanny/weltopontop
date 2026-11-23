@@ -19,9 +19,14 @@ public interface I_Item
     /// </summary>
     /// <param name="origin">Stores the direction and position where the item is being thrown</param>
     public void ThrowItem(Transform origin);
-   /// <summary>
-   /// Returns if the item is able to ba picked up
-   /// </summary>
+    /// <summary>
+    /// Drops the item at pos
+    /// </summary>
+    /// <param name="origin">The place the item is dropped</param>
+    public void DropItem(Vector3 pos);
+    /// <summary>
+    /// Returns if the item is able to ba picked up
+    /// </summary>
     public bool CanPickUp();
     /// <summary>
     /// Returns the position of the item

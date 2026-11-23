@@ -8,9 +8,9 @@ public class BasicBaseItem : MonoBehaviour , I_Item
     private bool IsBeingHeld;
     private PlayerController player;
     private bool isBeingThrown;
-    private Rigidbody rb => _rb != null ? _rb : (_rb = GetComponent<Rigidbody>());//Lazy loads the compoent
+    private Rigidbody rb => _rb ??= GetComponent<Rigidbody>();
     private Rigidbody _rb;
-    private Collider collider => _collider != null ? _collider : (_collider = GetComponent<Collider>());//Lazy loads the compoent
+    private Collider collider => _collider ??= GetComponent<Collider>();
     private Collider _collider;
 
     [Header("Basic Settings")]
@@ -43,6 +43,15 @@ public class BasicBaseItem : MonoBehaviour , I_Item
 
         rb.constraints = RigidbodyConstraints.None;
         rb.AddForce(pos.forward * ThrowSpeed);
+    }
+    public void DropItem(Vector3 pos)
+    {
+        transform.SetParent(null);
+        transform.position = pos;
+        IsBeingHeld = false;
+        isBeingThrown = true;
+
+        rb.constraints = RigidbodyConstraints.None;
     }
     public bool CanPickUp()
     {

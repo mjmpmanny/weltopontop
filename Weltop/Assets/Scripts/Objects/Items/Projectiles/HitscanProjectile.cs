@@ -5,14 +5,18 @@ public class HitscanProjectile : Projectile
 {
     private void Start()
     {
-        Physics.Raycast(transform.position,transform.forward, out RaycastHit hit);
+        Vector3 endPoint = transform.position + transform.forward * 1000;
+        if (Physics.Raycast(transform.position,transform.forward, out RaycastHit hit)){
+             endPoint = hit.point;
+
+        }
 
 
         LineRenderer beam = GetComponent<LineRenderer>();
         beam.useWorldSpace = true;
         beam.widthMultiplier = 0.03f;
         beam.positionCount = 2;
-        beam.SetPosition(0, hitscanMuzzle != null ? hitscanMuzzle.position : transform.position);
+        beam.SetPosition(0, transform.position);
         beam.SetPosition(1, endPoint);
         Destroy(beam.gameObject, 0.08f);
     }

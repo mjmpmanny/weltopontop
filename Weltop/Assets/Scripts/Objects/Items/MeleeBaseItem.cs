@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 
@@ -13,10 +14,10 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
     private bool IsBeingHeld;
     private PlayerController player;
     private bool isBeingThrown;
-    private Rigidbody rb => _rb != null ? _rb : (_rb = GetComponent<Rigidbody>());
+    
+    private Rigidbody rb => _rb ??= GetComponent<Rigidbody>();
     private Rigidbody _rb;
-    private uLazy<Rigidbody> urb = new (() => GetComponent<Rigidbody>());
-    private Collider collider => _collider != null ? _collider : (_collider = GetComponent<Collider>());
+    private Collider collider => _collider ??= GetComponent<Collider>();
     private Collider _collider;
 
 
@@ -31,11 +32,6 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
     private float swingCooldownTimer;
     [Tooltip("The force applyed to the player when hit")]
     public float hitForce;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>();
-    }
 
     private void Update()
     {
@@ -93,6 +89,15 @@ public class MeleeBaseItem : MonoBehaviour, I_Item
 
         rb.constraints = RigidbodyConstraints.None;
         rb.AddForce(pos.forward * ThrowSpeed);
+    }
+    public void DropItem(Vector3 pos)
+    {
+        transform.SetParent(null);
+        transform.position = pos;
+        IsBeingHeld = false;
+        isBeingThrown = true;
+
+        rb.constraints = RigidbodyConstraints.None;
     }
     public bool CanPickUp()
     {
