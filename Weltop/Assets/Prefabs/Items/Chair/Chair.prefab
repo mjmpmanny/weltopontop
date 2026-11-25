@@ -154,10 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583240333ec1ab3409b8804c8f994b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBaseItem
-  swingVisual: {fileID: 2742172830826458794}
   holdingOffset: {x: 0.5, y: -0.5, z: 1}
   ThrowSpeed: 800
-  swingCooldown: 0
+  AnimationSet: 0
+  swingVisual: {fileID: 2742172830826458794}
+  swingCooldown: 0.5
   hitForce: 100
 --- !u!1001 &3616294711907743933
 PrefabInstance:

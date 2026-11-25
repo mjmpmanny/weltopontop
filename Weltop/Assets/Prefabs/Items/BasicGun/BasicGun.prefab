@@ -108,8 +108,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedBaseItem
   holdingOffset: {x: 0.5, y: -0.5, z: 1}
   ThrowSpeed: 800
+  AnimationSet: 1
   MussleOffset: {x: 0, y: 0, z: 0}
   projectile: {fileID: 270876484587476934, guid: 011c35bef032a1f41acd4e166afc3e22, type: 3}
+  AmmoAmount: 0
 --- !u!54 &6096426163634479791
 Rigidbody:
   m_ObjectHideFlags: 0

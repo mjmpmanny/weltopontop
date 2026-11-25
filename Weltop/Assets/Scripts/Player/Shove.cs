@@ -73,8 +73,8 @@ public class Shove : MonoBehaviour
             if (!canShove || blockedByHeldItem || !playerController.canMove || (itemInteraction != null &&
                  (itemInteraction.IsHoldingItem || itemInteraction.UsedItemThisFrame)))
                 return;
-                
-            transform.parent.GetComponentInChildren<Animator>().Play("Attack", 1);
+
+            playerController.animationController.PlayAttackAnimation();
             OperateShoveHands();
             
             GameObject playerToShove = FindPlayerToShove();

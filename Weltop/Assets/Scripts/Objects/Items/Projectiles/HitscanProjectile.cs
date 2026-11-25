@@ -9,17 +9,6 @@ public class HitscanProjectile : Projectile
     {
 
         Vector3 endPoint = HitPosition - transform.position;
-        Collider[] cols = Physics.OverlapBox(HitPosition, Vector3.one * 0.1f, Quaternion.identity, ~((1 << playerOwner.gameObject.layer) + (1 << 16)));
-        if (cols.Length != 0)
-        {
-            foreach (Collider col in cols)
-            {
-                if (col.gameObject.layer >= 6 && col.gameObject.layer <= 9)
-                {
-                    HitPlayer(col, transform.position);
-                }
-            }
-        }
 
 
         LineRenderer beam = GetComponent<LineRenderer>();
@@ -29,10 +18,6 @@ public class HitscanProjectile : Projectile
         beam.SetPosition(1, Quaternion.Inverse(transform.rotation) * endPoint);
         Destroy(beam.gameObject, 0.08f);
         
-    }
-    public void HitPlayer(Collider col,Vector3 pos)
-    {
-        Shove.ApplyShoveHit(col.gameObject,pos,transform.forward);
     }
 
 }

@@ -9,12 +9,13 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerItemInteraction : MonoBehaviour
 {
     [SerializeField] private float pickupRange = 2.5f;
-
+    public GameObject RightHand;
     private Game game;
     private PlayerController player;
     private PlayerStats stats;
     private InputAction interact;
     private InputAction Attack;
+    private PlayerAnimationController playerAnimationController;
     private Camera Cam;
     private I_Item heldItem;
     public bool IsHoldingItem => heldItem != null && heldItem.IsBeginHeldBy(player);
@@ -30,12 +31,13 @@ public class PlayerItemInteraction : MonoBehaviour
 
     private void Start()
     {
-        game = FindFirstObjectByType<Game>();
+        game = FindAnyObjectByType<Game>();
         player = GetComponent<PlayerController>();
         stats = GetComponent<PlayerStats>();
         interact = GetComponent<PlayerInput>().actions["Interact"];
         Attack = GetComponent<PlayerInput>().actions["Attack"];
         Cam = transform.parent.GetComponentInChildren<Camera>();
+        playerAnimationController = transform.root.GetComponentInChildren<PlayerAnimationController>();
     }
 
     private void Update()
@@ -83,8 +85,10 @@ public class PlayerItemInteraction : MonoBehaviour
         if (nearest == null)
             return;
 
-        nearest.EquipItem(player,Cam.gameObject);
+
+        nearest.EquipItem(player,Cam.gameObject,RightHand);
         heldItem = nearest;
+        playerAnimationController.SetAnimationStyle(heldItem.GetAnimationSet());
     }
 
     public void DropHeldItem(bool discardIfNoGround = false)
@@ -93,6 +97,8 @@ public class PlayerItemInteraction : MonoBehaviour
         {
             heldItem.DropItem(player.LastSolidGround);
             heldItem = null;
+
+            playerAnimationController.SetAnimationStyle(0);
         }
     }
 
@@ -102,6 +108,7 @@ public class PlayerItemInteraction : MonoBehaviour
         {
             heldItem.ThrowItem(Cam.transform.position, Cam.transform.forward);
             heldItem = null;
+            playerAnimationController.SetAnimationStyle(0);
         }
     }
 

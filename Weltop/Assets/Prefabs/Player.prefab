@@ -1060,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteraction
   pickupRange: 2.5
+  RightHand: {fileID: 2381167806916085712}
 --- !u!1 &6001969543886878094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6171389227038603486}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1599,6 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cam3dPerson
   canLook: 0
+  BoneToTurnWith: {fileID: 2458319448403238750}
 --- !u!1 &8501285007528437945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,6 +1849,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: be1c995e739049941be9736cb840c1ce, type: 2}
+    - target: {fileID: 4138525926040835851, guid: a0378459e6804454b81d2d4651d980d2, type: 3}
+      propertyPath: m_Name
+      value: RightHand_end
+      objectReference: {fileID: 0}
     - target: {fileID: 8383800651735464286, guid: a0378459e6804454b81d2d4651d980d2, type: 3}
       propertyPath: m_Name
       value: Model
@@ -1902,6 +1908,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5267095064637787157}
   m_SourcePrefab: {fileID: 100100000, guid: a0378459e6804454b81d2d4651d980d2, type: 3}
+--- !u!1 &2381167806916085712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4138525926040835851, guid: a0378459e6804454b81d2d4651d980d2, type: 3}
+  m_PrefabInstance: {fileID: 1757922168609231067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2458319448403238750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4213346585632739205, guid: a0378459e6804454b81d2d4651d980d2, type: 3}
+  m_PrefabInstance: {fileID: 1757922168609231067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4297328617775628493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2577828625371877398, guid: a0378459e6804454b81d2d4651d980d2, type: 3}

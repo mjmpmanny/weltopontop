@@ -11,6 +11,7 @@ public class CamFirstPerson : MonoBehaviour, ICamera
     private float pitch;
     public bool canLook = true;
     private CinemachineCamera Cam;
+    public GameObject BoneToTurnWith;
 
 
     void Start()
@@ -56,6 +57,13 @@ public class CamFirstPerson : MonoBehaviour, ICamera
         transform.position = transform.parent
             .GetComponentInChildren<PlayerController>()
             .transform.position;
+    }
+
+    private void LateUpdate()
+    {
+        if (BoneToTurnWith != null && Cam.Priority == 10 ) {
+            BoneToTurnWith.transform.localRotation = Quaternion.Euler(0, 0,pitch) *(BoneToTurnWith.transform.localRotation);
+        }
     }
 
 

@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
     private System.Action<InputAction.CallbackContext> jump_;
     private Rigidbody rb;
     private GameObject cam;
-    private PlayerAnimationController animationController;
+    [HideInInspector]
+    public PlayerAnimationController animationController;
     private ViewSwitcher viewSwitcher;
 
     /// <summary>

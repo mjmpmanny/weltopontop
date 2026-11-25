@@ -1,3 +1,4 @@
+using GLTFast.Schema;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,8 @@ public class PlayerAnimationController : MonoBehaviour
         PopulateAnimationStartBoneTransforms(_faceDownStandUpClipName, _faceDownStandUpBoneTransforms);
 
         DisableRagdoll();
+
+
     }
 
     // Update is called once per frame
@@ -105,6 +108,7 @@ public class PlayerAnimationController : MonoBehaviour
                 break;
         }
     }
+
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint,Vector3 CurVel)
     { 
@@ -186,6 +190,17 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _animator.SetBool("Jumping", false);
     }
+
+    public void SetAnimationStyle(int style)
+    {
+        _animator.SetFloat("AnimationSet",style);
+    }
+
+    public void PlayAttackAnimation()
+    {
+        _animator.Play("Attack", 1,0.2f);
+    }
+
 
     private void RagdollBehaviour()
     {

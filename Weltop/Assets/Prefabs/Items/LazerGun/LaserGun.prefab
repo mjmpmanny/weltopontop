@@ -138,10 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad8a2de326de4c4aab91945fa311098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LazerGun
-  holdingOffset: {x: 0.5, y: -0.5, z: 1}
+  holdingOffset: {x: 0.5, y: -0.5, z: 0.5}
   ThrowSpeed: 800
-  MussleOffset: {x: 0, y: 0.28, z: 0.68}
+  AnimationSet: 1
+  MussleOffset: {x: 0, y: 0.28, z: 1}
   projectile: {fileID: 6022335764466777237, guid: f8127c9f32afe9e4ba8c3725a7e80777, type: 3}
+  AmmoAmount: 0
 --- !u!54 &2194122412687685006
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -215,7 +217,7 @@ Transform:
   m_GameObject: {fileID: 7450266662509100233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
