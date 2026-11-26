@@ -15,5 +15,7 @@ MonoBehaviour:
   displayName: Jump Boost
   category: 2
   prefab: {fileID: 8803797871038684533, guid: a4983baf40f5443409a7edc383dffde9, type: 3}
+  previewPrefab: {fileID: 0}
+  selectionWeight: 0
   effects:
   - {fileID: 11400000, guid: 5529bea9b786013409ff866d212ff927, type: 2}

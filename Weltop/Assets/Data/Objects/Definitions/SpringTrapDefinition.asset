@@ -15,5 +15,7 @@ MonoBehaviour:
   displayName: Spring Trap
   category: 2
   prefab: {fileID: 1535250928229649355, guid: 9d31e2bee3a415048a796bccc917d662, type: 3}
+  previewPrefab: {fileID: 0}
+  selectionWeight: 3
   effects:
   - {fileID: 11400000, guid: 0b55457bb87e63147aed083963083cc3, type: 2}

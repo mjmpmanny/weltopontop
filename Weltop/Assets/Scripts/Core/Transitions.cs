@@ -7,14 +7,20 @@ using UnityEngine.UIElements;
 public class Transitions : MonoBehaviour
 {
     private Game game;
+    private UI ui;
 
     public GameObject timerCountdownPanel;
+    public GameObject parkourRoundPanel;
     public TMP_Text countdownText;
 
     public Coroutine currentTransitionCoroutine = null;
+
+    private Audio audio;
     
     private void Awake()
     {
+        audio = GetComponent<Audio>();
+        ui = GetComponent<UI>();
         game = GetComponent<Game>();
     }
     
@@ -32,25 +38,31 @@ public class Transitions : MonoBehaviour
         });
         
         game.gameIsActive = false;
-        timerCountdownPanel.gameObject.SetActive(true);
-
+        
+        parkourRoundPanel.SetActive(false);
+        timerCountdownPanel.SetActive(true);
+        
         float timer = GlobalParameters.CountdownToGameSeconds;
-
-        while (timer >= 0)
+        
+        audio.PlayMusic(Audio.MusicType.ParkourRound);
+        
+        while (timer >= -1)
         {
             timer -= Time.deltaTime;
-            if (timer < 1)
+            if (timer <= 0)
             {
                 countdownText.text = "GO!";
             }
             else
             {
-                countdownText.text = timer.ToString("N0");
+                //countdownText.text = timer.ToString("N0");
+                ui.UpdateParkourRoundTimer(timer);
             }
             yield return null;
         }
         
-        timerCountdownPanel.gameObject.SetActive(false);
+        parkourRoundPanel.SetActive(true);
+        timerCountdownPanel.SetActive(false);
         
         game.ExecuteCodeOnAllPlayerControllers(controller =>
         {
@@ -86,7 +98,7 @@ public class Transitions : MonoBehaviour
     {
         timerCountdownPanel.gameObject.SetActive(true);
         
-        float timer = GlobalParameters.StartRoundCountDownAtXSeconds + 1;
+        float timer = GlobalParameters.StartRoundCountDownAtXSeconds;
 
         while (timer >= 0)
         {

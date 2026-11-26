@@ -11,11 +11,55 @@ public class Projectile : MonoBehaviour
     public GameObject playerOwner;
 
 
+<<<<<<< HEAD
+=======
+    private bool hitWall = false;
+    private bool hitOpponent = false;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
+    }
+>>>>>>> main
 
     private void Update()
     {
         OnFlying();
     }
+<<<<<<< HEAD
+=======
+
+    private void FixedUpdate()
+    {
+        Vector3 customGravity = Physics.gravity * gravityModifier;
+        rb.AddForce(customGravity, ForceMode.Acceleration);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.gameObject != playerOwner && !hitOpponent)
+            {
+                OnHitOpponent(other.gameObject);
+                hitOpponent = true;
+                if(destroyOnHit)
+                    Destroy(gameObject);
+            }
+        }
+        
+        if (!other.gameObject.CompareTag("Player") && !hitWall)
+        {
+            if (other.gameObject.CompareTag("HillZone") || other.gameObject.CompareTag("KillZone"))
+                return;
+            
+            OnHitWall(other.gameObject);
+            hitWall = true;
+        }
+    }
+
+>>>>>>> main
     /// <summary>
     /// Called once per frame while the object exists
     /// </summary>
@@ -49,9 +93,27 @@ public class Projectile : MonoBehaviour
     {
         
     }
+    
+    /// <summary>
+    /// Called once when this projectile hits a collider
+    /// </summary>
+    /// <param name="wallHit">The object that this projectile hit</param>
+    public virtual void OnHitWall(GameObject wallHit)
+    {
+        
+    }
 
     /// <summary>
-    /// Helper method to have a projectile apply knockback
+    /// Helper method to destroy projectile.
+    /// </summary>
+    public virtual void KillSelf()
+    {
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// <para>Helper method to have a projectile apply knockback</para>
+    /// <para>WARNING! Is not normalized by default</para>
     /// </summary>
     /// <param name="playerTarget">The player that will get knocked back</param>
     /// <param name="knockbackForce">The knockback strength</param>

@@ -48,7 +48,7 @@ public class UI : MonoBehaviour
             }
         }
     }
-
+    
     public void UpdateHillPoints(PlayerStats playerStats)
     {
         int playerIndex = playerStats.PlayerIndex;
@@ -75,12 +75,9 @@ public class UI : MonoBehaviour
 
     public void UpdateParkourRoundTimer(float currentTime)
     {
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        string formattedTime = time.ToString(@"m\:ss");
-        parkourRoundTimerText.text = formattedTime;
-        double wholeSeconds = Math.Floor(time.TotalSeconds); 
-        
-        transitions.countdownText.text = wholeSeconds.ToString("N0");
+        int seconds = Mathf.CeilToInt(Mathf.Max(0f, currentTime));
+        parkourRoundTimerText.text = $"{seconds / 60}:{seconds % 60:00}";
+        transitions.countdownText.text = seconds.ToString();
     }
 
     public void HillMovingText()
@@ -90,16 +87,15 @@ public class UI : MonoBehaviour
     
     public void UpdateHillMoverTimer(float currentTime)
     {
-        hillMoverTimerText.text = $"The Hill will move in: {currentTime.ToString("N0")} seconds";
+        int seconds = Mathf.CeilToInt(Mathf.Max(0f, currentTime));
+        hillMoverTimerText.text = $"The Hill will move in: {seconds} seconds";
     }
     
     public void UpdateBuildRoundTimer(float currentTime)
     {
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        string formattedTime = time.ToString(@"m\:ss");
-        buildRoundTimerText.text = formattedTime;
-        double wholeSeconds = Math.Floor(time.TotalSeconds); 
-        transitions.countdownText.text = wholeSeconds.ToString("N0");
+        int seconds = Mathf.CeilToInt(Mathf.Max(0f, currentTime));
+        buildRoundTimerText.text = $"{seconds / 60}:{seconds % 60:00}";
+        transitions.countdownText.text = seconds.ToString();
     }
     
     public void UpdateObjectSelectionTimer(float remainingTime)
