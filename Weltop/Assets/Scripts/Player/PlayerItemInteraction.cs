@@ -55,7 +55,7 @@ public class PlayerItemInteraction : MonoBehaviour
                 ThrowItem();
                 return;
             }
-            PickupItem(new CallbackContext());
+            Interact(new CallbackContext());
         }
         if (Attack.WasPressedThisFrame() && IsHoldingItem)
         {
@@ -63,21 +63,20 @@ public class PlayerItemInteraction : MonoBehaviour
         }
     }
     
-    private void PickupItem(CallbackContext ctx)
+    public void Interact(CallbackContext ctx)
     {
-
-        I_Item nearest = null;
+        I_Interactable nearest = null;
         float nearestDist = float.MaxValue;
         float nearestDistanceSquared = pickupRange * pickupRange;
 
         Collider[] cols = Physics.OverlapSphere(transform.position, pickupRange, 1 << 16);
-        List<I_Item> items = new List<I_Item>();
+        List<I_Interactable> InteractableObjects = new List<I_Interactable>();
         foreach (Collider col in cols)
         {
-            I_Item item = col.gameObject.GetComponent<I_Item>();
-            if (item.CanPickUp() && (transform.position - item.GetPosition()).magnitude < nearestDist)
+            I_Interactable InteractableObject = col.gameObject.GetComponent<I_Interactable>();
+            if (InteractableObject.CanBeInteractedWith() && (transform.position - InteractableObject.GetPosition()).magnitude < nearestDist)
             {
-                nearest = item;
+                nearest = InteractableObject;
             }
         }
 
@@ -85,11 +84,17 @@ public class PlayerItemInteraction : MonoBehaviour
         if (nearest == null)
             return;
 
+        nearest.Interact(this);
+    }
 
-        nearest.EquipItem(player,Cam.gameObject,RightHand);
-        heldItem = nearest;
+    public void PickupItem(I_Item item)
+    {
+        item.EquipItem(player,Cam.gameObject,RightHand);
+        heldItem = item;
         playerAnimationController.SetAnimationStyle(heldItem.GetAnimationSet());
     }
+
+    
 
     public void DropHeldItem(bool discardIfNoGround = false)
     {

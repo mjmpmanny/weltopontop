@@ -2,7 +2,7 @@ using DG.Tweening;
 using Unity.Multiplayer.PlayMode;
 using UnityEngine;
 
-public class BasicBaseItem : MonoBehaviour , I_Item
+public class BasicBaseItem : MonoBehaviour , I_Item, I_Interactable
 {
     protected BasicBaseItem fakeItem;
     protected bool IsBeingHeld;
@@ -26,6 +26,19 @@ public class BasicBaseItem : MonoBehaviour , I_Item
         Rifle = 1,
         OneHanded = 2,
         twohanded = 3
+    }
+
+    public bool CanBeInteractedWith()
+    {
+        return CanPickUp();
+    }
+
+    public void Interact(PlayerItemInteraction playerinteract)
+    {
+        if (CanPickUp())
+        {
+            playerinteract.PickupItem(this);
+        }
     }
 
     public virtual void EquipItem(PlayerController player, GameObject toParentTo, GameObject HandToParentTo)
