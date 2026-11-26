@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlungerGun : Item
+public class PlungerGun : RangedBaseItem
 {
     
 }

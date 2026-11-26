@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6022335764466777237}
   - component: {fileID: 1958343770386952798}
   m_Layer: 0
-  m_Name: HitscanProjectial
+  m_Name: LaserVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

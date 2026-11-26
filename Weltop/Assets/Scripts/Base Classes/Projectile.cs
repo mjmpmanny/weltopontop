@@ -10,30 +10,18 @@ public class Projectile : MonoBehaviour
     [HideInInspector] //Used so that the projectile does not affect the player who shot it
     public GameObject playerOwner;
 
-
-<<<<<<< HEAD
-=======
     private bool hitWall = false;
     private bool hitOpponent = false;
-
+    protected Rigidbody rb;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
     }
->>>>>>> main
 
     private void Update()
     {
         OnFlying();
-    }
-<<<<<<< HEAD
-=======
-
-    private void FixedUpdate()
-    {
-        Vector3 customGravity = Physics.gravity * gravityModifier;
-        rb.AddForce(customGravity, ForceMode.Acceleration);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,31 +47,12 @@ public class Projectile : MonoBehaviour
         }
     }
 
->>>>>>> main
     /// <summary>
     /// Called once per frame while the object exists
     /// </summary>
     public virtual void OnFlying()
     {
         
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (playerOwner != null && other.gameObject.layer != playerOwner.layer)
-            {
-                OnHitOpponent(other.gameObject);
-                if (destroyOnHit)
-                    Destroy(gameObject);
-            }
-        }
-        if (other.gameObject.layer == 0)
-        {
-            if (destroyOnHit)
-                Destroy(gameObject);
-
-        }
     }
     /// <summary>
     /// Called once when this projectile hits an opponent
@@ -117,12 +86,12 @@ public class Projectile : MonoBehaviour
     /// </summary>
     /// <param name="playerTarget">The player that will get knocked back</param>
     /// <param name="knockbackForce">The knockback strength</param>
-    public void ApplyKnockback(GameObject playerTarget, float knockbackForce, Vector3 direction)
+    public static void ApplyKnockback(GameObject playerTarget, float knockbackForce, Vector3 direction)
     {
         Rigidbody rb = playerTarget.GetComponent<Rigidbody>();
         if (rb == null)
             return;
-        
+
         rb.AddForce(direction * knockbackForce, ForceMode.Impulse);
     }
 }

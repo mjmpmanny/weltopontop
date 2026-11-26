@@ -2,7 +2,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class Plunger : Projectile
+public class Plunger : BasicProjectile
 {
     private float timer = 0;
     private bool hasRetracted;
